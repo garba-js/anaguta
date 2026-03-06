@@ -1,0 +1,279 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.logo {
+  width: 100%;
+  height: 100px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 2px 8px rgb(0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2rem;
+  max-width: 1600px;
+}
+
+.navbar-container .navbar-menu {
+  display: flex;
+  text-align: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.navbar-container .navbar-menu li a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 3px 2px;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: all 0.7s ease;
+  white-space: nowrap;
+
+}
+
+.navbar-container .navbar-menu li a:hover {
+  color: white;
+  background: rgba(0, 0, 0, 0.289);
+
+}
+
+.navbar-toggle {
+  display: none;
+  background: transparent;
+  color: transparent;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background: rgb(0, 0, 0);
+  transition: all 0.3s ease-in-out;
+}
+
+section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* hero section _______________________________________________ */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  /* adjust as needed */
+  overflow: hidden;
+}
+
+/* Text overlay */
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  color: white;
+  z-index: 2;
+  max-width: 1600px;
+  padding: 0px;
+  width: 90%;
+}
+
+/* overlay for readability */
+.hero-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+}
+
+.hero-content h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  max-width: 80%;
+}
+
+.learn {
+  margin: 0 10px;
+  padding: 12px 24px;
+  border: none;
+  background: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.community {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 1rem;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.hero-content button:hover {
+  background: var(--secondary-color);
+}
+
+.community:hover {
+  background-color: var(--secondary-color);
+}
+
+
+
+
+
+
+
+@media (max-width: 880px) {
+  .navbar {
+    backdrop-filter: none;
+  }
+
+  .navbar-container .navbar-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: rgba(255, 255, 255, 0.193);
+    gap: 1.7rem;
+    position: absolute;
+    height: 100vh;
+    width: 300px;
+    top: 0;
+    right: 0;
+    padding: 5rem 1.5rem;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+  }
+
+  .logo {
+    height: 90px;
+  }
+
+  .navbar {
+    backdrop-filter: none;
+  }
+
+  .navbar-container .navbar-menu {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.7rem;
+    position: absolute;
+    height: 100vh;
+    width: 300px;
+    top: 0;
+    right: 0;
+    padding: 5rem 1.5rem;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease-in-out;
+  }
+
+
+  .navbar-container .navbar-menu.active {
+    display: flex;
+  }
+}
+
+.navbar-toggle {
+  display: block;
+  z-index: 999;
+}
+
+.navbar-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggle.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.navbar-toggle.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* hero section _______________________________________________ */
+.hero-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.hero-content p {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.learn {
+  margin-left: 0;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.community {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+
+
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+}

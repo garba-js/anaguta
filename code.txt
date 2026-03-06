@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anaguta Trado-Modern</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/large.css">
+    <script src="scripts/nav.js" defer></script>
+</head>
+
+<body>
+    <!--Header-->
+    <nav>
+    <ul class="sidebar">
+        <li onclick="hideSidebar()">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="black">
+                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </a>
+        </li>
+        <li><a href="#">Impacts</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">History</a></li>
+        <li><a href="#">About us</a></li>
+    </ul>
+
+    <ul>
+        <li class="brand-logo"><a href="#"><div><img src="images/logo.png" alt=""></div>Anaguta Tradomodern</a></li>
+        <li class="hideOnMobile"><a href="#">Impacts</a></li>
+        <li class="hideOnMobile"><a href="#">Community</a></li>
+        <li class="hideOnMobile"><a href="#">History</a></li>
+        <li class="hideOnMobile"><a href="#">About us</a></li>
+        <li class="menu-button" onclick="showSidebar()">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="black">
+                    <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                </svg>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+    <script>
+        function showSidebar() {
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'flex'
+        }
+        function hideSidebar() {
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'none'
+        }
+    </script>
+    
+
+    <!--Hero section-->
+    <section class="hero-img">
+        <img src="images/sple.png" alt="">
+        <div class="hero-content">
+            <h2>Anaguta to the world</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate hic sed iste sunt reprehenderit vero
+                amet, quo nihil. Deleniti, quibusdam fuga eius voluptate laudantium officia vitae doloremque alias natus
+                impedit?</p>
+        </div>
+    </section>
+
+    <!--about section-->
+    <section class="about-us">
+        <div>
+            <h4>About us</h4>
+            <h2>Anaguta Tradomodern</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum amet, veniam expedita voluptate tenetur
+                atque ducimus rem dolore quidem tempore temporibus veritatis accusamus id itaque a! Deleniti quas autem
+                nesciunt?</p>
+
+            <button>Find more</button>
+        </div>
+        <div class="map">
+            <img src="images/map.png" alt="">
+        </div>
+        <div>
+            <img src="images/sple.png" alt="">
+            <p>Statistics of Anaguta population</p>
+            <div class="card">
+                <p>200,000 thousand</p>
+                <p>total number captures as at..</p>
+            </div>
+            <div class="card">
+                <p>200,000 thousand</p>
+                <p>Total number outside plateau</p>
+            </div>
+            <div class="card">
+                <p>200,000 thousand</p>
+                <p>total number captures as at..</p>
+            </div>
+        </div>
+    </section>
+    <!--Project section-->
+    <section>
+        <div>
+            <h4>Body of Anaguta</h4>
+            <h2>dive into history and culture of the anaguta people</h2>
+        </div>
+        <div>
+            <img src="images/sple.png" alt="">
+            <p>Statistics of Anaguta population</p>
+            <div class="card">
+                <p>Green color</p>
+                <p>total number captures as at..</p>
+            </div>
+            <div class="card">
+                <p>Gold color</p>
+                <p>Total number outside plateau</p>
+            </div>
+            <div class="card">
+                <p>red color</p>
+                <p>total number captures as at..</p>
+            </div>
+            <div class="card">
+                <p>white</p>
+                <p>total number captures as at..</p>
+            </div>
+    </section>
+
+    <footer>
+        <div>
+            <h3>Social media</h3>
+            <h3>Follow us</h3>
+            <h3>Join our Community</h3>
+            <h3>Social media</h3>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+
+
+
+.........................
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body{
+  min-height: 100vh;
+}
+
+
+nav{
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+nav ul{
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+
+nav li{
+  height: 50px;
+}
+
+nav a{
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+nav a:hover{
+  background-color: #ddd;
+}
+
+nav li:first-child{
+  margin-right: auto;
+}
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(10px);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.sidebar li{
+  width: 100%;
+}
+
+.sidebar a{
+  width: 100%;
+}
+
+.menu-button{
+  display: none;
+}
+
+img{
+    width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand-logo{
+  width: 38%;
+}
+
+
+
+
+
+@media(max-width: 800px) {
+  .hideOnMobile{
+    display: none;
+  }
+  .menu-button{
+    display: block;
+  }
+}
+@media(max-width: 400px) {
+  .sidebar{
+    width: 100%;
+  }
+}
