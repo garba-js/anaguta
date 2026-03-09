@@ -1,0 +1,121 @@
+
+@media (max-width: 880px) {
+  .navbar {
+    backdrop-filter: none;
+  }
+
+  .navbar-container .navbar-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: rgba(255, 255, 255, 0.193);
+    gap: 1.7rem;
+    position: absolute;
+    height: 100vh;
+    width: 300px;
+    top: 0;
+    right: 0;
+    padding: 5rem 1.5rem;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+  }
+
+  .logo {
+    height: 90px;
+  }
+
+  .navbar {
+    backdrop-filter: none;
+  }
+
+  .navbar-container .navbar-menu {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.7rem;
+    position: absolute;
+    height: 100vh;
+    width: 300px;
+    top: 0;
+    right: 0;
+    padding: 5rem 1.5rem;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease-in-out;
+  }
+
+
+  .navbar-container .navbar-menu.active {
+    display: flex;
+  }
+  
+
+  .navbar-toggle {
+    display: block;
+    z-index: 999;
+  }
+
+  .navbar-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .navbar-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+
+/* hero section _______________________________________________ */
+
+
+
+  .hero-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .learn {
+    margin: 10px 10px 10px 0px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .community {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+/* about us section _______________________________________________ */
+
+
+  .details h2{
+    font-size: 20px;
+  }
+
+  .details p{
+    font-size: 14px;
+  }
+
+
+
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+}
+}
