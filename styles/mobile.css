@@ -1,4 +1,3 @@
-
 @media (max-width: 880px) {
   .navbar {
     backdrop-filter: none;
@@ -47,7 +46,7 @@
   .navbar-container .navbar-menu.active {
     display: flex;
   }
-  
+
 
   .navbar-toggle {
     display: block;
@@ -67,7 +66,7 @@
   }
 
 
-/* hero section _______________________________________________ */
+  /* hero section _______________________________________________ */
 
 
 
@@ -100,22 +99,24 @@
     font-weight: 600;
   }
 
-/* about us section _______________________________________________ */
+  /* about us section _______________________________________________ */
 
-
-  .details h2{
+  .details h2 {
     font-size: 20px;
   }
 
-  .details p{
+  .details p {
     font-size: 14px;
   }
 
+  /* card _______________________________________________ */
 
 
-@media (max-width: 480px) {
-  .navbar-container {
-    padding: 0 1rem;
+
+
+  @media (max-width: 480px) {
+    .navbar-container {
+      padding: 0 1rem;
+    }
   }
-}
 }

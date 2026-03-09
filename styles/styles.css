@@ -177,24 +177,30 @@ section img {
 
 
 /* about Ussection _______________________________________________ */
-.details {
+.details,
+.culture,
+.cus {
   background: rgba(250, 235, 215, 0.505);
   padding: 4rem 2rem;
   /* box-shadow: 0 5px 8px rgba(0, 0, 0, 0.29);*/
 }
 
-.details h4 {
+.details h4,
+.culture h4,
+.cus h4 {
   border-left: 5px solid brown;
   padding: 2px 10px;
   margin-bottom: 10px;
 }
 
-.details h2 {
+.details h2,
+.cus h2 {
   font-size: 2rem;
   margin-bottom: 10px;
 }
 
-.details p {
+.details p,
+.cus p {
   font-size: 20px;
 }
 
@@ -209,21 +215,83 @@ section img {
   border-radius: 5px;
 }
 
-.stats {
-  display: grid;
+
+
+
+
+/* Culture Ussection _______________________________________________ */
+.culture {
+  background-color: white;
+  padding: 2rem;
+  /* box-shadow: 0 5px 8px rgba(0, 0, 0, 0.29);*/
 }
 
+.slider {
+  display: flex;
+  gap: 2.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 20px;
+}
+
+/*
+.slider::-webkit-scrollbar{
+  display: none;
+}
+*/
+
+
 .card {
-  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.29);
-  margin: 1.5rem 3rem;
-  padding: 1rem;
+  flex: 0 0 100%;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.29);
+  padding: 1.5rem;
   display: grid;
-  border-radius: 10px;
+  max-width: 400px;
 }
 
 .card img {
-  width: 50%;
+  width: 100%;
   margin: auto;
 }
 
+.card-king {
+  margin-top: 2rem;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.29);
+  padding: 1rem;
+}
 
+/* _______________________________footer ________________________*/
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: var(--secondary-color);
+  padding: 1rem;
+  text-align: center;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.social img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+footer p {
+  font-size: 14px;
+  margin-top: 0.5rem;
+  color: #ffff;
+}
+
+.copyright {
+  margin-bottom: 2rem;
+}
