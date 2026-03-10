@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anaguta Trado-Modern</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/mobile.css">
+    <script src="scripts/nav.js" defer></script>
+</head>
+
+<body>
+    <!--Header-->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-logo" href="index.html">
+                <img class="logo" src="images/logo.png" alt="">
+            </a>
+            <button class="navbar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about_us.html">About</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Leaders</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Hero section-->
+    <section class="hero-container">
+        <img class="hero" src="images/team_pic.jpg" alt="">
+        <div class="hero-content">
+            <h2>Anaguta Tradomodern</h2>
+            <p>A team united by passion, driven by purpose and commited to promoting the Anaguta nation to the world.</p>
+            <button class="learn">Volunteer with us</button>
+        </div>
+    </section>
+
+    <!--about section-->
+    
+    <footer>
+        <div class="social">
+            <a href="#"><img src="images/facebook_icon.png" alt=""></a>
+            <a href="#"><img src="images/facebook_icon.png" alt=""></a>
+            <a href="#"><img src="images/facebook_icon.png" alt="Garba Js official LinkedIn"></a>
+        </div>
+        <p class="copyright">&copy; <span id="currentyear"></span> Anaguta Tradomodern | Jos, Nigeria.</p>
+    </footer>
+
+    <!-- Script to auto-update year ------------------------------------------------------>
+    <script>
+        document.getElementById("currentyear").textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

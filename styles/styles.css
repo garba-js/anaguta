@@ -96,7 +96,7 @@ section img {
 }
 
 
-/* hero section _______________________________________________ */
+/* hero section ________________ */
 .hero-container {
   position: relative;
   width: 100%;
@@ -176,7 +176,7 @@ section img {
 }
 
 
-/* about Ussection _______________________________________________ */
+/* about Ussection ______________________ */
 .details,
 .culture,
 .cus {
@@ -219,7 +219,7 @@ section img {
 
 
 
-/* Culture Ussection _______________________________________________ */
+/* Culture Ussection ______________ */
 .culture {
   background-color: white;
   padding: 2rem;
@@ -260,7 +260,7 @@ section img {
   padding: 1rem;
 }
 
-/* _______________________________footer ________________________*/
+/* __footer ___________________________________*/
 
 footer {
   display: flex;
@@ -295,3 +295,6 @@ footer p {
 .copyright {
   margin-bottom: 2rem;
 }
+
+
+/* _________________________________________ABOUT US PAge _______________________________*/
