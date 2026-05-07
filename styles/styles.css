@@ -184,12 +184,12 @@ section img {
   /* box-shadow: 0 5px 8px rgba(0, 0, 0, 0.29);*/
 }
 
-.details h4,
-.culture h4,
-.cus h4 {
+.sub-head{
   border-left: 5px solid brown;
   padding: 2px 10px;
   margin-bottom: 10px;
+  font-weight: 700px;
+  font-size: 18px;
 }
 
 .details h2,
