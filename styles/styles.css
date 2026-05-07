@@ -2,7 +2,7 @@
   --primary-color: #D98C4C;
   --secondary-color: #4C312C;
   --secondarylight-color: #bca8a4;
-  --brown-color: (93, 49, 5);
+  --brown-color: rgb(93, 49, 5);
 }
 
 
@@ -188,7 +188,7 @@ section img {
   border-left: 5px solid brown;
   padding: 2px 10px;
   margin-bottom: 10px;
-  font-weight: 700px;
+  font-weight: 700;
   font-size: 18px;
 }
 
@@ -280,7 +280,7 @@ section img {
 
 .title p{
   font-size: 12px;
-  font-weight: 500px;
+  font-weight: 500;
   margin: 10px 0 3px 0;
 }
 
