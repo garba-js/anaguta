@@ -206,14 +206,15 @@ section img {
 
 .map {
   margin-top: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .about-btn {
   padding: .5rem 1rem;
   font-size: 16px;
-  margin: 1.2rem 0;
   background-color: rgb(93, 49, 5);
   border: none;
+  text-decoration: none;
   color: white;
   font-weight: 600;
   border-radius: 5px;
@@ -233,6 +234,7 @@ section img {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding: 20px;
+  margin-bottom: 2rem;
 }
 
 /*
@@ -255,13 +257,21 @@ section img {
   margin: auto;
 }
 
+/* leaders section _____________________________________________________________________________________ */
+
+
 .card-king {
+  display: flex;
+  flex-direction: column;
   margin-top: 2rem;
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.29);
   padding: 1rem;
 }
 
-/* leaders section _____________________________________________________________________________________ */
+.card-king a{
+  margin-top: 1.5rem;
+}
+
 
 
 .title {
@@ -276,6 +286,14 @@ section img {
 
 /* project section __________________________________________________________________________________ */
 
+.card-project {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.29);
+  padding: 1rem;
+}
+
 .cus {
   padding: 4rem 2rem;
 }
@@ -288,6 +306,8 @@ section img {
 
 .project-btn {
   padding: .5rem 1rem;
+  text-decoration: none;
+  text-align: center;
   font-size: 16px;
   margin: 1.2rem 0;
   background-color: rgb(176, 101, 27);
