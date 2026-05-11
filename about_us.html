@@ -88,7 +88,7 @@
     .team .divider { background: var(--terracotta); }
     .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
     .team-card { overflow: hidden; }
-    .team-card img { width: 100%; height: 280px; object-fit: cover; display: block; filter: grayscale(20%); transition: filter .4s, transform .5s; }
+    .team-card img { width: 100%;  object-fit: cover; display: block; filter: grayscale(20%); transition: filter .4s, transform .5s; }
     .team-card:hover img { filter: grayscale(0); transform: scale(1.04); }
     .team-card-body { background: rgba(255,255,255,.04); padding: 1.3rem; border-left: 3px solid var(--terracotta); margin-top: 1px; }
     .team-card-name { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); }
@@ -241,9 +241,23 @@
       </div>
     </div>
     <div class="team-card reveal">
-      <img src="images/team_mercy.jpg" alt="Team member"/>
+      <img src="images/team_mercy.jpg" alt="Team member" loading="lazy"/>
       <div class="team-card-body">
         <div class="team-card-name">Mercy Kinaru</div>
+        <div class="team-card-role">Cultural Research Lead</div>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <img src="images/uwenni_jaja.webp" alt="Team member" loading="lazy"/>
+      <div class="team-card-body">
+        <div class="team-card-name">Shalzim Josephine Kankani</div>
+        <div class="team-card-role">Cultural Research Lead</div>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <img src="images/mayam.webp" alt="Team member" loading="lazy"/>
+      <div class="team-card-body">
+        <div class="team-card-name">Gambo Mayam Dauji</div>
         <div class="team-card-role">Cultural Research Lead</div>
       </div>
     </div>
@@ -262,7 +276,7 @@
       </div>
     </div>
     <div class="team-card reveal">
-      <img src="images/garba.jpg" alt="Team member"/>
+      <img src="images/passport.jpg" alt="Team member"/>
       <div class="team-card-body">
         <div class="team-card-name">Fatima Pwajok</div>
         <div class="team-card-role">Community Manager</div>
