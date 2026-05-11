@@ -1,116 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anaguta Trado-Modern</title>
-    <link rel="stylesheet" href="styles/styles.css">
-    <script src="scripts/nav.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>History — Anaguta Trado-Modern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5EFE0; --warm-bg: #FAF6EE; --terracotta: #B85C38;
+      --deep-brown: #2C1A0E; --mid-brown: #6B3F1F; --gold: #C99641;
+      --charcoal: #1E1E1E; --muted: #7A6A5A;
+      --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Outfit', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--warm-bg); color: var(--charcoal); font-family: var(--sans); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 4vw; background: transparent; transition: background .4s, box-shadow .4s; }
+    nav.scrolled { background: rgba(44,26,14,0.96); box-shadow: 0 2px 24px rgba(0,0,0,.18); }
+    .nav-logo { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; color: var(--cream); text-decoration: none; letter-spacing: .04em; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-size: .82rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--cream); text-decoration: none; opacity: .85; transition: opacity .2s, color .2s; }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-cta { background: var(--terracotta); color: #fff !important; padding: .45rem 1.1rem; border-radius: 2px; opacity: 1 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--cream); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--deep-brown); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--serif); font-size: 2.2rem; color: var(--cream); text-decoration: none; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* FULL-BLEED HERO */
+    .page-hero { position: relative; height: 70vh; min-height: 500px; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
+    .page-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center 20%; transform: scale(1.05); animation: hzoom 14s ease-out forwards; }
+    @keyframes hzoom { from { transform: scale(1.05); } to { transform: scale(1); } }
+    .page-hero-overlay { position: absolute; inset: 0; background: rgba(44,26,14,.72); }
+    .page-hero-content { position: relative; z-index: 2; padding: 0 8vw; }
+    .page-hero-tag { display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .page-hero h1 { font-family: var(--serif); font-size: clamp(3rem,8vw,6rem); font-weight: 300; color: var(--cream); line-height: 1.05; }
+    .page-hero h1 em { font-style: italic; color: var(--gold); }
+    .page-hero p { max-width: 580px; margin: 1.5rem auto 0; font-size: 1rem; line-height: 1.8; color: rgba(245,239,224,.7); }
+
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s, transform .8s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* INTRO */
+    .intro { padding: 90px 8vw; display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: center; background: var(--cream); }
+    .intro-text .section-label { font-size: .7rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1rem; }
+    .intro-text .section-title { font-family: var(--serif); font-size: clamp(2rem,4vw,3.2rem); font-weight: 300; color: var(--deep-brown); line-height: 1.15; margin-bottom: 1.5rem; }
+    .intro-text .section-title em { font-style: italic; color: var(--mid-brown); }
+    .intro-text .divider { width: 60px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
+    .intro-text p { font-size: .97rem; line-height: 1.85; color: var(--muted); margin-bottom: 1.2rem; }
+    .intro-text p strong { color: var(--deep-brown); font-weight: 500; }
+    .intro-img img { width: 100%; height: 480px; object-fit: cover; display: block; }
+
+    /* TIMELINE */
+    .timeline-section { padding: 90px 8vw; background: var(--warm-bg); }
+    .tl-header { text-align: center; margin-bottom: 5rem; }
+    .tl-header .section-label { font-size: .7rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1rem; }
+    .tl-header .section-title { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); font-weight: 300; color: var(--deep-brown); }
+    .tl-header .section-title em { font-style: italic; color: var(--mid-brown); }
+    .tl-header .divider { width: 60px; height: 2px; background: var(--gold); margin: 1.5rem auto 0; }
+
+    .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+    .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), var(--terracotta)); transform: translateX(-50%); }
+
+    .tl-item { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; margin-bottom: 4rem; align-items: start; }
+    .tl-item:nth-child(odd) .tl-content { grid-column: 1; text-align: right; padding-right: 2.5rem; }
+    .tl-item:nth-child(odd) .tl-spacer { grid-column: 2; }
+    .tl-item:nth-child(odd) .tl-empty { grid-column: 3; }
+    .tl-item:nth-child(even) .tl-empty { grid-column: 1; }
+    .tl-item:nth-child(even) .tl-spacer { grid-column: 2; }
+    .tl-item:nth-child(even) .tl-content { grid-column: 3; text-align: left; padding-left: 2.5rem; }
+
+    .tl-spacer { position: relative; display: flex; justify-content: center; padding-top: .3rem; }
+    .tl-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--terracotta); border: 3px solid var(--warm-bg); box-shadow: 0 0 0 2px var(--terracotta); position: relative; z-index: 2; margin-top: .3rem; }
+
+    .tl-era { font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--terracotta); margin-bottom: .4rem; }
+    .tl-year { font-family: var(--serif); font-size: 2.2rem; font-weight: 600; color: var(--deep-brown); line-height: 1; margin-bottom: .6rem; }
+    .tl-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--deep-brown); margin-bottom: .6rem; }
+    .tl-body { font-size: .9rem; line-height: 1.8; color: var(--muted); }
+    .tl-img { width: 100%; height: 160px; object-fit: cover; display: block; margin-top: 1rem; }
+
+    /* QUOTE */
+    .history-quote { background: var(--deep-brown); padding: 80px 8vw; text-align: center; }
+    .history-quote blockquote { font-family: var(--serif); font-size: clamp(1.5rem,3.5vw,2.4rem); font-weight: 300; font-style: italic; color: var(--cream); max-width: 800px; margin: 0 auto 1rem; line-height: 1.45; }
+    .history-quote cite { font-family: var(--sans); font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(245,239,224,.5); }
+
+    /* LEGACY */
+    .legacy { padding: 90px 8vw; background: var(--cream); }
+    .legacy-label { font-size: .7rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1rem; }
+    .legacy-title { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); font-weight: 300; color: var(--deep-brown); margin-bottom: 1.5rem; }
+    .legacy-title em { font-style: italic; color: var(--mid-brown); }
+    .divider { width: 60px; height: 2px; background: var(--gold); margin-bottom: 2.5rem; }
+    .legacy-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+    .legacy-card { position: relative; overflow: hidden; }
+    .legacy-card img { width: 100%; height: 280px; object-fit: cover; display: block; transition: transform .6s; }
+    .legacy-card:hover img { transform: scale(1.06); }
+    .legacy-card-over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(44,26,14,.88) 0%, transparent 55%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.4rem; }
+    .legacy-card-title { font-family: var(--serif); font-size: 1.3rem; color: var(--cream); }
+    .legacy-card-sub { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
+
+    footer { background: var(--deep-brown); padding: 60px 8vw 30px; }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 4vw; padding-bottom: 3rem; border-bottom: 1px solid rgba(245,239,224,.1); margin-bottom: 2rem; }
+    .footer-brand-name { font-family: var(--serif); font-size: 1.4rem; color: var(--cream); margin-bottom: .8rem; }
+    .footer-brand-desc { font-size: .88rem; line-height: 1.7; color: rgba(245,239,224,.5); max-width: 300px; }
+    .footer-col h4 { font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .6rem; }
+    .footer-col ul a { font-size: .88rem; color: rgba(245,239,224,.55); text-decoration: none; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--gold); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copyright { font-size: .78rem; color: rgba(245,239,224,.35); }
+    .social-links { display: flex; gap: 1rem; }
+    .social-links a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid rgba(245,239,224,.2); color: rgba(245,239,224,.55); text-decoration: none; font-size: .85rem; transition: border-color .2s, color .2s; }
+    .social-links a:hover { border-color: var(--gold); color: var(--gold); }
+
+    @media(max-width:900px) {
+      .nav-links { display: none; } .hamburger { display: flex; }
+      .intro { grid-template-columns: 1fr; }
+      .timeline::before { left: 20px; }
+      .tl-item { grid-template-columns: 40px 1fr; }
+      .tl-item:nth-child(odd) .tl-content,
+      .tl-item:nth-child(even) .tl-content { grid-column: 2; text-align: left; padding-left: 1.5rem; padding-right: 0; }
+      .tl-item:nth-child(odd) .tl-spacer,
+      .tl-item:nth-child(even) .tl-spacer { grid-column: 1; }
+      .tl-item:nth-child(odd) .tl-empty,
+      .tl-item:nth-child(even) .tl-empty { display: none; }
+      .legacy-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media(max-width:560px) { .legacy-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
-
 <body>
-    <!--Header-->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a class="navbar-logo" href="index.html">
-                <img class="logo" src="images/logo.png" alt="">
-            </a>
-            <button class="navbar-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <ul class="navbar-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about_us.html">About</a></li>
-                <li><a href="culture.html">Culture</a></li>
-                <li><a href="project.html">Projects</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#">Contact us</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!--Hero section-->
-    <section class="hero-container">
-        <img class="hero" src="images/culture_hero.JPG" alt="">
-        <div class="hero-content">
-            <h2>The beauty of Anaguta</h2>
-            <p>Embracing our past, empowering our present and building the future</p>
-            
-        </div>
-    </section>
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">Anaguta <span>Trado-Modern</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about_us.html">About</a></li>
+    <li><a href="culture.html">Culture</a></li>
+    <li><a href="project.html">Projects</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="about_us.html" onclick="closeMobile()">About</a>
+  <a href="culture.html" onclick="closeMobile()">Culture</a>
+  <a href="project.html" onclick="closeMobile()">Projects</a>
+  <a href="gallery.html" onclick="closeMobile()">Gallery</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
+</div>
 
-    <!--intro section-->
-            <div class="details 01">
-            <p class="sub-head">History of Anaguta</p>
-            <p> The Anaguta people boast of a rich heritage thats waiting to be explored.
-            </p> <br>
-            <p>Join us on this journey as we delve into the fascinating world of Anaguta, where History, culture and beauty blend seamlessly.
-            </p>
- 
-        </div>
-    <!--Culture section-->
-            <div class="details 02">
-            <p class="sub-head">The Culture</p>
-            <p> The Anaguta people boast of a rich heritage thats waiting to be explored.
-            </p> <br>
-            <p>Join us on this journey as we delve into the fascinating world of Anaguta, where History, culture and beauty blend seamlessly.
-            </p>
- 
-        </div>
-    <!--food section-->
-            <div class="details 03">
-            <p class="sub-head">The Anaguat People Food</p>
-            <p> The Anaguta people boast of a rich heritage thats waiting to be explored.
-            </p> <br>
-            <p>Join us on this journey as we delve into the fascinating world of Anaguta, where History, culture and beauty blend seamlessly.
-            </p>
- 
-        </div>
-    <!--iguta section-->
-            <div class="details 04">
-            <p class="sub-head">The Language</p>
-            <p> The Anaguta people boast of a rich heritage thats waiting to be explored.
-            </p> <br>
-            <p>Join us on this journey as we delve into the fascinating world of Anaguta, where History, culture and beauty blend seamlessly.
-            </p>
- 
-        </div>
-    <!--Festival section-->
-            <div class="details 05">
-            <p class="sub-head">The Festivals</p>
-            <p> The Anaguta people boast of a rich heritage thats waiting to be explored.
-            </p> <br>
-            <p>Join us on this journey as we delve into the fascinating world of Anaguta, where History, culture and beauty blend seamlessly.
-            </p>
- 
-        </div>
-    <!--Culture section-->
-    <section>
-        <div>
-            <div>
-                <img src="images/sple.png" alt="">
-                <h4>Language</h4>
-                <P>The Iguta</P>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="social">
-            <a href="#"><img src="images/facebook_icon.png" alt=""></a>
-            <a href="#"><img src="images/facebook_icon.png" alt=""></a>
-            <a href="#"><img src="images/facebook_icon.png" alt="Garba Js official LinkedIn"></a>
-        </div>
-        <p class="copyright">&copy; <span id="currentyear"></span> Anaguta Tradomodern | Jos, Nigeria.</p>
-    </footer>
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-img" style="background-image:url('https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1600&q=85')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-tag">Roots · Memory · Legacy</span>
+    <h1>The <em>History</em> of<br>the Anaguta</h1>
+    <p>A journey through centuries of settlement, survival, culture, and resilience on the Plateau of Nigeria.</p>
+  </div>
+</div>
 
-    <!-- Script to auto-update year ------------------------------------------------------>
-    <script>
-        document.getElementById("currentyear").textContent = new Date().getFullYear();
-    </script>
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-text reveal">
+    <p class="section-label">The Beginning</p>
+    <h2 class="section-title">A People<br><em>Born of the Plateau</em></h2>
+    <div class="divider"></div>
+    <p>The Anaguta are one of the <strong>indigenous peoples of Plateau State</strong>, Nigeria — known historically as the "people of bow and arrow" for their legendary skill in archery and warfare.</p>
+    <p>Long before the arrival of colonial boundaries, the Anaguta occupied the rugged hills and fertile valleys around what is today the city of Jos — a land they have farmed, protected, and revered for generations.</p>
+    <p>Their history is not merely a catalogue of events — it is a living story of identity, resistance, and an enduring bond with the land.</p>
+  </div>
+  <div class="intro-img reveal">
+    <img src="images/anaguta_culture.jpg" alt="Anaguta heritage"/>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="tl-header">
+    <p class="section-label">Through the Ages</p>
+    <h2 class="section-title">A <em>Timeline</em> of History</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-content">
+        <div class="tl-era">Ancient Era</div>
+        <div class="tl-year">Pre-1500</div>
+        <div class="tl-title">Founding Settlements on the Plateau</div>
+        <p class="tl-body">The Anaguta establish permanent settlements in the hills surrounding present-day Jos. Their early society is organised around clan groups, communal farming, and a warrior tradition of defending territorial boundaries.</p>
+      </div>
+      <div class="tl-spacer"><div class="tl-dot"></div></div>
+      <div class="tl-empty"></div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-empty"></div>
+      <div class="tl-spacer"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-era">Traditional Era</div>
+        <div class="tl-year">1500s–1800s</div>
+        <div class="tl-title">The Age of the Bow and Arrow</div>
+        <p class="tl-body">Renowned as the "people of bow and arrow", the Anaguta successfully defend their plateau home against waves of incursions. Trade routes, royal structures, and rich oral traditions develop alongside a deep spiritual relationship with the land.</p>
+        <img class="tl-img" src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=500&q=75" alt="" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-content">
+        <div class="tl-era">Colonial Period</div>
+        <div class="tl-year">1900s</div>
+        <div class="tl-title">British Colonisation & the Birth of Jos</div>
+        <p class="tl-body">The British colonial administration establishes Jos as a tin-mining hub, displacing many Anaguta from their ancestral lands. Despite this pressure, Anaguta cultural practices persist underground — passed from elder to child in defiance of erasure.</p>
+      </div>
+      <div class="tl-spacer"><div class="tl-dot"></div></div>
+      <div class="tl-empty"></div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-empty"></div>
+      <div class="tl-spacer"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-era">Post-Independence</div>
+        <div class="tl-year">1960s–1990s</div>
+        <div class="tl-title">Independence, Identity & Cultural Assertion</div>
+        <p class="tl-body">Following Nigerian independence, Anaguta leaders and communities begin formally asserting their indigenous rights and cultural identity. Traditional institutions are revived, and efforts to document customs, language, and oral history intensify.</p>
+        <img class="tl-img" src="images/elders.JPG" alt="" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-content">
+        <div class="tl-era">Modern Era</div>
+        <div class="tl-year">2000s</div>
+        <div class="tl-title">Conflict, Resilience & Solidarity</div>
+        <p class="tl-body">The Jos crisis tests the community deeply, but the Anaguta demonstrate remarkable resilience. Community organisations mobilise for peace, reconstruction, and the protection of their cultural landmarks and kinship networks.</p>
+      </div>
+      <div class="tl-spacer"><div class="tl-dot"></div></div>
+      <div class="tl-empty"></div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-empty"></div>
+      <div class="tl-spacer"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-era">Today</div>
+        <div class="tl-year">2020s</div>
+        <div class="tl-title">Anaguta Tradomodern — Heritage Meets the Digital Age</div>
+        <p class="tl-body">A new generation of Anaguta takes their heritage to the world. Anaguta Tradomodern is founded — marrying ancestral pride with modern storytelling, digital archives, cultural events, and community outreach to ensure no story is ever forgotten.</p>
+        <img class="tl-img" src="images/culture (16).JPG" alt="" loading="lazy"/>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="history-quote reveal">
+  <blockquote>"Until the lion learns to write, every story will glorify the hunter."</blockquote>
+  <cite>— African Proverb</cite>
+</div>
+
+<!-- LEGACY -->
+<section class="legacy">
+  <p class="legacy-label reveal">What Endures</p>
+  <h2 class="legacy-title reveal">The Living <em>Legacy</em></h2>
+  <div class="divider reveal"></div>
+  <div class="legacy-grid">
+    <div class="legacy-card reveal">
+      <img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?w=600&q=80" alt="Language" loading="lazy"/>
+      <div class="legacy-card-over">
+        <span class="legacy-card-sub">Language</span>
+        <div class="legacy-card-title">Anaguta Tongue</div>
+      </div>
+    </div>
+    <div class="legacy-card reveal">
+      <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=80" alt="Festivals" loading="lazy"/>
+      <div class="legacy-card-over">
+        <span class="legacy-card-sub">Celebration</span>
+        <div class="legacy-card-title">Festivals & Ceremony</div>
+      </div>
+    </div>
+    <div class="legacy-card reveal">
+      <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80" alt="Leadership" loading="lazy"/>
+      <div class="legacy-card-over">
+        <span class="legacy-card-sub">Governance</span>
+        <div class="legacy-card-title">Royal Leadership</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Anaguta Trado-Modern</div>
+      <p class="footer-brand-desc">Promoting Anaguta culture, heritage, and community development. Jos, Plateau State, Nigeria.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+        <li><a href="culture.html">Culture</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5">Join Community</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern · Jos, Nigeria.</p>
+    <div class="social-links">
+      <a href="#" aria-label="Facebook">f</a>
+      <a href="#" aria-label="Instagram">in</a>
+      <a href="#" aria-label="WhatsApp">w</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+  document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
+  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
-
 </html>
