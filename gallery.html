@@ -1,118 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anaguta Trado-Modern</title>
-    <link rel="stylesheet" href="styles/styles.css">
-    <script src="scripts/nav.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery — Anaguta Trado-Modern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5EFE0; --warm-bg: #FAF6EE; --terracotta: #B85C38;
+      --deep-brown: #2C1A0E; --mid-brown: #6B3F1F; --gold: #C99641;
+      --charcoal: #1E1E1E; --muted: #7A6A5A;
+      --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Outfit', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--charcoal); color: var(--cream); font-family: var(--sans); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 4vw; background: rgba(30,30,30,0.6); backdrop-filter: blur(12px); transition: background .4s; }
+    nav.scrolled { background: rgba(44,26,14,0.97); }
+    .nav-logo { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; color: var(--cream); text-decoration: none; letter-spacing: .04em; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-size: .82rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--cream); text-decoration: none; opacity: .75; transition: opacity .2s, color .2s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--gold); }
+    .nav-cta { background: var(--terracotta); color: #fff !important; padding: .45rem 1.1rem; border-radius: 2px; opacity: 1 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--cream); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--deep-brown); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--serif); font-size: 2.2rem; color: var(--cream); text-decoration: none; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* PAGE HERO */
+    .page-hero { position: relative; height: 55vh; min-height: 400px; display: flex; align-items: flex-end; overflow: hidden; }
+    .page-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(30,30,30,.95) 0%, rgba(30,30,30,.3) 100%); }
+    .page-hero-content { position: relative; z-index: 2; padding: 0 8vw 6vh; }
+    .page-hero-tag { display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+    .page-hero h1 { font-family: var(--serif); font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 300; color: var(--cream); line-height: 1.1; }
+    .page-hero h1 em { font-style: italic; color: var(--gold); }
+
+    /* FILTER BAR */
+    .filter-bar { display: flex; gap: 1rem; flex-wrap: wrap; padding: 2.5rem 8vw 0; }
+    .filter-btn { padding: .5rem 1.4rem; border: 1px solid rgba(245,239,224,.2); background: transparent; color: rgba(245,239,224,.6); font-family: var(--sans); font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: all .25s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--terracotta); border-color: var(--terracotta); color: #fff; }
+
+    /* MASONRY GRID */
+    .gallery-section { padding: 3rem 8vw 90px; }
+    .masonry { columns: 3; column-gap: 1.2rem; }
+    .masonry-item { break-inside: avoid; margin-bottom: 1.2rem; position: relative; overflow: hidden; cursor: pointer; }
+    .masonry-item img { width: 100%; display: block; transition: transform .6s ease; }
+    .masonry-item:hover img { transform: scale(1.05); }
+    .masonry-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(44,26,14,.85) 0%, transparent 55%); opacity: 0; transition: opacity .35s; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.2rem; }
+    .masonry-item:hover .masonry-overlay { opacity: 1; }
+    .masonry-caption { font-family: var(--serif); font-size: 1.1rem; color: var(--cream); }
+    .masonry-tag { font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .3rem; }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 200; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lightbox-img { max-width: 90vw; max-height: 88vh; object-fit: contain; display: block; }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem; color: var(--cream); cursor: pointer; background: none; border: none; line-height: 1; }
+    .lightbox-close:hover { color: var(--gold); }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 2rem; color: var(--cream); cursor: pointer; background: rgba(44,26,14,.5); border: none; padding: .5rem 1rem; }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+    .lightbox-nav:hover { color: var(--gold); background: rgba(44,26,14,.8); }
+
+    /* FOOTER */
+    footer { background: #111; padding: 40px 8vw 24px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copyright { font-size: .78rem; color: rgba(245,239,224,.3); }
+    .social-links { display: flex; gap: 1rem; }
+    .social-links a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid rgba(245,239,224,.15); color: rgba(245,239,224,.45); text-decoration: none; font-size: .85rem; transition: border-color .2s, color .2s; }
+    .social-links a:hover { border-color: var(--gold); color: var(--gold); }
+
+    @media(max-width:900px) { .nav-links { display: none; } .hamburger { display: flex; } .masonry { columns: 2; } }
+    @media(max-width:500px) { .masonry { columns: 1; } }
+  </style>
 </head>
-
 <body>
-    <!--Header-->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a class="navbar-logo" href="index.html">
-                <img class="logo" src="images/logo.png" alt="">
-            </a>
-            <button class="navbar-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <ul class="navbar-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about_us.html">About</a></li>
-                <li><a href="culture.html">Culture</a></li>
-                <li><a href="project.html">Projects</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#">Contact us</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!--Hero section-->
-    <section class="hero-container">
-        <img class="hero" src="images/culture_hero.JPG" alt="">
-        <div class="hero-content">
-            <h2>The beauty of Anaguta</h2>
-            <p>Embracing our past, empowering our present and building the future</p>
-        </div>
-    </section>
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">Anaguta <span>Trado-Modern</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about_us.html">About</a></li>
+    <li><a href="culture.html">Culture</a></li>
+    <li><a href="project.html">Projects</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="about_us.html" onclick="closeMobile()">About</a>
+  <a href="culture.html" onclick="closeMobile()">Culture</a>
+  <a href="project.html" onclick="closeMobile()">Projects</a>
+  <a href="gallery.html" onclick="closeMobile()">Gallery</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
+</div>
 
-    <!--Gallery section-->
+<div class="page-hero">
+  <div class="page-hero-img" style="background-image:url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1600&q=85')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-tag">Visual Archive</span>
+    <h1>The <em>Gallery</em></h1>
+  </div>
+</div>
 
-<section class="leadership">
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="culture">Culture</button>
+  <button class="filter-btn" data-filter="community">Community</button>
+  <button class="filter-btn" data-filter="nature">Nature & Land</button>
+  <button class="filter-btn" data-filter="events">Events</button>
+</div>
 
-        <div class="cus">
-            <h4>Gallery </h4>
-            <p>Find some pictures that portray the culture and traditions of the Anaguta people
-                </p>
-            <div class="card-king">
-                <img src="images/gallery/accient_love.jpg" alt="">
-                <p>Placeholder</p>
-                
-            </div>
-            <div class="card-king">
-                <img src="images/gallery/mordern_love.jpg" alt="">
-                <p>Placeholder</p>
-              
-            </div>
-            <div class="card-king">
-                <img src="images/gallery/our_elders.jpg" alt="">
-                <p>Placeholder</p>
-            </div>
-            <div class="card-king">
-                <img src="images/gallery/princess.jpg" alt="">
-                <p>Placeholder</p>
-                
-            </div>
-            <div class="card-king">
-                <img src="images/gallery/the_king.jpg" alt="">
-                <p>Placeholder</p>
-              
-            </div>
-            <div class="card-king">
-                <img src="images/image_holder.jpg" alt="">
-                <p>Placeholder</p>
-            </div>
-            <div class="card-king">
-                <img src="images/image_holder.jpg" alt="">
-                <p>Placeholder</p>
-                
-            </div>
-            <div class="card-king">
-                <img src="images/image_holder.jpg" alt="">
-                <p>Placeholder</p>
-              
-            </div>
-            <div class="card-king">
-                <img src="images/image_holder.jpg" alt="">
-                <p>Placeholder</p>
-            </div>
-            <div class="card-king">
-                <img src="images/image_holder.jpg" alt="">
-                <p>Placeholder</p>
-            </div>
-        </div>
+<div class="gallery-section">
+  <div class="masonry" id="gallery">
 
-    </section>
+    <div class="masonry-item" data-cat="culture">
+      <img src="images/culture (1).jpg" alt="Traditional attire"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Culture</span><div class="masonry-caption">Traditional Attire</div></div>
+    </div>
 
-    
-    <footer>
-        <div class="social">
-            <a href="#"><img src="images/facebook_icon.png" alt=""></a>
-            <a href="#"><img src="images/facebook_icon.png" alt=""></a>
-            <a href="#"><img src="images/facebook_icon.png" alt="Garba Js official LinkedIn"></a>
-        </div>
-        <p class="copyright">&copy; <span id="currentyear"></span> Anaguta Tradomodern | Jos, Nigeria.</p>
-    </footer>
+    <div class="masonry-item" data-cat="community">
+      <img src="images/community (1).jpg" alt="Community gathering"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Community</span><div class="masonry-caption">Community Gathering</div></div>
+    </div>
 
-    <!-- Script to auto-update year ------------------------------------------------------>
-    <script>
-        document.getElementById("currentyear").textContent = new Date().getFullYear();
-    </script>
+    <div class="masonry-item" data-cat="nature">
+      <img src="images/nature (1).JPG" alt="Plateau landscape"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Nature</span><div class="masonry-caption">Plateau Landscape</div></div>
+    </div>
+
+    <div class="masonry-item" data-cat="events">
+      <img src="images/events (1).JPG" alt="Festival ceremony"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Events</span><div class="masonry-caption">Festival Ceremony</div></div>
+    </div>
+
+    <div class="masonry-item" data-cat="culture">
+      <img src="images/culture (2).jpg" alt="Cultural dance"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Culture</span><div class="masonry-caption">Cultural Dance</div></div>
+    </div>
+
+    <div class="masonry-item" data-cat="community">
+      <img src="images/community (2).jpg" alt="Outreach programme"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Community</span><div class="masonry-caption">Health Outreach</div></div>
+    </div>
+
+    <div class="masonry-item" data-cat="nature">
+      <img src="images/nature (2).JPG" alt="Nigerian farmland"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Nature</span><div class="masonry-caption">Ancestral Farmland</div></div>
+    </div>
+
+    <div class="masonry-item" data-cat="events">
+      <img src="images/events (2).jpg" alt="Ceremony"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Events</span><div class="masonry-caption">Royal Ceremony</div></div>
+    </div>
+
+    <div class="masonry-item" data-cat="culture">
+      <img src="images/culture (3).jpg" alt="Oral tradition"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Culture</span><div class="masonry-caption">Oral Tradition</div></div>
+    </div>
+
+    <div class="masonry-item" data-cat="community">
+      <img src="images/community (3).jpg" alt="Village life"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Community</span><div class="masonry-caption">Village Life</div></div>
+    </div>
+
+    <div class="masonry-item" data-cat="nature">
+      <img src="images/nature (3).JPG" alt="Traditional food"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Culture</span><div class="masonry-caption">Traditional Cuisine</div></div>
+    </div>
+
+    <div class="masonry-item" data-cat="events">
+      <img src="images/events (3).jpg" alt="Youth programme"/>
+      <div class="masonry-overlay"><span class="masonry-tag">Events</span><div class="masonry-caption">Youth Programme</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev">‹</button>
+  <img class="lightbox-img" id="lbImg" src="" alt=""/>
+  <button class="lightbox-nav lightbox-next" id="lbNext">›</button>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern · Jos, Nigeria.</p>
+    <div class="social-links">
+      <a href="#" aria-label="Facebook">f</a>
+      <a href="#" aria-label="Instagram">in</a>
+      <a href="#" aria-label="WhatsApp">w</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+  document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
+  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // Filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.masonry-item');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      items.forEach(item => {
+        const show = f === 'all' || item.dataset.cat === f;
+        item.style.display = show ? 'block' : 'none';
+      });
+    });
+  });
+
+  // Lightbox
+  let imgs = [], cur = 0;
+  const lbEl = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  document.querySelectorAll('.masonry-item img').forEach((img, i) => {
+    imgs.push(img.src);
+    img.parentElement.addEventListener('click', () => openLb(i));
+  });
+  function openLb(i) { cur = i; lbImg.src = imgs[cur]; lbEl.classList.add('open'); }
+  document.getElementById('lbClose').addEventListener('click', () => lbEl.classList.remove('open'));
+  document.getElementById('lbPrev').addEventListener('click', () => { cur = (cur - 1 + imgs.length) % imgs.length; lbImg.src = imgs[cur]; });
+  document.getElementById('lbNext').addEventListener('click', () => { cur = (cur + 1) % imgs.length; lbImg.src = imgs[cur]; });
+  lbEl.addEventListener('click', e => { if(e.target === lbEl) lbEl.classList.remove('open'); });
+  document.addEventListener('keydown', e => {
+    if(!lbEl.classList.contains('open')) return;
+    if(e.key === 'Escape') lbEl.classList.remove('open');
+    if(e.key === 'ArrowLeft') { cur = (cur-1+imgs.length)%imgs.length; lbImg.src=imgs[cur]; }
+    if(e.key === 'ArrowRight') { cur = (cur+1)%imgs.length; lbImg.src=imgs[cur]; }
+  });
+</script>
 </body>
-
 </html>
