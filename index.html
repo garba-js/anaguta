@@ -8,189 +8,264 @@
     <title>Anaguta Trado-Modern</title>
     <link rel="stylesheet" href="styles/styles.css">
     <script src="scripts/nav.js" defer></script>
-</head>
-
 <body>
-    <!--Header-->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a class="navbar-logo" href="index.html">
-                <img class="logo" src="images/logo.png" alt="">
-            </a>
-            <button class="navbar-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <ul class="navbar-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about_us.html">About</a></li>
-                <li><a href="culture.html">Culture</a></li>
-                <li><a href="project.html">Projects</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#">Contact us</a></li>
-            </ul>
+ 
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#"> <span>Trado-Modern</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about_us.html">About</a></li>
+      <li><a href="culture.html">History</a></li>
+      <li><a href="project.html">Projects</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" class="nav-cta">Join Community</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+ 
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobile()">Home</a>
+    <a href="about_us.html" onclick="closeMobile()">About</a>
+    <a href="culture.html" onclick="closeMobile()">History</a>
+    <a href="project.html" onclick="closeMobile()">Projects</a>
+    <a href="gallery.html" onclick="closeMobile()">Gallery</a>
+    <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" onclick="closeMobile()">Join Community</a>
+  </div>
+ 
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-img"><img src="images/main_hero_02.jpg" alt=""></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Anaguta<br><em>To The World</em></h1>
+      <p>Anaguta the <em>"people of bow and arrow"</em> , custodians of a living cultural legacy rooted in tradition.</p>
+      <div class="hero-btns">
+        <a href="culture.html" class="btn-primary">Explore Our Story</a>
+        <!-- <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" class="btn-outline">Join the Community</a> -->
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+ 
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-text reveal">
+      <p class="section-label">Who We Are</p>
+      <h2 class="section-title">A People of<br><em>Deep Roots</em></h2>
+      <div class="divider"></div>
+      <p>The Anaguta have a unique identity shaped by their <strong>traditional farming practices</strong>, love for family, warrior spirit, and captivating storytelling passed down through generations.</p>
+      <p>Anaguta Tradomodern is committed to sharing this powerful heritage with the world — bridging ancestral wisdom with contemporary expression.</p>
+      <div class="about-stat-bar">
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Years of History</div>
         </div>
-    </nav>
-
-    <!--Hero section-->
-    <section class="hero-container">
-        <img loading="lazy" class="hero" src="images/gallery/hero.webp" alt="">
-        <div class="hero-content">
-            <h2>Anaguta To The World</h2>
-            <p>The Anaguta people, a tribe steeped in history and tradition, are the custodians of a rich cultural
-                legacy in Plateau State,
-                Nigeria. Known as the "people of bow and arrow".</p>
-            <button class="learn">Learn more</button>
-            <!--this learn more button should be link to a page where anaguta is explained, or a documentry-->
-            <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5?mode=gi_t" class="community">Join the
-                community</a>
+        <div class="stat-item">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Cultural Pillars</div>
         </div>
-    </section>
-
-    <!--about section-->
-    <section class="about-us">
-        <div class="details">
-            <h2>About us</h2>
-            <p class="sub-head">Anaguta Tradomodern</p>
-            <p> The Anaguta have a unique identity shaped by their traditional farming
-                practices, love, family, warrior spirit, hunting prowess, food, dance, and captivating storytelling.
-            </p> <br>
-            <p>This powerful heritage is a treasure worth sharing, and Anaguta Tradomodern is committed to promote
-                Anaguta to the world.
-            </p>
-
-            <div class="map">
-                <img src="images/map.png" alt="">
-            </div>
-            <a href="about_us.html" class="about-btn"> Find more</a>
+        <div class="stat-item">
+          <div class="stat-num">3K+</div>
+          <div class="stat-label">Community Members</div>
         </div>
-        <img loading="lazy" src="images/gallery/banner1.webp" alt="">
-
-        <!--culture section-->
-
-        <div class="culture">
-            <p class="sub-head"> Our Culture</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum esse
-                eveniet delectus maiores atque laborum animi nisi, ratione placeat blanditiis voluptas ipsum est
-                corrupti</p>
-
-
-            <div class="slider">
-                <div class="card">
-                    <p>Language</p>
-                    <img src="images/logo.png" alt="">
-                    <p>Learn More.</p>
-                </div>
-                <div class="card">
-                    <p>Festival</p>
-                    <img src="images/logo.png" alt="">
-                    <p>Learn More</p>
-                </div>
-                <div class="card">
-                    <p>Food</p>
-                    <img src="images/logo.png" alt="">
-                    <p>Learn more</p>
-                </div>
-                <div class="card">
-                    <img src="images/logo.png" alt="">
-                    <p>Tradition</p>
-                    <p>total number captures as at..</p>
-                </div>
-            </div>
-            <a href="culture.html" class="about-btn"> Find more</a>
-
+      </div>
+      <br>
+      <!-- <a href="culture.html" class="btn-primary" style="margin-top:1rem">Discover More</a> -->
+    </div>
+    <div class="about-visual reveal">
+      <img class="about-img-main" src="images/hero (2).jpg" alt="Anaguta community" />
+      <img class="about-img-accent" src="images/the_king.webp" alt="Traditional culture" />
+    </div>
+  </section>
+ 
+  <!-- CULTURE -->
+  <section class="culture">
+    <p class="section-label reveal">Living Traditions</p>
+    <h2 class="section-title reveal">Our <em>Culture</em></h2>
+    <div class="divider reveal"></div>
+    <p class="culture-intro reveal">From the rhythm of ancient festivals to the precision of our language and the warmth of traditional cuisine — Anaguta culture is a tapestry woven through time.</p>
+    <div class="culture-grid">
+      <div class="culture-card reveal">
+        <img src="images/culture_hero.JPG" alt="Language" loading="lazy" />
+        <div class="culture-card-overlay">
+          <span class="culture-card-tag">Heritage</span>
+          <div class="culture-card-title">Language</div>
+          <a href="#" class="culture-card-link">Learn More →</a>
         </div>
-    </section>
-    <!--Leadera section-->
-    <section class="leadership">
-        <img src="images/gallery/banner02.webp" alt="">
-        <div class="cus">
-            <h2>Anaguta Leaders</h2>
-            <p class="sub-head">The custodians</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum esse
-                eveniet delectus maiores atque laborum animi nisi, ratione placeat blanditiis voluptas ipsum est
-                corrupti!</p>
-
-            <div class="card-king">
-                <img src="images/gallery/the_king.webp" alt="">
-                <div class="title"><p>His Royal Majesty Ujah Anguta</p>
-                <h3>Johnson Jaro Magiji</h3></div>
-                
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum esse
-                eveniet delectus maiores atque laborum animi nisi, ratione placeat blanditiis voluptas ipsum est
-                corrupti!</p>
-                <a href="#" class="about-btn"> Learn more</a>
-            </div>
-            
-
+      </div>
+      <div class="culture-card reveal">
+        <img src="images/festival_main.jpg" alt="Festival" loading="lazy" />
+        <div class="culture-card-overlay">
+          <span class="culture-card-tag">Celebration</span>
+          <div class="culture-card-title">Festivals</div>
+          <a href="#" class="culture-card-link">Learn More →</a>
         </div>
-
-    </section>
-<!-- projects section -->
-     <section class="leadership">
-        <img src="images/gallery/oldleaders.webp" alt="">
-        <div class="cus">
-            <p class="sub-head">Recsent Projects<p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum esse
-                ratione placeat blanditiis voluptas ipsum est
-                corrupti!</p>
-
-            <div class="card-project">
-                <img src="images/gallery/nandi01.webp" alt="">
-                <div class="topic">
-                    <p>Anaguta Love and Culture | Then and Now</p>
-                </div>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum
-                    esse
-                    ratione placeat blanditiis voluptas ipsum est
-                    corrupti!</p>
-                <a href="#" class="project-btn">View details</a>
-
-            </div>
-            <div class="card-project">
-                <img src="images/gallery/nandi02.webp" alt="">
-                <div class="topic">
-                    <p>Anaguta Love and Culture | Then and Now</p>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum
-                    esse
-                    ratione placeat blanditiis voluptas ipsum est
-                    corrupti!</p>
-                <a href="#" class="project-btn"> View details</a>
-
-            </div>
-            <div class="card-project">
-                <img src="images/gallery/miss_health_outreach.webp" alt="">
-                <div class="topic">
-                    <p>Anaguta Love and Culture | Then and Now</p>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum
-                    esse
-                    ratione placeat blanditiis voluptas ipsum est
-                    corrupti!</p>
-                <a href="#" class="project-btn"> View details</a>
-
-            </div>
-            <a href="project.html" class="project-btn-last"> View more projects</a>
-
-
+      </div>
+      <div class="culture-card reveal">
+        <img src="images/food_main.JPG" alt="Food" loading="lazy" />
+        <div class="culture-card-overlay">
+          <span class="culture-card-tag">Cuisine</span>
+          <div class="culture-card-title">Food</div>
+          <a href="#" class="culture-card-link">Learn More →</a>
         </div>
-
-    </section>
-    <footer>
-        <div class="social">
-            <a href="#" aria-label="Facebook page"></a><img src="images/facebook_icon.png" alt=""></a>
-            <a href="#" aria-label="Facebook page"></a><img src="images/facebook_icon.png" alt=""></a>
-            <a href="#" aria-label="Facebook page"></a><img src="images/facebook_icon.png" alt="Garba Js official LinkedIn"></a>
+      </div>
+      <div class="culture-card reveal">
+        <img src="images/tradition.jpg" alt="Tradition" loading="lazy" />
+        <div class="culture-card-overlay">
+          <span class="culture-card-tag">Identity</span>
+          <div class="culture-card-title">Tradition</div>
+          <a href="#" class="culture-card-link">Learn More →</a>
         </div>
-        <p class="copyright">&copy; <span id="currentyear"></span> Anaguta Tradomodern | Jos, Nigeria.</p>
-    </footer>
-
-    <script>
-        document.getElementById("currentyear").textContent = new Date().getFullYear();
-    </script>
+      </div>
+    </div>
+    <br><br>
+    <a href="#" class="btn-primary" style="background:var(--gold);border-color:var(--gold);color:var(--deep-brown)">Explore All Culture</a>
+  </section>
+ 
+  <!-- QUOTE BANNER -->
+  <div class="quote-banner reveal">
+    <blockquote>"A people without the knowledge of their past history, origin and culture is like a tree without roots."</blockquote>
+    <cite>— Marcus Garvey</cite>
+  </div>
+ 
+  <!-- LEADERSHIP -->
+  <section class="leadership">
+    <div class="leadership-img reveal">
+      <img src="images/ujah_main.jpg" alt="Anaguta Leaders" loading="lazy" />
+    </div>
+    <div class="reveal">
+      <p class="section-label">The Custodians</p>
+      <h2 class="section-title">Anaguta<br><em>Leaders</em></h2>
+      <div class="divider"></div>
+      <p style="font-size:0.97rem;line-height:1.85;color:var(--muted);margin-bottom:1.5rem;">
+        The Anaguta leadership upholds centuries of tradition while guiding the community towards a prosperous and united future.
+      </p>
+      <div class="leader-card">
+        <div class="leader-card-name">Johnson Jaro Magiji</div>
+        <div class="leader-card-title-label">His Royal Majesty Ujah Anguta</div>
+        <p>A sovereign deeply rooted in the traditions of his forebears, His Royal Majesty continues to champion the rights, culture, and unity of the Anaguta people with wisdom and grace.</p>
+      </div>
+      <br>
+      <a href="#" class="btn-primary" style="margin-top:1rem">Learn More</a>
+    </div>
+  </section>
+ 
+  <!-- PROJECTS -->
+  <section class="projects">
+    <p class="section-label reveal">What We Do</p>
+    <h2 class="section-title reveal">Recent <em>Projects</em></h2>
+    <div class="divider reveal"></div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <img src="images/love_thenandNow.jpg" alt="Project 1" loading="lazy" />
+        <div class="project-card-body">
+          <div class="project-card-label">Culture · 2026</div>
+          <div class="project-card-title">Anaguta Love and Culture — Then and Now</div>
+          <p>A visual and oral history project documenting the evolution of Anaguta customs across generations.</p>
+          <a href="#" class="btn-text">View Details</a>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <img src="images/community (1).jpg" alt="Project 2" loading="lazy" />
+        <div class="project-card-body">
+          <div class="project-card-label">Community · 2026</div>
+          <div class="project-card-title">Health Outreach & Women Empowerment Drive</div>
+          <p>A community initiative bringing healthcare access and skills training to Anaguta women and youth.</p>
+          <a href="#" class="btn-text">View Details</a>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <img src="images/community (7).jpg" alt="Project 3" loading="lazy" />
+        <div class="project-card-body">
+          <div class="project-card-label">Community · 2026</div>
+          <div class="project-card-title">Health Outreach & Women Empowerment Drive</div>
+          <p>A community initiative bringing healthcare access and skills training to Anaguta women and youth.</p>
+          <a href="#" class="btn-text">View Details</a>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <img src="images/anaguta_culture.jpg" alt="Project 4" loading="lazy" />
+        <div class="project-card-body">
+          <div class="project-card-label">Heritage · 2023</div>
+          <div class="project-card-title">The Anaguta Language Preservation Archive</div>
+          <p>A multi-media archive preserving the Anaguta language through recorded oral traditions and texts.</p>
+          <a href="#" class="btn-text">View Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="projects-more reveal">
+      <a href="project.html" class="btn-primary">View All Projects</a>
+    </div>
+  </section>
+ 
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Anaguta Trado-Modern</div>
+        <p class="footer-brand-desc">Promoting Anaguta culture, heritage, and community development through design, storytelling, and action. Jos, Plateau State, Nigeria.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Culture</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5">Join Community</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern · Jos, Nigeria. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">in</a>
+        <a href="#" aria-label="WhatsApp">w</a>
+      </div>
+    </div>
+  </footer>
+ 
+  <script>
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+ 
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+ 
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    function closeMobile() { mobileMenu.classList.remove('open'); }
+ 
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
-
 </html>
