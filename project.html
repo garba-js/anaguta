@@ -1,117 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anaguta Trado-Modern</title>
-    <link rel="stylesheet" href="styles/styles.css">
-    <script src="scripts/nav.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects — Anaguta Trado-Modern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5EFE0; --warm-bg: #FAF6EE; --terracotta: #B85C38;
+      --deep-brown: #2C1A0E; --mid-brown: #6B3F1F; --gold: #C99641;
+      --charcoal: #1E1E1E; --muted: #7A6A5A;
+      --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Outfit', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--warm-bg); color: var(--charcoal); font-family: var(--sans); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 4vw; background: transparent; transition: background .4s, box-shadow .4s; }
+    nav.scrolled { background: rgba(44,26,14,0.96); box-shadow: 0 2px 24px rgba(0,0,0,.18); }
+    .nav-logo { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; color: var(--cream); text-decoration: none; letter-spacing: .04em; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-size: .82rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--cream); text-decoration: none; opacity: .85; transition: opacity .2s, color .2s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--gold); }
+    .nav-cta { background: var(--terracotta); color: #fff !important; padding: .45rem 1.1rem; border-radius: 2px; opacity: 1 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--cream); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--deep-brown); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--serif); font-size: 2.2rem; color: var(--cream); text-decoration: none; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    .page-hero { position: relative; height: 55vh; min-height: 400px; display: flex; align-items: flex-end; overflow: hidden; }
+    .page-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(44,26,14,.92) 0%, rgba(44,26,14,.35) 100%); }
+    .page-hero-content { position: relative; z-index: 2; padding: 0 8vw 6vh; }
+    .page-hero-tag { display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+    .page-hero h1 { font-family: var(--serif); font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 300; color: var(--cream); line-height: 1.1; }
+    .page-hero h1 em { font-style: italic; color: var(--gold); }
+
+    section { padding: 90px 8vw; }
+    .section-label { font-size: .7rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1rem; }
+    .section-title { font-family: var(--serif); font-size: clamp(2rem,4vw,3.2rem); font-weight: 300; color: var(--deep-brown); line-height: 1.15; margin-bottom: 1.5rem; }
+    .section-title em { font-style: italic; color: var(--mid-brown); }
+    .divider { width: 60px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s, transform .8s; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .btn-primary { display: inline-block; padding: .85rem 2.2rem; background: var(--terracotta); color: #fff; font-size: .82rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; border: 2px solid var(--terracotta); transition: background .25s, color .25s; }
+    .btn-primary:hover { background: transparent; color: var(--terracotta); }
+
+    /* FEATURED PROJECT */
+    .featured { background: var(--deep-brown); display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+    .featured-img { overflow: hidden; }
+    .featured-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s; }
+    .featured:hover .featured-img img { transform: scale(1.04); }
+    .featured-content { padding: 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .featured-badge { display: inline-block; background: var(--terracotta); color: #fff; font-size: .65rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; padding: .3rem .8rem; margin-bottom: 1.5rem; align-self: flex-start; }
+    .featured-content h2 { font-family: var(--serif); font-size: clamp(1.8rem,3vw,2.8rem); font-weight: 300; color: var(--cream); line-height: 1.2; margin-bottom: 1.2rem; }
+    .featured-content h2 em { font-style: italic; color: var(--gold); }
+    .featured-content p { font-size: .93rem; line-height: 1.85; color: rgba(245,239,224,.65); margin-bottom: 2rem; }
+    .featured-meta { display: flex; gap: 2rem; margin-bottom: 2rem; }
+    .meta-item label { font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: .2rem; }
+    .meta-item span { font-size: .9rem; color: var(--cream); }
+
+    /* PROJECT GRID */
+    .projects-section { background: var(--warm-bg); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
+    .project-card { background: #fff; overflow: hidden; box-shadow: 0 4px 24px rgba(44,26,14,.07); transition: transform .35s, box-shadow .35s; }
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(44,26,14,.14); }
+    .project-card-img { overflow: hidden; height: 220px; }
+    .project-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
+    .project-card:hover .project-card-img img { transform: scale(1.06); }
+    .project-card-body { padding: 1.6rem; }
+    .project-card-meta { display: flex; gap: 1rem; margin-bottom: .7rem; align-items: center; }
+    .project-tag { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; background: rgba(184,92,56,.1); color: var(--terracotta); padding: .2rem .6rem; }
+    .project-year { font-size: .72rem; color: var(--muted); }
+    .project-card-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--deep-brown); margin-bottom: .8rem; line-height: 1.3; }
+    .project-card-body p { font-size: .87rem; line-height: 1.75; color: var(--muted); margin-bottom: 1.3rem; }
+    .btn-text { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--terracotta); text-decoration: none; }
+    .btn-text::after { content: '→'; transition: transform .2s; }
+    .btn-text:hover::after { transform: translateX(4px); }
+
+    /* IMPACT NUMBERS */
+    .impact { background: var(--terracotta); padding: 70px 8vw; }
+    .impact-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; text-align: center; }
+    .impact-num { font-family: var(--serif); font-size: 3.5rem; font-weight: 600; color: var(--cream); line-height: 1; }
+    .impact-label { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(245,239,224,.7); margin-top: .5rem; }
+
+    /* FOOTER */
+    footer { background: var(--deep-brown); padding: 60px 8vw 30px; }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 4vw; padding-bottom: 3rem; border-bottom: 1px solid rgba(245,239,224,.1); margin-bottom: 2rem; }
+    .footer-brand-name { font-family: var(--serif); font-size: 1.4rem; color: var(--cream); margin-bottom: .8rem; }
+    .footer-brand-desc { font-size: .88rem; line-height: 1.7; color: rgba(245,239,224,.5); max-width: 300px; }
+    .footer-col h4 { font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .6rem; }
+    .footer-col ul a { font-size: .88rem; color: rgba(245,239,224,.55); text-decoration: none; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--gold); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copyright { font-size: .78rem; color: rgba(245,239,224,.35); }
+    .social-links { display: flex; gap: 1rem; }
+    .social-links a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid rgba(245,239,224,.2); color: rgba(245,239,224,.55); text-decoration: none; font-size: .85rem; transition: border-color .2s, color .2s; }
+    .social-links a:hover { border-color: var(--gold); color: var(--gold); }
+
+    @media(max-width:900px) {
+      .nav-links { display: none; } .hamburger { display: flex; }
+      .featured { grid-template-columns: 1fr; }
+      .featured-img { height: 300px; }
+      .featured-content { padding: 2.5rem; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .impact-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media(max-width:560px) { .projects-grid { grid-template-columns: 1fr; } .impact-grid { grid-template-columns: 1fr 1fr; } }
+  </style>
 </head>
-
 <body>
-    <!--Header-->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a class="navbar-logo" href="index.html">
-                <img class="logo" src="images/logo.png" alt="">
-            </a>
-            <button class="navbar-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <ul class="navbar-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about_us.html">About</a></li>
-                <li><a href="culture.html">Culture</a></li>
-                <li><a href="project.html">Projects</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#">Contact us</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!--Hero section-->
-    <section class="hero-container">
-        <img class="hero" src="images/gallery/banner02.jpg" alt="">
-        <div class="hero-content">
-            <h2>Anaguta Tradomodern</h2>
-            <p>At Anaguta Tradomodern we bost of Bridging Generations, Preserving Heritage and Building Tomorrow</p>
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">Anaguta <span>Trado-Modern</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about_us.html">About</a></li>
+    <li><a href="culture.html">Culture</a></li>
+    <li><a href="project.html" class="active">Projects</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="about_us.html" onclick="closeMobile()">About</a>
+  <a href="culture.html" onclick="closeMobile()">Culture</a>
+  <a href="project.html" onclick="closeMobile()">Projects</a>
+  <a href="gallery.html" onclick="closeMobile()">Gallery</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
+</div>
 
-        </div>
-    </section>
-    
-    <!--Projects section-->
-    <section class="leadership">
-        <div class="cus">
-            <p class="sub-head">Anaguta Tradomodern Projects</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum esse
-                ratione placeat blanditiis voluptas ipsum est
-                corrupti!</p>
+<div class="page-hero">
+  <div class="page-hero-img" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=85')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-tag">What We Build</span>
+    <h1>Our <em>Projects</em></h1>
+  </div>
+</div>
 
-            <div class="card-king 01">
-                <img src="images/projects.jpg" alt="">
-                <div class="topic" >
-                    <p >Anaguta Love and Culture | Then and Now</p></div>
-                
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum
-                    esse
-                    ratione placeat blanditiis voluptas ipsum est
-                    corrupti!</p>
-                <a href="about_us.html" class="project-btn"> Find more</a>
+<!-- FEATURED -->
+<div class="featured reveal">
+  <div class="featured-img">
+    <img src="images/hero (2).jpg" alt="Featured project"/>
+  </div>
+  <div class="featured-content">
+    <span class="featured-badge">Featured Project</span>
+    <h2>Anaguta Love &amp; Culture —<br><em>Then and Now</em></h2>
+    <div class="featured-meta">
+      <div class="meta-item"><label>Year</label><span>2024</span></div>
+      <div class="meta-item"><label>Category</label><span>Culture & Heritage</span></div>
+      <div class="meta-item"><label>Status</label><span>Ongoing</span></div>
+    </div>
+    <p>A landmark visual and oral history project capturing the evolution of Anaguta customs, relationships, and ways of life — comparing archival records with contemporary lived experience.</p>
+    <a href="#" class="btn-primary" style="background:var(--gold);border-color:var(--gold);color:var(--deep-brown)">View Full Project</a>
+  </div>
+</div>
 
-            </div>
-            <div class="card-king 02">
-                <img src="images/gallery/miss_health_outreach.jpg" alt="">
-                <div class="topic" >
-                    <p >Miss Anaguta Health Outreach</p></div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum
-                    esse
-                    ratione placeat blanditiis voluptas ipsum est
-                    corrupti!</p>
-                <a href="about_us.html" class="project-btn"> Find more </a>
+<!-- IMPACT NUMBERS -->
+<div class="impact">
+  <div class="impact-grid">
+    <div class="reveal"><div class="impact-num">12+</div><div class="impact-label">Active Projects</div></div>
+    <div class="reveal"><div class="impact-num">5K+</div><div class="impact-label">Lives Touched</div></div>
+    <div class="reveal"><div class="impact-num">3</div><div class="impact-label">States Reached</div></div>
+    <div class="reveal"><div class="impact-num">8</div><div class="impact-label">Partner Organisations</div></div>
+  </div>
+</div>
 
-            </div>
-            <div class="card-king 03">
-                <img src="images/gallery/nandi02.jpg" alt="">
-                <div class="topic" >
-                    <p > 01 Nandi Musical Video shoot</p></div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum
-                    esse
-                    ratione placeat blanditiis voluptas ipsum est
-                    corrupti!</p>
-                <a href="about_us.html" class="project-btn"> Find more</a>
+<!-- ALL PROJECTS -->
+<section class="projects-section">
+  <p class="section-label reveal">All Initiatives</p>
+  <h2 class="section-title reveal">Every Project,<br><em>Every Purpose</em></h2>
+  <div class="divider reveal"></div>
+  <div class="projects-grid">
 
-            </div>
-            <div class="card-king 03">
-                <img src="images/gallery/nandi01.jpg" alt="">
-                <div class="topic" >
-                    <p >02 Nandi Musical Video shoot</p></div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam porro deserunt eum vitae cum
-                    esse
-                    ratione placeat blanditiis voluptas ipsum est
-                    corrupti!</p>
-                <a href="about_us.html" class="project-btn"> Find more</a>
+    <div class="project-card reveal">
+      <div class="project-card-img"><img src="https://images.unsplash.com/photo-1617450365226-9bf28c04e130?w=600&q=80" alt="" loading="lazy"/></div>
+      <div class="project-card-body">
+        <div class="project-card-meta"><span class="project-tag">Community</span><span class="project-year">2024</span></div>
+        <div class="project-card-title">Women's Health Outreach Drive</div>
+        <p>Bringing reproductive healthcare and wellness education to Anaguta women across rural settlements.</p>
+        <a href="#" class="btn-text">View Details</a>
+      </div>
+    </div>
 
-            </div>
+    <div class="project-card reveal">
+      <div class="project-card-img"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80" alt="" loading="lazy"/></div>
+      <div class="project-card-body">
+        <div class="project-card-meta"><span class="project-tag">Heritage</span><span class="project-year">2023</span></div>
+        <div class="project-card-title">Language Preservation Archive</div>
+        <p>A multi-media archive collecting recordings, scripts, and oral texts in the native Anaguta tongue.</p>
+        <a href="#" class="btn-text">View Details</a>
+      </div>
+    </div>
 
-        </div>
+    <div class="project-card reveal">
+      <div class="project-card-img"><img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?w=600&q=80" alt="" loading="lazy"/></div>
+      <div class="project-card-body">
+        <div class="project-card-meta"><span class="project-tag">Education</span><span class="project-year">2023</span></div>
+        <div class="project-card-title">Anaguta Youth Cultural School</div>
+        <p>A holiday programme immersing Anaguta youth in history, language, traditional arts, and leadership.</p>
+        <a href="#" class="btn-text">View Details</a>
+      </div>
+    </div>
 
-    </section>
-    <footer>
-        <div class="social">
-            <a href="#"><img src="images/facebook_icon.png" alt=""></a>
-            <a href="#"><img src="images/facebook_icon.png" alt=""></a>
-            <a href="#"><img src="images/facebook_icon.png" alt="Garba Js official LinkedIn"></a>
-        </div>
-        <p class="copyright">&copy; <span id="currentyear"></span> Anaguta Tradomodern | Jos, Nigeria.</p>
-    </footer>
+    <div class="project-card reveal">
+      <div class="project-card-img"><img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=600&q=80" alt="" loading="lazy"/></div>
+      <div class="project-card-body">
+        <div class="project-card-meta"><span class="project-tag">Environment</span><span class="project-year">2023</span></div>
+        <div class="project-card-title">Land & Ancestral Territory Mapping</div>
+        <p>GIS-assisted documentation of traditional Anaguta land boundaries and historical settlement sites.</p>
+        <a href="#" class="btn-text">View Details</a>
+      </div>
+    </div>
 
-    <!-- Script to auto-update year ------------------------------------------------------>
-    <script>
-        document.getElementById("currentyear").textContent = new Date().getFullYear();
-    </script>
+    <div class="project-card reveal">
+      <div class="project-card-img"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&q=80" alt="" loading="lazy"/></div>
+      <div class="project-card-body">
+        <div class="project-card-meta"><span class="project-tag">Events</span><span class="project-year">2022</span></div>
+        <div class="project-card-title">Annual Anaguta Cultural Festival</div>
+        <p>A flagship annual celebration bringing together Anaguta communities in music, food, storytelling, and dance.</p>
+        <a href="#" class="btn-text">View Details</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-card-img"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80" alt="" loading="lazy"/></div>
+      <div class="project-card-body">
+        <div class="project-card-meta"><span class="project-tag">Food Heritage</span><span class="project-year">2022</span></div>
+        <div class="project-card-title">Traditional Cuisine Documentation</div>
+        <p>Recording ancestral Anaguta recipes, farming methods, and food preparation rituals before they fade.</p>
+        <a href="#" class="btn-text">View Details</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Anaguta Trado-Modern</div>
+      <p class="footer-brand-desc">Promoting Anaguta culture, heritage, and community development. Jos, Plateau State, Nigeria.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+        <li><a href="culture.html">Culture</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5">Join Community</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern · Jos, Nigeria.</p>
+    <div class="social-links">
+      <a href="#" aria-label="Facebook">f</a>
+      <a href="#" aria-label="Instagram">in</a>
+      <a href="#" aria-label="WhatsApp">w</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+  document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
+  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
-
 </html>
