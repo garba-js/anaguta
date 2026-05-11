@@ -8,7 +8,8 @@
     content="Anaguta Tradomodern – promoting culture, heritage, and community development through design and storytelling.">
   <title>Anaguta Trado-Modern</title>
   <link rel="stylesheet" href="styles/styles.css">
-  <script src="scripts/nav.js" defer></script>
+  <script src="scripts/main.js" defer></script>
+  <script src="scripts/modal.js" defer></script>
 
 <body>
 
@@ -324,41 +325,6 @@
     </div>
 
   </div>
-
-
-  <script>
-    // MODAL
-    const modal = document.getElementById("projectModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalYear = document.getElementById("modalYear");
-    const modalImage = document.getElementById("modalImage");
-    const modalDescription = document.getElementById("modalDescription");
-    const closeModal = document.getElementById("closeModal");
-
-    const openButtons = document.querySelectorAll(".open-modal");
-
-    openButtons.forEach(button => {
-      button.addEventListener("click", () => {
-
-        modalTitle.textContent = button.dataset.title;
-        modalYear.textContent = button.dataset.year;
-        modalImage.src = button.dataset.image;
-        modalDescription.textContent = button.dataset.description;
-
-        modal.classList.add("active");
-      });
-    });
-
-    closeModal.addEventListener("click", () => {
-      modal.classList.remove("active");
-    });
-
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.classList.remove("active");
-      }
-    });
-  </script>
 
 </body>
 

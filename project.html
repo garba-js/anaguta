@@ -7,6 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles/styles.css">
+  <script src="scripts/project.js" defer></script>
+  <script src="scripts/modal.js" defer></script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -190,7 +194,14 @@
         <div class="project-card-meta"><span class="project-tag">Community</span><span class="project-year">2024</span></div>
         <div class="project-card-title">Women's Health Outreach Drive</div>
         <p>Bringing reproductive healthcare and wellness education to Anaguta women across rural settlements.</p>
-        <a href="#" class="btn-text">View Details</a>
+
+
+                  <button class="btn-text open-modal" data-title="Anaguta Love and Culture — Then and Now"
+            data-year="Culture · 2026" data-image="images/love_tandn.jpg"
+            data-description="A visual and oral history project documenting the evolution of Anaguta customs across generations. This project captures interviews, archival photographs, and stories from elders to preserve the identity of the Anaguta people for future generations.">
+            View Details
+          </button>
+
       </div>
     </div>
 
@@ -283,16 +294,23 @@
   </div>
 </footer>
 
-<script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
-  document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
-  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); observer.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+  <!-- PROJECT MODAL -->
+  <div class="project-modal" id="projectModal">
+
+    <div class="modal-content">
+
+      <button class="close-modal" id="closeModal">&times;</button>
+
+      <img id="modalImage" src="" alt="Project Image">
+
+      <div class="modal-body">
+        <p class="modal-label" id="modalYear"></p>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+
+    </div>
+
+  </div>
 </body>
 </html>
