@@ -630,6 +630,149 @@
 
 
 
+
+    /* ── PROJECT MODAL ───────────────────────────── */
+
+
+    .btn-text {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--sans);
+}
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.35s ease;
+
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+.project-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--warm-bg);
+  width: 100%;
+  max-width: 760px;
+  overflow: hidden;
+  position: relative;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+
+  animation: modalPop 0.4s ease;
+
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-content img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.modal-body h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--deep-brown);
+
+  margin-bottom: 1rem;
+}
+
+.modal-body p {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.close-modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 46px;
+  height: 46px;
+
+  border: none;
+  background: rgba(255,255,255,0.95);
+
+  color: var(--deep-brown);
+
+  font-size: 1.8rem;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+
+  z-index: 10;
+}
+
+.close-modal:hover {
+  background: var(--terracotta);
+  color: white;
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 560px) {
+
+  .modal-content img {
+    height: 220px;
+  }
+
+  .modal-body {
+    padding: 1.4rem;
+  }
+
+  .modal-body h2 {
+    font-size: 1.8rem;
+  }
+
+}
+
+
+
     
     /* ── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 900px) {
