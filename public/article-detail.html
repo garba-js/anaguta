@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Reader &mdash; Anaguta Trado-Modern</title>
+  <meta name="description" content="Read full cultural essays and documented histories of the Anaguta kingdom.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2C1A0E">
+  <link rel="icon" type="image/jpeg" href="images/logo-icon.jpg">
+</head>
+<body>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-brand-wrap" href="index.html">
+      <img src="images/logo-icon.jpg" alt="Bow Icon" class="nav-brand-logo" />
+      <span class="nav-logo">Anaguta <span>Trado-Modern</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about_us.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="dictionary.html">Dictionary</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="articles.html" class="active">Articles</a></li>
+      <li><a href="event.html">Event</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" class="nav-cta" target="_blank" rel="noopener">Join Community</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobile()">Home</a>
+    <a href="about_us.html" onclick="closeMobile()">About</a>
+    <a href="projects.html" onclick="closeMobile()">Projects</a>
+    <a href="dictionary.html" onclick="closeMobile()">Dictionary</a>
+    <a href="gallery.html" onclick="closeMobile()">Gallery</a>
+    <a href="articles.html" class="active" onclick="closeMobile()">Articles</a>
+    <a href="event.html" onclick="closeMobile()">Event</a>
+    <a href="contact.html" onclick="closeMobile()">Contact</a>
+    <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" class="nav-cta" target="_blank" rel="noopener" onclick="closeMobile()">Join Community</a>
+  </div>
+
+  <!-- ARTICLE CONTAINER -->
+  <div class="article-reader-container" id="articleContainer">
+    <div class="article-reader-header">
+      <div class="article-reader-meta">
+        <span id="articleCategory">Heritage &middot; Warfare</span>
+        <span>&middot;</span>
+        <span id="articleReadTime">7 min read</span>
+        <span>&middot;</span>
+        <span id="articleDate">October 2026</span>
+      </div>
+      <h1 class="article-reader-title" id="articleTitle">The Sacred Bow: Warfare, Medicine &amp; Defense in Anaguta Heritage</h1>
+      <p class="reader-author" id="articleAuthor">By Elder Bitrus Azi &amp; Tradomodern Heritage Lab</p>
+    </div>
+
+    <img class="article-reader-img" id="articleImg" src="images/culture (11).webp" alt="Article Header" />
+
+    <div class="article-reader-body" id="articleBody">
+      <!-- Injected from AnagutaArticles -->
+    </div>
+
+    <div class="reader-actions">
+      <a href="articles.html" class="btn-primary">&larr; Back to All Essays</a>
+      <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" target="_blank" rel="noopener" class="btn-outline dark">Discuss with Community</a>
+    </div>
+
+    <!-- RELATED ESSAYS -->
+    <div class="related-articles-section">
+      <span class="section-label">Continue Reading</span>
+      <h2 class="section-title">Related <em>Essays</em></h2>
+      <div class="projects-grid" id="relatedArticlesList">
+        <!-- Injected from js/articles.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <img src="images/logo.png" alt="Anaguta Tradomodern Primary Logo" class="footer-brand-logo" />
+        <div class="footer-brand-name">Anaguta Trado-Modern</div>
+        <p class="footer-brand-desc">Promoting Anaguta culture, heritage, language, and community development through design, storytelling, and collective action. Jos, Plateau State, Nigeria.</p>
+        <img src="images/tri-stripe.png" alt="Tri-Stripe Accent Bar" class="tri-stripe-img" />
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about_us.html">About Us</a></li>
+          <li><a href="dictionary.html">Language Dictionary</a></li>
+          <li><a href="projects.html">Community Projects</a></li>
+          <li><a href="gallery.html">Visual Gallery</a></li>
+          <li><a href="articles.html">Cultural Essays</a></li>
+          <li><a href="event.html">Annual Festival</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Contact Secretariat</a></li>
+          <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" target="_blank" rel="noopener">Join WhatsApp Community</a></li>
+          <li><a href="contact.html#secretariat">Jos North, Plateau State</a></li>
+          <li><a href="contact.html#inquiries">info@anaguta-tradomodern.org</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern · Jos, Nigeria. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">in</a>
+        <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" target="_blank" rel="noopener" aria-label="WhatsApp">w</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PWA OFFLINE TOAST -->
+  <div class="pwa-toast" id="pwaToast">
+    <span>Offline mode active: browsing cached Anaguta heritage archives.</span>
+  </div>
+
+  <!-- DEDICATED ARTICLES CODE -->
+  <script src="js/articles-data.js"></script>
+  <script src="js/articles.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

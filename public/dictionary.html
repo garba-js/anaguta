@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anaguta Language Dictionary &amp; Lexicon &mdash; Trado-Modern</title>
+  <meta name="description" content="Dedicated interactive dictionary and audio pronunciation guide for the Anaguta language. Search words, meanings, categories, and phonetics.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2C1A0E">
+  <link rel="icon" type="image/jpeg" href="images/logo-icon.jpg">
+</head>
+<body>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-brand-wrap" href="index.html">
+      <img src="images/logo-icon.jpg" alt="Bow Icon" class="nav-brand-logo" />
+      <span class="nav-logo">Anaguta <span>Trado-Modern</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about_us.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="dictionary.html" class="active">Dictionary</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="event.html">Event</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" class="nav-cta" target="_blank" rel="noopener">Join Community</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobile()">Home</a>
+    <a href="about_us.html" onclick="closeMobile()">About</a>
+    <a href="projects.html" onclick="closeMobile()">Projects</a>
+    <a href="dictionary.html" class="active" onclick="closeMobile()">Dictionary</a>
+    <a href="gallery.html" onclick="closeMobile()">Gallery</a>
+    <a href="articles.html" onclick="closeMobile()">Articles</a>
+    <a href="event.html" onclick="closeMobile()">Event</a>
+    <a href="contact.html" onclick="closeMobile()">Contact</a>
+    <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" class="nav-cta" target="_blank" rel="noopener" onclick="closeMobile()">Join Community</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-img">
+      <img src="images/culture (12).webp" alt="Anaguta Language Lexicon" />
+    </div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-eyebrow">Living Lexicon &middot; Oral Audio Guide</p>
+      <h1>The <em>Dedicated</em><br>Anaguta Lexicon</h1>
+      <p>Speak the ancestral tongue of the plateau archers. Explore authentic words, phonetic transcriptions, definitions, and native audio pronunciations.</p>
+    </div>
+  </div>
+
+  <!-- DICTIONARY ENGINE SECTION -->
+  <section class="dict-section">
+    <div class="container">
+      <!-- WORD OF THE DAY -->
+      <div class="leader-card reveal" class="leader-card reveal wotd-card">
+        <span class="leader-card-title-label">Word of the Day</span>
+        <div class="wotd-header">
+          <div>
+            <div class="dict-word-title" class="dict-word-title wotd-title">Ishokori</div>
+            <div class="dict-phonetic">/ee-shoh-KOH-ree/ &middot; noun</div>
+          </div>
+          <button class="dict-play-btn" onclick="playAudio('Ishokori')" title="Play pronunciation" class="dict-play-btn wotd-play-btn">&#9658;</button>
+        </div>
+        <div class="dict-meaning" class="dict-meaning wotd-meaning">
+          The sacred annual cultural harvest thanksgiving festival and warrior archery convocation of the Anaguta people.
+        </div>
+        <div class="dict-example">
+          "Ishokori ri na biki mai girma a garin Jos."<br>
+          <em>The Ishokori festival brings our kingdom together in jubilation and unity.</em>
+        </div>
+      </div>
+
+      <!-- SEARCH INPUT -->
+      <div class="dict-search-container reveal">
+        <div class="dict-search-wrapper">
+          <span class="dict-search-icon">&telrec;</span>
+          <input type="text" class="dict-input" id="dictSearchInput" placeholder="Search Anaguta words, English meanings, or categories..." autocomplete="off" />
+          <button class="dict-clear-btn" id="dictClearBtn" aria-label="Clear search">&times;</button>
+        </div>
+
+        <!-- CATEGORY PILLS -->
+        <div class="filter-pills" id="categoryFilterBar">
+          <button class="filter-pill active" data-cat="all">All Terms</button>
+          <button class="filter-pill" data-cat="Greetings & Social">Greetings &amp; Social</button>
+          <button class="filter-pill" data-cat="Traditions & Archery">Traditions &amp; Archery</button>
+          <button class="filter-pill" data-cat="Nature & Wildlife">Nature &amp; Wildlife</button>
+          <button class="filter-pill" data-cat="Family & Kinship">Family &amp; Kinship</button>
+          <button class="filter-pill" data-cat="Food & Cuisine">Food &amp; Cuisine</button>
+          <button class="filter-pill" data-cat="Numbers & Living">Numbers &amp; Living</button>
+        </div>
+
+        <!-- ALPHABET BAR -->
+        <div class="dict-alpha-bar" id="alphabetBar">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="results-counter" id="resultsCount">
+          Showing all lexicon entries
+        </div>
+      </div>
+
+      <!-- LEXICON CARDS GRID -->
+      <div class="dict-grid" id="lexiconGrid">
+        <!-- Rendered by js/dictionary.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <img src="images/logo.png" alt="Anaguta Tradomodern Primary Logo" class="footer-brand-logo" />
+        <div class="footer-brand-name">Anaguta Trado-Modern</div>
+        <p class="footer-brand-desc">Promoting Anaguta culture, heritage, language, and community development through design, storytelling, and collective action. Jos, Plateau State, Nigeria.</p>
+        <img src="images/tri-stripe.png" alt="Tri-Stripe Accent Bar" class="tri-stripe-img" />
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about_us.html">About Us</a></li>
+          <li><a href="dictionary.html">Language Dictionary</a></li>
+          <li><a href="projects.html">Community Projects</a></li>
+          <li><a href="gallery.html">Visual Gallery</a></li>
+          <li><a href="articles.html">Cultural Essays</a></li>
+          <li><a href="event.html">Annual Festival</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Contact Secretariat</a></li>
+          <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" target="_blank" rel="noopener">Join WhatsApp Community</a></li>
+          <li><a href="contact.html#secretariat">Jos North, Plateau State</a></li>
+          <li><a href="contact.html#inquiries">info@anaguta-tradomodern.org</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern · Jos, Nigeria. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">in</a>
+        <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" target="_blank" rel="noopener" aria-label="WhatsApp">w</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PWA OFFLINE TOAST -->
+  <div class="pwa-toast" id="pwaToast">
+    <span>Offline mode active: browsing cached Anaguta heritage archives.</span>
+  </div>
+
+  <!-- DEDICATED DICTIONARY DATA & CONTROLLER -->
+  <script src="js/dictionary-data.js"></script>
+  <script src="js/dictionary.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

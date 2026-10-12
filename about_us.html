@@ -1,336 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Us — Anaguta Trado-Modern</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --cream: #F5EFE0; --warm-bg: #FAF6EE; --terracotta: #B85C38;
-      --deep-brown: #2C1A0E; --mid-brown: #6B3F1F; --gold: #C99641;
-      --charcoal: #1E1E1E; --muted: #7A6A5A;
-      --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans: 'Outfit', sans-serif;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--warm-bg); color: var(--charcoal); font-family: var(--sans); overflow-x: hidden; }
-
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 4vw; background: transparent; transition: background .4s, box-shadow .4s; }
-    nav.scrolled { background: rgba(44,26,14,0.96); box-shadow: 0 2px 24px rgba(0,0,0,.18); }
-    .nav-logo { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; color: var(--cream); text-decoration: none; letter-spacing: .04em; }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
-    .nav-links a { font-family: var(--sans); font-size: .82rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--cream); text-decoration: none; opacity: .85; transition: opacity .2s, color .2s; }
-    .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--gold); }
-    .nav-cta { background: var(--terracotta); color: #fff !important; padding: .45rem 1.1rem; border-radius: 2px; opacity: 1 !important; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .hamburger span { display: block; width: 26px; height: 2px; background: var(--cream); }
-    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--deep-brown); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-family: var(--serif); font-size: 2.2rem; color: var(--cream); text-decoration: none; }
-    .mobile-menu a:hover { color: var(--gold); }
-
-    /* PAGE HERO */
-    .page-hero { position: relative; height: 55vh; min-height: 400px; display: flex; align-items: flex-end; overflow: hidden; }
-    .page-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center; }
-    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(44,26,14,.92) 0%, rgba(44,26,14,.35) 100%); }
-    .page-hero-content { position: relative; z-index: 2; padding: 0 8vw 6vh; }
-    .page-hero-tag { display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
-    .page-hero h1 { font-family: var(--serif); font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 300; color: var(--cream); line-height: 1.1; }
-    .page-hero h1 em { font-style: italic; color: var(--gold); }
-
-    /* SHARED */
-    section { padding: 90px 8vw; }
-    .section-label { font-size: .7rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1rem; }
-    .section-title { font-family: var(--serif); font-size: clamp(2rem,4vw,3.2rem); font-weight: 300; color: var(--deep-brown); line-height: 1.15; margin-bottom: 1.5rem; }
-    .section-title em { font-style: italic; color: var(--mid-brown); }
-    .divider { width: 60px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
-    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s, transform .8s; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .btn-primary { display: inline-block; padding: .85rem 2.2rem; background: var(--terracotta); color: #fff; font-size: .82rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; border: 2px solid var(--terracotta); transition: background .25s, color .25s; }
-    .btn-primary:hover { background: transparent; color: var(--terracotta); }
-
-    /* MISSION / VISION */
-    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
-    .mv-card { padding: 2.5rem; }
-    .mv-card.terracotta { background: var(--terracotta); }
-    .mv-card.dark { background: var(--deep-brown); }
-    .mv-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .mv-card h3 { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--cream); margin-bottom: 1rem; }
-    .mv-card p { font-size: .93rem; line-height: 1.8; color: rgba(245,239,224,.75); }
-
-    /* STORY SPLIT */
-    .story { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: center; background: var(--cream); }
-    .story-text p { font-size: .97rem; line-height: 1.85; color: var(--muted); margin-bottom: 1.2rem; }
-    .story-text p strong { color: var(--deep-brown); font-weight: 500; }
-    .story-img { position: relative; }
-    .story-img img { width: 100%; height: 500px; object-fit: cover; display: block; }
-    .story-img::after { content: ''; position: absolute; bottom: -1.5rem; right: -1.5rem; width: 60%; height: 50%; border: 3px solid var(--gold); z-index: 0; }
-    .story-img img { position: relative; z-index: 1; }
-
-    /* VALUES */
-    .values { background: var(--warm-bg); }
-    .values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
-    .value-item { padding: 2rem; border-top: 3px solid var(--gold); }
-    .value-num { font-family: var(--serif); font-size: 2.8rem; font-weight: 600; color: rgba(184,92,56,.2); line-height: 1; margin-bottom: .5rem; }
-    .value-item h4 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--deep-brown); margin-bottom: .6rem; }
-    .value-item p { font-size: .88rem; line-height: 1.75; color: var(--muted); }
-
-    /* TEAM */
-    .team { background: var(--deep-brown); padding: 90px 8vw; }
-    .team .section-label { color: var(--gold); }
-    .team .section-title { color: var(--cream); }
-    .team .divider { background: var(--terracotta); }
-    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
-    .team-card { overflow: hidden; }
-    .team-card img { width: 100%; height: 500px; object-fit: cover; display: block; filter: grayscale(20%); transition: filter .4s, transform .5s; }
-    .team-card:hover img { filter: grayscale(0); transform: scale(1.04); }
-    .team-card-body { background: rgba(255,255,255,.04); padding: 1.3rem; border-left: 3px solid var(--terracotta); margin-top: 1px; }
-    .team-card-name { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); }
-    .team-card-role { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-top: .3rem; }
-
-    /* FOOTER */
-    footer { background: var(--deep-brown); padding: 60px 8vw 30px; }
-    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 4vw; padding-bottom: 3rem; border-bottom: 1px solid rgba(245,239,224,.1); margin-bottom: 2rem; }
-    .footer-brand-name { font-family: var(--serif); font-size: 1.4rem; color: var(--cream); margin-bottom: .8rem; }
-    .footer-brand-desc { font-size: .88rem; line-height: 1.7; color: rgba(245,239,224,.5); max-width: 300px; }
-    .footer-col h4 { font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: .6rem; }
-    .footer-col ul a { font-size: .88rem; color: rgba(245,239,224,.55); text-decoration: none; transition: color .2s; }
-    .footer-col ul a:hover { color: var(--gold); }
-    .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
-    .footer-copyright { font-size: .78rem; color: rgba(245,239,224,.35); }
-    .social-links { display: flex; gap: 1rem; }
-    .social-links a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid rgba(245,239,224,.2); color: rgba(245,239,224,.55); text-decoration: none; font-size: .85rem; transition: border-color .2s, color .2s; }
-    .social-links a:hover { border-color: var(--gold); color: var(--gold); }
-
-    @media(max-width:900px) {
-      .nav-links { display: none; } .hamburger { display: flex; }
-      .mv-grid, .story, .values-grid, .team-grid { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
-      .story-img::after { display: none; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us &mdash; Anaguta Trado-Modern</title>
+  <meta name="description" content="Discover the mission, heritage, royal lineage, and visionary team behind Anaguta Tradomodern.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2C1A0E">
+  <link rel="icon" type="image/jpeg" href="images/logo-icon.jpg">
 </head>
 <body>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-brand-wrap" href="index.html">
+      <img src="images/logo-icon.jpg" alt="Bow Icon" class="nav-brand-logo" />
+      <span class="nav-logo">Anaguta <span>Trado-Modern</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about_us.html" class="active">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="dictionary.html">Dictionary</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="event.html">Event</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" class="nav-cta" target="_blank" rel="noopener">Join Community</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<nav id="navbar">
-  <a class="nav-logo" href="index.html">Anaguta <span>Trado-Modern</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about_us.html" class="active">About</a></li>
-    <li><a href="culture.html">Culture</a></li>
-    <li><a href="project.html">Projects</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="contact.html" class="nav-cta">Contact</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" onclick="closeMobile()">Home</a>
-  <a href="about_us.html" onclick="closeMobile()">About</a>
-  <a href="culture.html" onclick="closeMobile()">Culture</a>
-  <a href="project.html" onclick="closeMobile()">Projects</a>
-  <a href="gallery.html" onclick="closeMobile()">Gallery</a>
-  <a href="contact.html" onclick="closeMobile()">Contact</a>
-</div>
-
-<!-- PAGE HERO -->
-<div class="page-hero">
-  <div class="page-hero-img"><img src="images/team_pic.jpg" alt=""></div>
-  <div class="page-hero-overlay"></div>
-  <div class="page-hero-content">
-    <span class="page-hero-tag">Our Identity</span>
-    <h1>About <em>Anaguta</em><br>Trado-Modern</h1>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobile()">Home</a>
+    <a href="about_us.html" class="active" onclick="closeMobile()">About</a>
+    <a href="projects.html" onclick="closeMobile()">Projects</a>
+    <a href="dictionary.html" onclick="closeMobile()">Dictionary</a>
+    <a href="gallery.html" onclick="closeMobile()">Gallery</a>
+    <a href="articles.html" onclick="closeMobile()">Articles</a>
+    <a href="event.html" onclick="closeMobile()">Event</a>
+    <a href="contact.html" onclick="closeMobile()">Contact</a>
+    <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" class="nav-cta" target="_blank" rel="noopener" onclick="closeMobile()">Join Community</a>
   </div>
-</div>
 
-<!-- MISSION / VISION -->
-<section style="background:var(--warm-bg)">
-  <p class="section-label reveal">Purpose & Direction</p>
-  <h2 class="section-title reveal">Why We <em>Exist</em></h2>
-  <div class="divider reveal"></div>
-  <p class="reveal" style="max-width:600px;font-size:.97rem;line-height:1.85;color:var(--muted)">Anaguta Tradomodern is a cultural movement dedicated to preserving and promoting the identity of the Anaguta people of Plateau State, Nigeria.</p>
-  <div class="mv-grid">
-    <div class="mv-card terracotta reveal">
-      <div class="mv-icon">🎯</div>
-      <h3>Our Mission</h3>
-      <p>To document, promote, and celebrate the rich cultural heritage of the Anaguta people through storytelling, community engagement, and modern creative expression — so that no tradition is ever lost to time.</p>
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-img">
+      <img src="images/main_hero.jpg" alt="About Anaguta Tradomodern" />
     </div>
-    <div class="mv-card dark reveal">
-      <div class="mv-icon">🌍</div>
-      <h3>Our Vision</h3>
-      <p>A world where the Anaguta heritage is globally recognised, deeply respected, and proudly carried by every generation — from the hills of Plateau State to every corner of the earth.</p>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-eyebrow">Our Mission &middot; Our Roots</p>
+      <h1>About <em>Anaguta</em><br>Trado-Modern</h1>
+      <p>Bridging centuries of indigenous wisdom with modern storytelling, digital preservation, and grassroots community impact across Jos Plateau.</p>
     </div>
   </div>
-</section>
 
-<!-- STORY -->
-<section class="story">
-  <div class="story-text reveal">
-    <p class="section-label">The Story</p>
-    <h2 class="section-title">How It All <em>Began</em></h2>
+  <!-- THE STORY -->
+  <section class="about">
+    <div class="about-text reveal">
+      <span class="section-label">The Vision</span>
+      <h2 class="section-title">Rooted in Earth,<br><em>Driven by Purpose</em></h2>
+      <div class="divider"></div>
+      <p>Anaguta Tradomodern was founded to celebrate, record, and safeguard the rich cultural identity of the Anaguta ethnic group &mdash; the traditional custodians and indigenous archers of Jos North Local Government Area, Plateau State, Nigeria.</p>
+      <p>As the modern world transforms societies, sacred oral narratives, indigenous craftsmanship, traditional architectural styles, and native vocabulary risk fading into obscurity. Tradomodern acts as an open, accessible cultural sanctuary &mdash; combining archival research with vibrant digital platforms.</p>
+      
+      <div class="about-stat-bar">
+        <div class="stat-item">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Ancestral Clans</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Elders Documented</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Community Driven</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-visual reveal">
+      <img class="about-img-main" src="images/elders.webp" alt="Anaguta council of elders" loading="lazy" />
+      <img class="about-img-accent" src="images/culture (16).webp" alt="Traditional attire" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="container reveal">
+    <span class="section-label">Our Pillars</span>
+    <h2 class="section-title">Core <em>Values</em></h2>
     <div class="divider"></div>
-    <p>Anaguta Tradomodern was born out of a deep desire to answer a question asked by many young Anaguta people: <strong>"Who are we, really?"</strong> — a question that deserved more than silence.</p>
-    <p>Founded by a group of passionate sons and daughters of the Anaguta land, the organisation set out to bridge the gap between the richness of the past and the possibilities of the present.</p>
-    <p>Through cultural events, digital storytelling, archival projects, and community outreach, we have been building a living record of Anaguta identity — one story at a time.</p>
-    <br>
-    <a href="history.html" class="btn-primary">Read Our Full History</a>
-  </div>
-  <div class="story-img reveal">
-    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80" alt="Anaguta story" loading="lazy"/>
-  </div>
-</section>
 
-<!-- VALUES -->
-<section class="values">
-  <p class="section-label reveal">What Guides Us</p>
-  <h2 class="section-title reveal">Our Core <em>Values</em></h2>
-  <div class="divider reveal"></div>
-  <div class="values-grid">
-    <div class="value-item reveal">
-      <div class="value-num">01</div>
-      <h4>Cultural Pride</h4>
-      <p>We celebrate our identity unapologetically — our language, food, festivals, and traditions are a source of strength, not shame.</p>
-    </div>
-    <div class="value-item reveal">
-      <div class="value-num">02</div>
-      <h4>Community First</h4>
-      <p>Every decision we make is grounded in the wellbeing and upliftment of the Anaguta community, both at home and in diaspora.</p>
-    </div>
-    <div class="value-item reveal">
-      <div class="value-num">03</div>
-      <h4>Authentic Storytelling</h4>
-      <p>We tell our stories ourselves — with honesty, depth, and the nuance that only those who live it can bring.</p>
-    </div>
-    <div class="value-item reveal">
-      <div class="value-num">04</div>
-      <h4>Preservation</h4>
-      <p>We are archivists of living culture — recording, protecting, and passing on traditions that might otherwise fade.</p>
-    </div>
-    <div class="value-item reveal">
-      <div class="value-num">05</div>
-      <h4>Innovation</h4>
-      <p>We honour the old by embracing the new — using modern tools, platforms, and design to amplify ancient voices.</p>
-    </div>
-    <div class="value-item reveal">
-      <div class="value-num">06</div>
-      <h4>Unity</h4>
-      <p>We believe in the power of a people united by shared roots — across villages, cities, borders, and generations.</p>
-    </div>
-  </div>
-</section>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <h3 class="value-title">Ancestral Authenticity</h3>
+        <p>Grounding all documentation in direct testimony from elders, clan historians, and royal custodians of the Anaguta kingdom.</p>
+      </div>
 
-<!-- TEAM -->
-<section class="team">
-  <p class="section-label reveal">The People</p>
-  <h2 class="section-title reveal">Meet the <em>Team</em></h2>
-  <div class="divider reveal"></div>
-  <div class="team-grid">
-    <div class="team-card reveal">
-      <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=500&q=80" alt="Team member"/>
-      <div class="team-card-body">
-        <div class="team-card-name">Emmanuel Kinaru Ishaya</div>
-        <div class="team-card-role">Founder & Team leader</div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <h3 class="value-title">Youth Empowerment</h3>
+        <p>Igniting pride among the next generation through digital skills, photography, language preservation, and cultural mentorship.</p>
       </div>
-    </div>
-    <div class="team-card reveal">
-      <img src="images/team_mercy.jpg" alt="Team member" loading="lazy"/>
-      <div class="team-card-body">
-        <div class="team-card-name">Mercy Kinaru</div>
-        <div class="team-card-role">Cultural Research Lead</div>
-      </div>
-    </div>
-    <div class="team-card reveal">
-      <img src="images/uwenni_jaja.webp" alt="Team member" loading="lazy"/>
-      <div class="team-card-body">
-        <div class="team-card-name">Shalzim Josephine Kankani</div>
-        <div class="team-card-role">Cultural Research Lead</div>
-      </div>
-    </div>
-    <div class="team-card reveal">
-      <img src="images/mayam.webp" alt="Team member" loading="lazy"/>
-      <div class="team-card-body">
-        <div class="team-card-name">Gambo Mayam Dauji</div>
-        <div class="team-card-role">Cultural Research Lead</div>
-      </div>
-    </div>
-    <div class="team-card reveal">
-      <img src="images/team_trippy.jpg" alt="Team member"/>
-      <div class="team-card-body">
-        <div class="team-card-name">Fatima Pwajok</div>
-        <div class="team-card-role">Community Manager</div>
-      </div>
-    </div>
-    <div class="team-card reveal">
-      <img src="images/team_aron.jpg" alt="Team member"/>
-      <div class="team-card-body">
-        <div class="team-card-name">Emmanuel Atang Achu Sambo</div>
-        <div class="team-card-role">Community Manager</div>
-      </div>
-    </div>
-    <div class="team-card reveal">
-      <img src="images/passport.jpg" alt="Team member"/>
-      <div class="team-card-body">
-        <div class="team-card-name">Garba Joseph Labai</div>
-        <div class="team-card-role">Community Manager</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-brand-name">Anaguta Trado-Modern</div>
-      <p class="footer-brand-desc">Promoting Anaguta culture, heritage, and community development. Jos, Plateau State, Nigeria.</p>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <h3 class="value-title">Open Access Heritage</h3>
+        <p>Making our language lexicon, historical essays, photo archives, and cultural knowledge freely accessible to researchers and the global diaspora.</p>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about_us.html">About Us</a></li>
-        <li><a href="culture.html">Culture</a></li>
-        <li><a href="project.html">Projects</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
-      <ul>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5">Join Community</a></li>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Instagram</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern · Jos, Nigeria.</p>
-    <div class="social-links">
-      <a href="#" aria-label="Facebook">f</a>
-      <a href="#" aria-label="Instagram">in</a>
-      <a href="#" aria-label="WhatsApp">w</a>
-    </div>
-  </div>
-</footer>
+  </section>
 
-<script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
-  document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
-  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); observer.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+  <!-- ROYAL LINEAGE -->
+  <section class="leadership" id="royalty">
+    <div class="leadership-img reveal">
+      <img src="images/royalty.webp" alt="The Royal Throne of Anaguta" loading="lazy" />
+    </div>
+    <div class="reveal">
+      <span class="section-label">Royal Dynasty</span>
+      <h2 class="section-title">The Royal Stool of<br><em>The Ujah</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">The Ujah of Anaguta is the supreme traditional ruler, spiritual father, and paramount custodian of the Anaguta Kingdom.</p>
+      
+      <div class="leader-card">
+        <div class="leader-card-name">His Royal Majesty Pozoh Johnson Jauro Magaji</div>
+        <span class="leader-card-title-label">Ujah of Anaguta &middot; Jos North, Plateau State</span>
+        <p>Leading with steadfast wisdom, HRM Pozoh Johnson Jauro Magaji champions communal peace, educational empowerment, and the renaissance of Anaguta arts, language, and sacred festivals across Plateau State and Nigeria.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="container reveal">
+    <span class="section-label">Custodians &amp; Creators</span>
+    <h2 class="section-title">Our <em>Team</em></h2>
+    <div class="divider"></div>
+    <p class="section-sub">A dedicated collective of local researchers, historians, digital storytellers, and community organizers.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="images/team_pic.jpg" alt="Project Leadership" loading="lazy" />
+        <div class="team-body">
+          <div class="team-name">Garba Joseph</div>
+          <div class="team-role">Founder &amp; Lead Researcher</div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team_aron.jpg" alt="Aron" loading="lazy" />
+        <div class="team-body">
+          <div class="team-name">Aron Anaguta</div>
+          <div class="team-role">Cultural Historian</div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team_mercy.jpg" alt="Mercy" loading="lazy" />
+        <div class="team-body">
+          <div class="team-name">Mercy Ishaya</div>
+          <div class="team-role">Community Coordinator</div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team_trippy.jpg" alt="Creative Lead" loading="lazy" />
+        <div class="team-body">
+          <div class="team-name">Trippy Visuals</div>
+          <div class="team-role">Archival Photography</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <img src="images/logo.png" alt="Anaguta Tradomodern Primary Logo" class="footer-brand-logo" />
+        <div class="footer-brand-name">Anaguta Trado-Modern</div>
+        <p class="footer-brand-desc">Promoting Anaguta culture, heritage, language, and community development through design, storytelling, and collective action. Jos, Plateau State, Nigeria.</p>
+        <img src="images/tri-stripe.png" alt="Tri-Stripe Accent Bar" class="tri-stripe-img" />
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about_us.html">About Us</a></li>
+          <li><a href="dictionary.html">Language Dictionary</a></li>
+          <li><a href="projects.html">Community Projects</a></li>
+          <li><a href="gallery.html">Visual Gallery</a></li>
+          <li><a href="articles.html">Cultural Essays</a></li>
+          <li><a href="event.html">Annual Festival</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Contact Secretariat</a></li>
+          <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" target="_blank" rel="noopener">Join WhatsApp Community</a></li>
+          <li><a href="contact.html#secretariat">Jos North, Plateau State</a></li>
+          <li><a href="contact.html#inquiries">info@anaguta-tradomodern.org</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern · Jos, Nigeria. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">in</a>
+        <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" target="_blank" rel="noopener" aria-label="WhatsApp">w</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PWA OFFLINE TOAST -->
+  <div class="pwa-toast" id="pwaToast">
+    <span>Offline mode active: browsing cached Anaguta heritage archives.</span>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

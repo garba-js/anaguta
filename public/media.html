@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Heritage &amp; Gallery &mdash; Anaguta Trado-Modern</title>
+  <meta name="description" content="Visual photo and media gallery celebrating Anaguta royalty, elders, festivals, food, and highland life.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2C1A0E">
+  <link rel="icon" type="image/jpeg" href="images/logo-icon.jpg">
+</head>
+<body>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-brand-wrap" href="index.html">
+      <img src="images/logo-icon.jpg" alt="Bow Icon" class="nav-brand-logo" />
+      <span class="nav-logo">Anaguta <span>Trado-Modern</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about_us.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="dictionary.html">Dictionary</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="event.html">Event</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" class="nav-cta" target="_blank" rel="noopener">Join Community</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobile()">Home</a>
+    <a href="about_us.html" onclick="closeMobile()">About</a>
+    <a href="projects.html" onclick="closeMobile()">Projects</a>
+    <a href="dictionary.html" onclick="closeMobile()">Dictionary</a>
+    <a href="gallery.html" class="active" onclick="closeMobile()">Gallery</a>
+    <a href="articles.html" onclick="closeMobile()">Articles</a>
+    <a href="event.html" onclick="closeMobile()">Event</a>
+    <a href="contact.html" onclick="closeMobile()">Contact</a>
+    <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" class="nav-cta" target="_blank" rel="noopener" onclick="closeMobile()">Join Community</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-img">
+      <img src="images/gallery_hero.webp" alt="Anaguta Visual Gallery" />
+    </div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-eyebrow">Visual Heritage Archive</p>
+      <h1>The <em>Gallery</em></h1>
+      <p>A window into the soul of the Anaguta &mdash; archival portraits of royalty and elders, the kinetic energy of dances, and the majesty of the plateau hills.</p>
+    </div>
+  </div>
+
+  <!-- GALLERY SECTION -->
+  <section class="gallery-section">
+    <div class="container">
+      <!-- FILTER BUTTONS -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All Photos</button>
+        <button class="filter-btn" data-filter="royalty">Royalty &amp; Elders</button>
+        <button class="filter-btn" data-filter="culture">Festivals &amp; Dance</button>
+        <button class="filter-btn" data-filter="cuisine">Traditional Cuisine</button>
+        <button class="filter-btn" data-filter="community">Community Life</button>
+      </div>
+
+      <!-- MASONRY GRID -->
+      <div class="masonry" id="galleryMasonry">
+        <!-- ITEM 1 -->
+        <div class="masonry-item" data-category="royalty" data-src="images/king.webp" data-caption="Pozoh Johnson Jauro Magaji &middot; Ujah of Anaguta">
+          <img src="images/king.webp" alt="The King" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Pozoh Johnson Jauro Magaji &middot; Ujah of Anaguta</div>
+          </div>
+        </div>
+
+        <!-- ITEM 2 -->
+        <div class="masonry-item" data-category="royalty" data-src="images/elders.webp" data-caption="Anaguta Council of Elders in Royal Assembly">
+          <img src="images/elders.webp" alt="Council of Elders" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Anaguta Council of Elders in Royal Assembly</div>
+          </div>
+        </div>
+
+        <!-- ITEM 3 -->
+        <div class="masonry-item" data-category="culture" data-src="images/dance_02.webp" data-caption="Traditional Horn Blowers &amp; Warrior Dancers">
+          <img src="images/dance_02.webp" alt="Festive Dance" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Traditional Horn Blowers &amp; Warrior Dancers</div>
+          </div>
+        </div>
+
+        <!-- ITEM 4 -->
+        <div class="masonry-item" data-category="cuisine" data-src="images/food_01.webp" data-caption="Highland Millet &amp; Indigenous Vegetable Dish">
+          <img src="images/food_01.webp" alt="Traditional Food" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Highland Millet &amp; Indigenous Vegetable Dish</div>
+          </div>
+        </div>
+
+        <!-- ITEM 5 -->
+        <div class="masonry-item" data-category="cuisine" data-src="images/food_04.webp" data-caption="Plateau Yam Pottage with Mountain Herbs">
+          <img src="images/food_04.webp" alt="Plateau Cuisine" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Plateau Yam Pottage with Mountain Herbs</div>
+          </div>
+        </div>
+
+        <!-- ITEM 6 -->
+        <div class="masonry-item" data-category="culture" data-src="images/events (4).webp" data-caption="Ishokori Cultural Gathering &amp; Archery Rite">
+          <img src="images/events (4).webp" alt="Ishokori Festival" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Ishokori Cultural Gathering &amp; Archery Rite</div>
+          </div>
+        </div>
+
+        <!-- ITEM 7 -->
+        <div class="masonry-item" data-category="community" data-src="images/community (1).webp" data-caption="Village Gathering in Naraguta Valley">
+          <img src="images/community (1).webp" alt="Village Life" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Village Gathering in Naraguta Valley</div>
+          </div>
+        </div>
+
+        <!-- ITEM 8 -->
+        <div class="masonry-item" data-category="community" data-src="images/hike.webp" data-caption="Youth Hikers on the Granite Hills of Naraguta">
+          <img src="images/hike.webp" alt="Hike" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Youth Hikers on the Granite Hills of Naraguta</div>
+          </div>
+        </div>
+
+        <!-- ITEM 9 -->
+        <div class="masonry-item" data-category="culture" data-src="images/06.webp" data-caption="Archery Master Demonstrating Bow Drawing">
+          <img src="images/06.webp" alt="Archery Master" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Archery Master Demonstrating Bow Drawing</div>
+          </div>
+        </div>
+
+        <!-- ITEM 10 -->
+        <div class="masonry-item" data-category="culture" data-src="images/12.webp" data-caption="Ceremonial Regalia &amp; Hand-Beaded Adornments">
+          <img src="images/12.webp" alt="Regalia" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Ceremonial Regalia &amp; Hand-Beaded Adornments</div>
+          </div>
+        </div>
+
+        <!-- ITEM 11 -->
+        <div class="masonry-item" data-category="royalty" data-src="images/royalty.webp" data-caption="Emblems of the Anaguta Royal Throne">
+          <img src="images/royalty.webp" alt="Royal Regalia" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Emblems of the Anaguta Royal Throne</div>
+          </div>
+        </div>
+
+        <!-- ITEM 12 -->
+        <div class="masonry-item" data-category="community" data-src="images/barbing.webp" data-caption="Grassroots Youth Vocational Training">
+          <img src="images/barbing.webp" alt="Skills Training" loading="lazy" />
+          <div class="masonry-overlay">
+            <div class="masonry-caption">Grassroots Youth Vocational Training</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <img src="images/logo.png" alt="Anaguta Tradomodern Primary Logo" class="footer-brand-logo" />
+        <div class="footer-brand-name">Anaguta Trado-Modern</div>
+        <p class="footer-brand-desc">Promoting Anaguta culture, heritage, language, and community development through design, storytelling, and collective action. Jos, Plateau State, Nigeria.</p>
+        <img src="images/tri-stripe.png" alt="Tri-Stripe Accent Bar" class="tri-stripe-img" />
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about_us.html">About Us</a></li>
+          <li><a href="dictionary.html">Language Dictionary</a></li>
+          <li><a href="projects.html">Community Projects</a></li>
+          <li><a href="gallery.html">Visual Gallery</a></li>
+          <li><a href="articles.html">Cultural Essays</a></li>
+          <li><a href="event.html">Annual Festival</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Contact Secretariat</a></li>
+          <li><a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" target="_blank" rel="noopener">Join WhatsApp Community</a></li>
+          <li><a href="contact.html#secretariat">Jos North, Plateau State</a></li>
+          <li><a href="contact.html#inquiries">info@anaguta-tradomodern.org</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern · Jos, Nigeria. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">in</a>
+        <a href="https://chat.whatsapp.com/Hre6TpsxCXdEBAmFoIc1O5" target="_blank" rel="noopener" aria-label="WhatsApp">w</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PWA OFFLINE TOAST -->
+  <div class="pwa-toast" id="pwaToast">
+    <span>Offline mode active: browsing cached Anaguta heritage archives.</span>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close Lightbox">&times;</button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Enlarged gallery view" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Gallery Filter & Lightbox logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const items = document.querySelectorAll('.masonry-item');
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightboxImg');
+      const lbCaption = document.getElementById('lightboxCaption');
+      const lbClose = document.getElementById('lightboxClose');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.dataset.filter;
+
+          items.forEach(item => {
+            if (cat === 'all' || item.dataset.category === cat) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      items.forEach(item => {
+        item.addEventListener('click', () => {
+          lbImg.src = item.dataset.src;
+          lbCaption.textContent = item.dataset.caption;
+          lightbox.classList.add('active');
+        });
+      });
+
+      lbClose.addEventListener('click', () => lightbox.classList.remove('active'));
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) lightbox.classList.remove('active');
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') lightbox.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>

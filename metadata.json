@@ -1,0 +1,6 @@
+{
+  "name": "Anaguta Tradomodern",
+  "description": "A clean, modern Progressive Web App (PWA) for Anaguta cultural heritage, language dictionary, community research initiatives, and historical essays.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
