@@ -140,7 +140,7 @@ function initDedicatedDictionary() {
               <div class="dict-word-title">${entry.word}</div>
               <div class="dict-phonetic">${entry.phonetic} &middot; <span class="dict-pos">${entry.partOfSpeech}</span></div>
             </div>
-            <button class="dict-play-btn" onclick="playAudio('${entry.word.replace(/'/g, "\\'")}')" title="Play pronunciation" aria-label="Pronounce ${entry.word}">&#9658;</button>
+            <button class="dict-play-btn" onclick="playAudio('${entry.word.replace(/'/g, "\\'")}', '${(entry.audioPath || '').replace(/'/g, "\\'")}', this)" title="Play native pronunciation" aria-label="Pronounce ${entry.word}">&#9658;</button>
           </div>
           <div class="dict-meaning">${entry.meaning}</div>
           <div class="dict-example">
@@ -158,13 +158,106 @@ function initDedicatedDictionary() {
   renderLexicon();
 }
 
-window.playAudio = function (word) {
+/**
+ * Global Dictionary Audio Player
+ * Supports:
+ * - Direct local recorded audio files (e.g. audio/ujah.mp3 or public/audio/ujah.mp3)
+ * - Remote audio URLs (e.g. https://domain.org/audio/ujah.mp3)
+ * - Automatic speech synthesis fallback if audio file isn't uploaded yet or fails
+ * - Button state toggling (play/pause animation)
+ */
+let activeAudioObj = null;
+let activePlayBtn = null;
+
+function resetActiveButton() {
+  if (activePlayBtn) {
+    activePlayBtn.classList.remove('playing');
+    activePlayBtn.innerHTML = '&#9658;';
+    activePlayBtn = null;
+  }
+}
+
+window.playAudio = function (word, audioPath, btnEl) {
+  const btn = btnEl || (window.event && window.event.currentTarget) || null;
+
+  // If clicking the currently playing button, stop playback
+  if (btn && btn === activePlayBtn) {
+    if (activeAudioObj) {
+      activeAudioObj.pause();
+      activeAudioObj = null;
+    }
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    resetActiveButton();
+    return;
+  }
+
+  // Stop any ongoing playback from another button
+  if (activeAudioObj) {
+    activeAudioObj.pause();
+    activeAudioObj = null;
+  }
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+  resetActiveButton();
+
+  // Highlight current button
+  if (btn) {
+    btn.classList.add('playing');
+    btn.innerHTML = '&#9646;&#9646;';
+    activePlayBtn = btn;
+  }
+
+  // Check if an audio path exists
+  if (audioPath && typeof audioPath === 'string' && audioPath.trim() !== '') {
+    const audio = new Audio(audioPath.trim());
+    activeAudioObj = audio;
+
+    audio.onended = () => {
+      activeAudioObj = null;
+      resetActiveButton();
+    };
+
+    audio.onerror = () => {
+      // Audio file not found or failed to load -> gracefully fall back to speech synthesis
+      activeAudioObj = null;
+      speakFallback(word, btn);
+    };
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay blocked or format error -> fall back to speech synthesis
+        activeAudioObj = null;
+        speakFallback(word, btn);
+      });
+    }
+  } else {
+    // No audio file specified -> use SpeechSynthesis fallback
+    speakFallback(word, btn);
+  }
+};
+
+function speakFallback(word, btn) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(word);
     utter.rate = 0.85;
     utter.pitch = 1.0;
-    utter.lang = 'en-NG';
+    utter.lang = 'en-NG'; // African/Nigerian English inflection
+
+    utter.onend = () => {
+      resetActiveButton();
+    };
+
+    utter.onerror = () => {
+      resetActiveButton();
+    };
+
     window.speechSynthesis.speak(utter);
+  } else {
+    resetActiveButton();
   }
-};
+}
