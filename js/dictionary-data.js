@@ -31,7 +31,7 @@ const AnagutaDictionary = [
     category: "Traditions & Archery",
     exampleAnaguta: "Ujah Anaguta tiri ku rigiza nishi.",
     exampleEnglish: "The Ujah of Anaguta blesses the harvest of the people.",
-    audioPath: "audio/ujah.mp3"
+    audioPath: "audio/ishokori.mp3"
   },
   {
     id: 2,
@@ -212,6 +212,17 @@ const AnagutaDictionary = [
   {
     id: 18,
     word: "Pozoh",
+    phonetic: "/POH-zoh/",
+    partOfSpeech: "noun",
+    meaning: "Honorific royal title given to monarchs and respected high elders of the kingdom.",
+    category: "Traditions & Archery",
+    exampleAnaguta: "Pozoh Johnson Jauro Magaji shi ne Ujah Anaguta.",
+    exampleEnglish: "Pozoh Johnson Jauro Magaji is the paramount Ujah of Anaguta.",
+    audioPath: "audio/pozoh.mp3"
+  },
+    {
+    id: 19,
+    word: "Isho",
     phonetic: "/POH-zoh/",
     partOfSpeech: "noun",
     meaning: "Honorific royal title given to monarchs and respected high elders of the kingdom.",
