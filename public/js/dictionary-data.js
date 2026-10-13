@@ -31,7 +31,7 @@ const AnagutaDictionary = [
     category: "Traditions & Archery",
     exampleAnaguta: "Ujah Anaguta tiri ku rigiza nishi.",
     exampleEnglish: "The Ujah of Anaguta blesses the harvest of the people.",
-    audioPath: "audio/ujah.mp3"
+    audioPath: "audio/ishokori.mp3"
   },
   {
     id: 2,
