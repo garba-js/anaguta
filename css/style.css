@@ -1736,6 +1736,7 @@ section {
 }
 
 .article-reader-header {
+  padding-top: 2.5rem;
   margin-bottom: 2.5rem;
   border-bottom: 1px solid var(--border-light);
   padding-bottom: 2rem;
