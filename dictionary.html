@@ -64,24 +64,24 @@
   <!-- DICTIONARY ENGINE SECTION -->
   <section class="dict-section">
     <div class="container">
-      <!-- WORD OF THE DAY -->
-      <div class="leader-card reveal" class="leader-card reveal wotd-card">
-        <span class="leader-card-title-label">Word of the Day</span>
-        <div class="wotd-header">
-          <div>
-            <div class="dict-word-title" class="dict-word-title wotd-title">Ishokori</div>
-            <div class="dict-phonetic">/ee-shoh-KOH-ree/ &middot; noun</div>
-          </div>
-          <button class="dict-play-btn" onclick="playAudio('Ishokori')" title="Play pronunciation" class="dict-play-btn wotd-play-btn">&#9658;</button>
-        </div>
-        <div class="dict-meaning" class="dict-meaning wotd-meaning">
-          The sacred annual cultural harvest thanksgiving festival and warrior archery convocation of the Anaguta people.
-        </div>
-        <div class="dict-example">
-          "Ishokori ri na biki mai girma a garin Jos."<br>
-          <em>The Ishokori festival brings our kingdom together in jubilation and unity.</em>
-        </div>
-      </div>
+<!-- WORD OF THE DAY -->
+<div class="leader-card reveal wotd-card">
+  <span class="leader-card-title-label">Word of the Day</span>
+  <div class="wotd-header">
+    <div>
+      <div class="dict-word-title wotd-title" id="wotdWord">Ishokori</div>
+      <div class="dict-phonetic" id="wotdPhonetic">/ee-shoh-KOH-ree/ &middot; noun</div>
+    </div>
+    <button class="dict-play-btn wotd-play-btn" id="wotdPlayBtn" title="Play pronunciation">&#9658;</button>
+  </div>
+  <div class="dict-meaning wotd-meaning" id="wotdMeaning">
+    The sacred annual cultural harvest thanksgiving festival and warrior archery convocation of the Anaguta people.
+  </div>
+  <div class="dict-example" id="wotdExampleContainer">
+    <span id="wotdExampleAnaguta">"Ishokori ri na biki mai girma a garin Jos."</span><br>
+    <em id="wotdExampleEnglish">The Ishokori festival brings our kingdom together in jubilation and unity.</em>
+  </div>
+</div>
 
       <!-- SEARCH INPUT -->
       <div class="dict-search-container reveal">
