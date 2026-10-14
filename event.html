@@ -233,35 +233,43 @@
 
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
-  <script>
-    // Live ticking countdown
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 80);
+<script>
+  // 1. Set a FIXED target date for the festival (YYYY, Month Index 0-11, Day)
+  // Note: Months are 0-indexed (0 = Jan, 1 = Feb, ... 11 = Dec)
+  // Example for December 31, 2026 at 00:00:00:
+  const targetDate = new Date(2026, 11, 31, 0, 0, 0);
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
 
-      if (diff > 0) {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const mins = Math.floor((diff / (1000 * 60)) % 60);
-        const secs = Math.floor((diff / 1000) % 60);
+    if (diff > 0) {
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
 
-        document.getElementById('cdDays').textContent = days;
-        document.getElementById('cdHours').textContent = hours;
-        document.getElementById('cdMins').textContent = mins;
-        document.getElementById('cdSecs').textContent = secs;
-      }
+      document.getElementById('cdDays').textContent = days;
+      document.getElementById('cdHours').textContent = hours;
+      document.getElementById('cdMins').textContent = mins;
+      document.getElementById('cdSecs').textContent = secs;
+    } else {
+      // Optional: What happens when festival day arrives
+      document.getElementById('cdDays').textContent = 0;
+      document.getElementById('cdHours').textContent = 0;
+      document.getElementById('cdMins').textContent = 0;
+      document.getElementById('cdSecs').textContent = 0;
     }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+  }
 
-    function handleRsvp(e) {
-      e.preventDefault();
-      document.getElementById('rsvpSuccess').style.display = 'block';
-      e.target.reset();
-    }
-  </script>
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  function handleRsvp(e) {
+    e.preventDefault();
+    document.getElementById('rsvpSuccess').style.display = 'block';
+    e.target.reset();
+  }
+</script>
 </body>
 </html>
