@@ -126,6 +126,10 @@ h1 em, h2 em, h3 em {
   padding: 0 4vw;
 }
 
+.container p {
+  padding-bottom: 1rem;
+}
+
 
 
 /* ── BUTTONS ─────────────────────────────────────────────────────────────── */
