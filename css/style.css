@@ -133,7 +133,7 @@ h1 em, h2 em, h3 em {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #1a1615; /* Matching dark theme or brand background */
+  background-color: #1a1615; /* Must match manifest.json background_color */
   color: #fdfaf6;
   display: flex;
   align-items: center;
