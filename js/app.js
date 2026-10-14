@@ -11,8 +11,10 @@
  * - Pronunciation Speech Synthesis
  */
 
+// Run preloader as early as possible
+initPreloader();
+
 document.addEventListener('DOMContentLoaded', () => {
-  initPreloader();
   initNavbar();
   initMobileMenu();
   initScrollReveal();
@@ -22,14 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopyrightYear();
 });
 
-// 1. PWA Preloader with Percentage Tracking
+// 1. PWA Preloader with Immediate Execution & Percentage Tracking
 function initPreloader() {
-  let currentPercent = 0;
+  const overlay = document.getElementById('pwa-preloader');
   const bar = document.getElementById('preloader-bar');
   const percentText = document.getElementById('preloader-percent');
-  const overlay = document.getElementById('pwa-preloader');
 
   if (!overlay) return;
+
+  let currentPercent = 0;
 
   function setProgress(target) {
     if (target > currentPercent) {
@@ -39,33 +42,32 @@ function initPreloader() {
     }
   }
 
-  // Stage 1: DOM structure parsing (30%)
-  if (document.readyState === 'interactive' || document.readyState === 'complete') {
-    setProgress(30);
-  }
+  // Smooth increment timer up to 90% while resources load
+  const progressInterval = setInterval(() => {
+    if (currentPercent < 90) {
+      setProgress(currentPercent + 10);
+    } else {
+      clearInterval(progressInterval);
+    }
+  }, 60);
 
-  // Stage 2: Service Worker ready check (60%)
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(() => setProgress(60));
-  } else {
-    setProgress(60);
-  }
-
-  // Stage 3: All assets completely loaded (100%)
+  // Set to 100% when window completely loads
   window.addEventListener('load', () => {
+    clearInterval(progressInterval);
     setProgress(100);
     setTimeout(() => {
       overlay.classList.add('fade-out');
-    }, 400);
+    }, 350);
   });
 
   // Failsafe timeout in case network requests lag
   setTimeout(() => {
+    clearInterval(progressInterval);
     setProgress(100);
     setTimeout(() => {
       overlay.classList.add('fade-out');
     }, 300);
-  }, 3500);
+  }, 3000);
 }
 
 // 2. Scrolled Navbar
@@ -127,7 +129,7 @@ function initScrollReveal() {
 
     reveals.forEach((el) => observer.observe(el));
   } else {
-    // Fallback if IntersectionObserver unsupported
+    // Fallback if IntersectionObserver is unsupported
     reveals.forEach((el) => el.classList.add('visible'));
   }
 }
