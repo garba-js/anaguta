@@ -145,18 +145,13 @@ function initEventBanner() {
 
 // 6. Service Worker & Offline Detection
 function initServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker
-        .register('sw.js')
-        .then((reg) => {
-          console.log('[PWA] Service Worker active:', reg.scope);
-        })
-        .catch((err) => {
-          console.log('[PWA] Service Worker registration note:', err);
-        });
-    });
-  }
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((reg) => console.log('Service Worker registered successfully:', reg.scope))
+      .catch((err) => console.error('Service Worker registration failed:', err));
+  });
+}
 
   const toast = document.getElementById('pwaToast');
   function updateOnlineStatus() {

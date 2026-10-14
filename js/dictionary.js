@@ -289,10 +289,16 @@ window.playAudio = function (word, audioPath, btnEl) {
 };
 
 function speakFallback(word, btn) {
+  // If the user is offline and the audio file failed, display a friendly notice instead of using incorrect AI voices
+  if (!navigator.onLine) {
+    console.warn(`[Offline Mode] Audio file for "${word}" is not available in cache.`);
+    resetActiveButton();
+    return;
+  }
+
+  // Optional AI Fallback when online
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    
-    // Warm up speech synthesis voices
     window.speechSynthesis.getVoices();
 
     const utter = new SpeechSynthesisUtterance(word);

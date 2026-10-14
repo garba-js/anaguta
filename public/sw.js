@@ -1,106 +1,73 @@
-// Anaguta Tradomodern PWA Service Worker
-const CACHE_NAME = 'anaguta-tradomodern-v1';
+const CACHE_NAME = 'anaguta-cache-v1';
 
-const PRECACHE_ASSETS = [
-  './',
-  'index.html',
-  'projects.html',
-  'dictionary.html',
-  'articles.html',
-  'article-detail.html',
-  'media.html',
-  'contact.html',
-  'event.html',
-  'css/style.css',
-  'js/data.js',
-  'js/app.js',
-  'js/dictionary.js',
-  'manifest.json',
-  'images/logo-icon.jpg',
-  'images/logo.png',
-  'images/tri-stripe.png',
-  'images/icon-192.png',
-  'images/icon-512.png'
+// 1. List all native audio files to cache permanently for offline use
+const ASSETS_TO_CACHE = [
+  '/',
+  '/index.html',
+  '/dictionary.html',
+  '/css/style.css',
+  '/js/dictionary-data.js',
+  '/js/dictionary.js',
+  '/js/app.js',
+
+  // --- NATIVE AUDIO FILES ---
+  'audio/ujah.mp3',
+  'audio/kinaru.mp3',
+  'audio/mba.mp3',
+  'audio/tukwi.mp3',
+  'audio/gwash.mp3',
+  'audio/miri.mp3',
+  'audio/biro.mp3',
+  'audio/shanu.mp3',
+  'audio/zana.mp3',
+  'audio/nishi.mp3',
+  'audio/igbun.mp3',
+  'audio/kuta.mp3',
+  'audio/ran.mp3',
+  'audio/watash.mp3',
+  'audio/san-kpa.mp3',
+  'audio/ishokori.mp3',
+  'audio/gwat.mp3',
+  'audio/pozoh.mp3'
 ];
 
-// Install: Pre-cache static shell assets
+// 2. Install event: Pre-cache audio files
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(PRECACHE_ASSETS);
-    }).then(() => {
-      return self.skipWaiting();
+      console.log('[Service Worker] Pre-caching native audio & static assets...');
+      return cache.addAll(ASSETS_TO_CACHE);
     })
   );
+  self.skipWaiting();
 });
 
-// Activate: Clean up old cache versions
+// 3. Activate event: Cleanup old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then((keys) => {
       return Promise.all(
-        cacheNames.map((name) => {
-          if (name !== CACHE_NAME) {
-            return caches.delete(name);
+        keys.map((key) => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
           }
         })
       );
-    }).then(() => {
-      return self.clients.claim();
     })
   );
+  self.clients.claim();
 });
 
-// Fetch: Network-first for navigation, Stale-While-Revalidate for static assets
+// 4. Fetch event: Cache-First strategy for Audio & Static Assets
 self.addEventListener('fetch', (event) => {
-  // Only handle HTTP/HTTPS GET requests
-  if (event.request.method !== 'GET') return;
-
-  const url = new URL(event.request.url);
-
-  // If navigation request (HTML pages)
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request)
-        .then((networkResponse) => {
-          if (networkResponse && networkResponse.status === 200) {
-            const responseToCache = networkResponse.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
-          }
-          return networkResponse;
-        })
-        .catch(async () => {
-          const cachedResponse = await caches.match(event.request);
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-          // Fallback to cached index.html
-          return caches.match('index.html');
-        })
-    );
-    return;
-  }
-
-  // Static assets (CSS, JS, Images, Fonts): Cache first with network fallback & background update
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      const fetchPromise = fetch(event.request)
-        .then((networkResponse) => {
-          if (networkResponse && networkResponse.status === 200) {
-            const responseClone = networkResponse.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, responseClone);
-            });
-          }
-          return networkResponse;
-        })
-        .catch(() => {
-          // Network failed, nothing more to do if no cache
-        });
-
-      return cachedResponse || fetchPromise;
+      // Return cached native audio file immediately if offline
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      // Otherwise fetch from network
+      return fetch(event.request);
     })
   );
 });
