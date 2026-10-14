@@ -12,6 +12,24 @@
   <link rel="apple-touch-icon" href="images/icon.png">
 </head>
 <body>
+
+<!-- PRELOADER SCREEN -->
+<div id="pwa-preloader" class="preloader-overlay">
+  <div class="preloader-content">
+    <span class="preloader-label">Anaguta Tradomodern</span>
+    <h3 class="preloader-title">Loading Heritage Experience</h3>
+    
+    <!-- Progress Bar -->
+    <div class="progress-track">
+      <div id="preloader-bar" class="progress-fill"></div>
+    </div>
+    
+    <!-- Percentage Display -->
+    <div id="preloader-percent" class="progress-percent">0%</div>
+  </div>
+</div>
+
+
   <!-- EVENT BANNER -->
   <div class="event-bar" id="eventBar">
     <div class="event-bar-text">
@@ -356,46 +374,5 @@
   <script src="js/dictionary-data.js"></script>
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('homeDictPreview');
-      const dictionary = window.AnagutaDictionary || (window.AnagutaData && window.AnagutaData.dictionary);
-      if (container && dictionary) {
-        const sample = dictionary.slice(0, 3);
-        container.innerHTML = sample.map(entry => `
-          <div class="dict-card reveal visible">
-            <div class="dict-card-top">
-              <div>
-                <div class="dict-word-title">${entry.word}</div>
-                <div class="dict-phonetic">${entry.phonetic} &middot; <span class="dict-pos">${entry.partOfSpeech}</span></div>
-              </div>
-              <button class="dict-play-btn" onclick="playWord('${entry.word}')" title="Pronounce word" aria-label="Pronounce ${entry.word}">&#9658;</button>
-            </div>
-            <div class="dict-meaning">${entry.meaning}</div>
-            <div class="dict-example">"${entry.exampleAnaguta}"<br><em>${entry.exampleEnglish}</em></div>
-            <span class="dict-badge">${entry.category}</span>
-          </div>
-        `).join('');
-      }
-
-      const input = document.getElementById('homeSearchInput');
-      if (input) {
-        input.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            window.location.href = 'dictionary.html?search=' + encodeURIComponent(input.value.trim());
-          }
-        });
-      }
-    });
-
-    function playWord(word) {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(word);
-        utter.rate = 0.85;
-        window.speechSynthesis.speak(utter);
-      }
-    }
-  </script>
 </body>
 </html>

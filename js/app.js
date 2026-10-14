@@ -2,6 +2,7 @@
  * Anaguta Tradomodern - Core Application Logic (js/app.js)
  * Matching the UI/UX behavior from garba-js.github.io/anaguta
  * Handles:
+ * - PWA Preloading Screen & Progress Counter
  * - Scrolled Navbar & Mobile Menu Toggle
  * - Scroll Reveal Animations with IntersectionObserver
  * - Project Details Modal Popups
@@ -11,6 +12,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPreloader();
   initNavbar();
   initMobileMenu();
   initScrollReveal();
@@ -20,7 +22,53 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopyrightYear();
 });
 
-// 1. Scrolled Navbar
+// 1. PWA Preloader with Percentage Tracking
+function initPreloader() {
+  let currentPercent = 0;
+  const bar = document.getElementById('preloader-bar');
+  const percentText = document.getElementById('preloader-percent');
+  const overlay = document.getElementById('pwa-preloader');
+
+  if (!overlay) return;
+
+  function setProgress(target) {
+    if (target > currentPercent) {
+      currentPercent = target;
+      if (bar) bar.style.width = currentPercent + '%';
+      if (percentText) percentText.textContent = currentPercent + '%';
+    }
+  }
+
+  // Stage 1: DOM structure parsing (30%)
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    setProgress(30);
+  }
+
+  // Stage 2: Service Worker ready check (60%)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then(() => setProgress(60));
+  } else {
+    setProgress(60);
+  }
+
+  // Stage 3: All assets completely loaded (100%)
+  window.addEventListener('load', () => {
+    setProgress(100);
+    setTimeout(() => {
+      overlay.classList.add('fade-out');
+    }, 400);
+  });
+
+  // Failsafe timeout in case network requests lag
+  setTimeout(() => {
+    setProgress(100);
+    setTimeout(() => {
+      overlay.classList.add('fade-out');
+    }, 300);
+  }, 3500);
+}
+
+// 2. Scrolled Navbar
 function initNavbar() {
   const navbar = document.getElementById('navbar');
   if (!navbar) return;
@@ -37,7 +85,7 @@ function initNavbar() {
   onScroll();
 }
 
-// 2. Mobile Menu
+// 3. Mobile Menu
 function initMobileMenu() {
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -57,7 +105,7 @@ function closeMobile() {
 }
 window.closeMobile = closeMobile;
 
-// 3. Scroll Reveal with IntersectionObserver
+// 4. Scroll Reveal with IntersectionObserver
 function initScrollReveal() {
   const reveals = document.querySelectorAll('.reveal');
   if (!reveals.length) return;
@@ -84,7 +132,7 @@ function initScrollReveal() {
   }
 }
 
-// 4. Project Modal Handler
+// 5. Project Modal Handler
 function initProjectModal() {
   const modal = document.getElementById('projectModal');
   const modalTitle = document.getElementById('modalTitle');
@@ -125,7 +173,7 @@ function initProjectModal() {
   });
 }
 
-// 5. Dismissable Event Banner
+// 6. Dismissable Event Banner
 function initEventBanner() {
   const eventBar = document.getElementById('eventBar');
   const closeBtn = document.getElementById('closeEventBar');
@@ -144,7 +192,7 @@ function initEventBanner() {
   }
 }
 
-// 6. Service Worker & Offline Detection
+// 7. Service Worker & Offline Detection
 function initServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -175,7 +223,7 @@ function initServiceWorker() {
   updateOnlineStatus();
 }
 
-// 7. Dynamic Copyright Year
+// 8. Dynamic Copyright Year
 function initCopyrightYear() {
   const yr = document.getElementById('yr');
   if (yr) {
@@ -183,7 +231,7 @@ function initCopyrightYear() {
   }
 }
 
-// 8. Global Speech Synthesis Helper
+// 9. Global Speech Synthesis Helper
 window.playWord = function (word, phonetic) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();

@@ -126,6 +126,70 @@ h1 em, h2 em, h3 em {
   padding: 0 4vw;
 }
 
+/* Preloader Overlay ─────────────────────────────────────────────────────────────── */
+.preloader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #1a1615; /* Matching dark theme or brand background */
+  color: #fdfaf6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Fade Out State */
+.preloader-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-content {
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+}
+
+.preloader-label {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #e07a5f; /* Brand accent color */
+}
+
+.preloader-title {
+  font-size: 1.25rem;
+  margin: 8px 0 24px 0;
+  font-weight: 400;
+}
+
+/* Progress Track & Bar */
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background-color: #e07a5f; /* Brand accent color */
+  transition: width 0.2s ease-out;
+}
+
+.progress-percent {
+  font-size: 0.9rem;
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 /* ── BUTTONS ─────────────────────────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex;
