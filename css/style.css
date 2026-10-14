@@ -126,49 +126,6 @@ h1 em, h2 em, h3 em {
   padding: 0 4vw;
 }
 
-/* ── BUTTONS ─────────────────────────────────────────────────────────────── */
-
-.preloader-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #1a1615; /* Same background color as manifest.json */
-  color: #fdfaf6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-}
-
-.preloader-logo {
-  margin-bottom: 16px;
-  border-radius: 12px;
-}
-
-.progress-track {
-  width: 200px;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  margin: 20px auto 10px auto;
-  overflow: hidden;
-}
-
-.progress-fill {
-  width: 0%;
-  height: 100%;
-  background-color: #e07a5f;
-  transition: width 0.15s ease-out;
-}
-
-.progress-percent {
-  font-size: 0.9rem;
-  font-family: monospace;
-  color: rgba(255, 255, 255, 0.8);
-}
 
 
 /* ── BUTTONS ─────────────────────────────────────────────────────────────── */
