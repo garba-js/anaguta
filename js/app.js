@@ -2,7 +2,6 @@
  * Anaguta Tradomodern - Core Application Logic (js/app.js)
  * Matching the UI/UX behavior from garba-js.github.io/anaguta
  * Handles:
- * - PWA Preloading Screen & Progress Counter
  * - Scrolled Navbar & Mobile Menu Toggle
  * - Scroll Reveal Animations with IntersectionObserver
  * - Project Details Modal Popups
@@ -10,9 +9,6 @@
  * - PWA Service Worker Registration & Offline Toast
  * - Pronunciation Speech Synthesis
  */
-
-// Run preloader as early as possible
-initPreloader();
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
@@ -24,53 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopyrightYear();
 });
 
-// 1. PWA Preloader with Immediate Execution & Percentage Tracking
-function initPreloader() {
-  const overlay = document.getElementById('pwa-preloader');
-  const bar = document.getElementById('preloader-bar');
-  const percentText = document.getElementById('preloader-percent');
-
-  if (!overlay) return;
-
-  let currentPercent = 0;
-
-  function setProgress(target) {
-    if (target > currentPercent) {
-      currentPercent = target;
-      if (bar) bar.style.width = currentPercent + '%';
-      if (percentText) percentText.textContent = currentPercent + '%';
-    }
-  }
-
-  // Smooth increment timer up to 90% while resources load
-  const progressInterval = setInterval(() => {
-    if (currentPercent < 90) {
-      setProgress(currentPercent + 10);
-    } else {
-      clearInterval(progressInterval);
-    }
-  }, 60);
-
-  // Set to 100% when window completely loads
-  window.addEventListener('load', () => {
-    clearInterval(progressInterval);
-    setProgress(100);
-    setTimeout(() => {
-      overlay.classList.add('fade-out');
-    }, 350);
-  });
-
-  // Failsafe timeout in case network requests lag
-  setTimeout(() => {
-    clearInterval(progressInterval);
-    setProgress(100);
-    setTimeout(() => {
-      overlay.classList.add('fade-out');
-    }, 300);
-  }, 3000);
-}
-
-// 2. Scrolled Navbar
+// 1. Scrolled Navbar
 function initNavbar() {
   const navbar = document.getElementById('navbar');
   if (!navbar) return;
@@ -87,7 +37,7 @@ function initNavbar() {
   onScroll();
 }
 
-// 3. Mobile Menu
+// 2. Mobile Menu
 function initMobileMenu() {
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -107,7 +57,7 @@ function closeMobile() {
 }
 window.closeMobile = closeMobile;
 
-// 4. Scroll Reveal with IntersectionObserver
+// 3. Scroll Reveal with IntersectionObserver
 function initScrollReveal() {
   const reveals = document.querySelectorAll('.reveal');
   if (!reveals.length) return;
@@ -129,12 +79,11 @@ function initScrollReveal() {
 
     reveals.forEach((el) => observer.observe(el));
   } else {
-    // Fallback if IntersectionObserver is unsupported
     reveals.forEach((el) => el.classList.add('visible'));
   }
 }
 
-// 5. Project Modal Handler
+// 4. Project Modal Handler
 function initProjectModal() {
   const modal = document.getElementById('projectModal');
   const modalTitle = document.getElementById('modalTitle');
@@ -175,7 +124,7 @@ function initProjectModal() {
   });
 }
 
-// 6. Dismissable Event Banner
+// 5. Dismissable Event Banner
 function initEventBanner() {
   const eventBar = document.getElementById('eventBar');
   const closeBtn = document.getElementById('closeEventBar');
@@ -194,7 +143,7 @@ function initEventBanner() {
   }
 }
 
-// 7. Service Worker & Offline Detection
+// 6. Service Worker & Offline Detection
 function initServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -225,7 +174,7 @@ function initServiceWorker() {
   updateOnlineStatus();
 }
 
-// 8. Dynamic Copyright Year
+// 7. Dynamic Copyright Year
 function initCopyrightYear() {
   const yr = document.getElementById('yr');
   if (yr) {
@@ -233,7 +182,7 @@ function initCopyrightYear() {
   }
 }
 
-// 9. Global Speech Synthesis Helper
+// 8. Global Speech Synthesis Helper
 window.playWord = function (word, phonetic) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
