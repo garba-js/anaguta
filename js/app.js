@@ -147,7 +147,6 @@ function initEventBanner() {
 }
 
 // 6. Service Worker, Update Detection & Offline Status
-// 6. Service Worker, Update Detection & Offline Status
 function initServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
