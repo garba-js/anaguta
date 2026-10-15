@@ -1,4 +1,4 @@
-const CACHE_NAME = 'anaguta-cache-v1';
+const CACHE_NAME = 'anaguta-cache-v1.1';
 
 // 1. List all native audio files to cache permanently for offline use
 const ASSETS_TO_CACHE = [
@@ -39,16 +39,24 @@ self.addEventListener('install', (event) => {
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
-  self.skipWaiting();
+  // Removed self.skipWaiting() here so it waits for the user to trigger the update prompt
 });
 
-// 3. Activate event: Cleanup old caches
+// 3. Listen for message from app to force activation (SKIP_WAITING)
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
+// 4. Activate event: Cleanup old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
         keys.map((key) => {
           if (key !== CACHE_NAME) {
+            console.log('[Service Worker] Deleting old cache:', key);
             return caches.delete(key);
           }
         })
@@ -58,7 +66,7 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// 4. Fetch event: Cache-First strategy for Audio & Static Assets
+// 5. Fetch event: Cache-First strategy for Audio & Static Assets
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {

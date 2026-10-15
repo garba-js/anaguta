@@ -6,7 +6,7 @@
  * - Scroll Reveal Animations with IntersectionObserver
  * - Project Details Modal Popups
  * - Event Announcement Bar Dismissal
- * - PWA Service Worker Registration & Offline Toast
+ * - PWA Service Worker Registration, Update Prompt & Offline Toast
  * - Pronunciation Speech Synthesis
  */
 
@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initServiceWorker();
   initCopyrightYear();
 });
+
+// Global variable to store the waiting service worker instance
+let newWorker;
 
 // 1. Scrolled Navbar
 function initNavbar() {
@@ -98,7 +101,7 @@ function initProjectModal() {
   openButtons.forEach((button) => {
     button.addEventListener('click', () => {
       if (modalTitle) modalTitle.textContent = button.dataset.title || 'Project Details';
-      if (modalYear) modalYear.textContent = button.dataset.year || 'Initiative &middot; 2026';
+      if (modalYear) modalYear.textContent = button.dataset.year || 'Initiative · 2026';
       if (modalImage && button.dataset.image) modalImage.src = button.dataset.image;
       if (modalDescription) modalDescription.textContent = button.dataset.description || '';
       modal.classList.add('active');
@@ -143,16 +146,46 @@ function initEventBanner() {
   }
 }
 
-// 6. Service Worker & Offline Detection
+// 6. Service Worker, Update Detection & Offline Status
 function initServiceWorker() {
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((reg) => console.log('Service Worker registered successfully:', reg.scope))
-      .catch((err) => console.error('Service Worker registration failed:', err));
-  });
-}
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then((reg) => {
+          console.log('Service Worker registered successfully:', reg.scope);
 
+          // Check if a new service worker is already waiting (e.g. page was reloaded)
+          if (reg.waiting) {
+            newWorker = reg.waiting;
+            showUpdatePopup();
+          }
+
+          // Listen for new updates installed in the background
+          reg.addEventListener('updatefound', () => {
+            newWorker = reg.installing;
+            if (newWorker) {
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  showUpdatePopup();
+                }
+              });
+            }
+          });
+        })
+        .catch((err) => console.error('Service Worker registration failed:', err));
+    });
+
+    // Automatically reload page once the new service worker takes active control
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        window.location.reload();
+        refreshing = true;
+      }
+    });
+  }
+
+  // Offline / Online Toast logic
   const toast = document.getElementById('pwaToast');
   function updateOnlineStatus() {
     if (toast) {
@@ -168,6 +201,21 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('offline', updateOnlineStatus);
   updateOnlineStatus();
 }
+
+// Helper: Show the update popup banner
+function showUpdatePopup() {
+  const updateBanner = document.getElementById('pwaUpdateBanner');
+  if (updateBanner) {
+    updateBanner.classList.add('show');
+  }
+}
+
+// Global function to trigger update on button click
+window.applyPwaUpdate = function () {
+  if (newWorker) {
+    newWorker.postMessage({ type: 'SKIP_WAITING' });
+  }
+};
 
 // 7. Dynamic Copyright Year
 function initCopyrightYear() {

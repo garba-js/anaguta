@@ -14,8 +14,6 @@
 <body>
 
 <body>
-
-
   <!-- EVENT BANNER -->
   <div class="event-bar" id="eventBar">
     <div class="event-bar-text">
@@ -25,6 +23,15 @@
     </div>
     <button class="event-bar-close" id="closeEventBar" aria-label="Dismiss banner">&times;</button>
   </div>
+  
+<!-- Popup Update Banner -->
+<div id="pwaUpdateBanner" class="pwa-update-banner" style="display: none; position: fixed; bottom: 20px; right: 20px; background: #333; color: #fff; padding: 16px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999;">
+  <p style="margin: 0 0 10px 0;">A new version of the app is available!</p>
+  <button onclick="applyPwaUpdate()" style="background: #4CAF50; color: white; border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+    Update Now
+  </button>
+</div>
+
 
   <!-- NAV -->
   <nav id="navbar">
