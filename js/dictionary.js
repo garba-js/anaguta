@@ -14,8 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initDedicatedDictionary() {
+  // Exit gracefully if #lexiconGrid is not on this page
+  const grid = document.getElementById('lexiconGrid');
+  if (!grid) return;
   const dictionary = window.AnagutaDictionary || window.AnagutaWords || (window.AnagutaData && window.AnagutaData.dictionary);
-  
+
   if (!dictionary || !Array.isArray(dictionary)) {
     console.error("AnagutaDictionary data array was not found. Make sure dictionary-data.js loads first.");
     return;
@@ -26,13 +29,6 @@ function initDedicatedDictionary() {
     initWordOfTheDay(dictionary);
   } catch (err) {
     console.error("Error initializing Word of the Day:", err);
-  }
-
-  // 2. Initialize Lexicon Grid Engine
-  const grid = document.getElementById('lexiconGrid');
-  if (!grid) {
-    console.warn("Element #lexiconGrid not found on this page.");
-    return;
   }
 
   const searchInput = document.getElementById('dictSearchInput');

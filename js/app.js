@@ -147,14 +147,20 @@ function initEventBanner() {
 }
 
 // 6. Service Worker, Update Detection & Offline Status
+// 6. Service Worker, Update Detection & Offline Status
 function initServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
+      // Automatically detect if we are on GitHub Pages or Localhost
+      const swUrl = window.location.pathname.startsWith('/anaguta') 
+        ? '/anaguta/sw.js' 
+        : '/sw.js';
+
+      navigator.serviceWorker.register(swUrl)
         .then((reg) => {
           console.log('Service Worker registered successfully:', reg.scope);
 
-          // Check if a new service worker is already waiting (e.g. page was reloaded)
+          // Check if a new service worker is already waiting
           if (reg.waiting) {
             newWorker = reg.waiting;
             showUpdatePopup();
