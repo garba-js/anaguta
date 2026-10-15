@@ -130,8 +130,6 @@ h1 em, h2 em, h3 em {
   padding-bottom: 1rem;
 }
 
-
-
 /* ── BUTTONS ─────────────────────────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex;
@@ -711,7 +709,7 @@ section {
 .culture {
   background: var(--deep-brown);
   color: var(--cream);
-  padding: 110px 8vw;
+  padding: 100px 8vw;
 }
 
 .culture .section-title {
@@ -1060,7 +1058,7 @@ section {
 
 /* ── DEDICATED LANGUAGE DICTIONARY & LEXICON ──────────────────────────────── */
 .dict-section {
-  padding: 80px 8vw;
+  padding: 20px 6vw;
   background: var(--warm-bg);
 }
 
@@ -1683,6 +1681,7 @@ section {
   justify-content: space-between;
   gap: 2rem;
   margin-top: 4rem;
+  margin-bottom: 2rem;
   border-radius: 4px;
 }
 
