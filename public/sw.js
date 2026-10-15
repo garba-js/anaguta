@@ -1,36 +1,35 @@
-const CACHE_NAME = 'anaguta-cache-v1.1.5';
+const CACHE_NAME = 'anaguta-cache-v1.1.6';
 
 // 1. List all native audio files to cache permanently for offline use
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/dictionary.html',
-  '/css/style.css',
-  '/js/dictionary-data.js',
-  '/js/dictionary.js',
-  '/js/app.js',
+  './',
+  './index.html',
+  './dictionary.html',
+  './css/style.css',
+  './js/dictionary-data.js',
+  './js/dictionary.js',
+  './js/app.js',
 
   // --- NATIVE AUDIO FILES ---
-  'audio/ujah.mp3',
-  'audio/kinaru.mp3',
-  'audio/mba.mp3',
-  'audio/tukwi.mp3',
-  'audio/gwash.mp3',
-  'audio/miri.mp3',
-  'audio/biro.mp3',
-  'audio/shanu.mp3',
-  'audio/zana.mp3',
-  'audio/nishi.mp3',
-  'audio/igbun.mp3',
-  'audio/kuta.mp3',
-  'audio/ran.mp3',
-  'audio/watash.mp3',
-  'audio/san-kpa.mp3',
-  'audio/ishokori.mp3',
-  'audio/gwat.mp3',
-  'audio/pozoh.mp3'
+  './audio/ujah.mp3',
+  './audio/kinaru.mp3',
+  './audio/mba.mp3',
+  './audio/tukwi.mp3',
+  './audio/gwash.mp3',
+  './audio/miri.mp3',
+  './audio/biro.mp3',
+  './audio/shanu.mp3',
+  './audio/zana.mp3',
+  './audio/nishi.mp3',
+  './audio/igbun.mp3',
+  './audio/kuta.mp3',
+  './audio/ran.mp3',
+  './audio/watash.mp3',
+  './audio/san-kpa.mp3',
+  './audio/ishokori.mp3',
+  './audio/gwat.mp3',
+  './audio/pozoh.mp3'
 ];
-
 // 2. Install event: Pre-cache audio files
 self.addEventListener('install', (event) => {
   event.waitUntil(
