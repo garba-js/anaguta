@@ -1530,6 +1530,7 @@ section {
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-top: 3rem;
+  padding-bottom: 2rem;
 }
 
 .team-card {
@@ -1541,7 +1542,7 @@ section {
 
 .team-card img {
   width: 100%;
-  height: 280px;
+  height: 400px;
   object-fit: cover;
 }
 
