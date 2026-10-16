@@ -1904,6 +1904,7 @@ footer {
 /* Shown state triggered by app.js */
 .pwa-update-banner.show {
   display: block;
+  animation: slideUp 0.3s ease-out;
 }
 
 .pwa-update-banner p {

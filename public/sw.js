@@ -1,4 +1,4 @@
-const CACHE_NAME = 'anaguta-cache-v1.1.8';
+const CACHE_NAME = 'anaguta-cache-v1.1.9';
 
 // 1. List all native audio files to cache permanently for offline use
 const ASSETS_TO_CACHE = [
@@ -33,12 +33,19 @@ const ASSETS_TO_CACHE = [
 // 2. Install event: Pre-cache audio files
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
+    caches.open(CACHE_NAME).then(async (cache) => {
       console.log('[Service Worker] Pre-caching native audio & static assets...');
-      return cache.addAll(ASSETS_TO_CACHE);
+      await Promise.all(
+        ASSETS_TO_CACHE.map(async (url) => {
+          try {
+            await cache.add(new Request(url, { cache: 'reload' }));
+          } catch (err) {
+            console.warn('[Service Worker] Failed to cache:', url, err);
+          }
+        })
+      );
     })
   );
-  // Removed self.skipWaiting() here so it waits for the user to trigger the update prompt
 });
 
 // 3. Listen for message from app to force activation (SKIP_WAITING)

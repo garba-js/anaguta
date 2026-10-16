@@ -180,14 +180,14 @@ function initServiceWorker() {
         .catch((err) => console.error('Service Worker registration failed:', err));
     });
 
-    // Automatically reload page once the new service worker takes active control
-    let refreshing = false;
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (!refreshing) {
-        window.location.reload();
-        refreshing = true;
-      }
-    });
+// Only reload on updates, not on the very first install
+const hadController = !!navigator.serviceWorker.controller;
+let refreshing = false;
+navigator.serviceWorker.addEventListener('controllerchange', () => {
+  if (!hadController || refreshing) return;
+  refreshing = true;
+  window.location.reload();
+});
   }
 
   // Offline / Online Toast logic
