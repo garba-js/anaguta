@@ -1883,6 +1883,55 @@ footer {
   transform: translateY(-2px);
 }
 
+
+/* PWA Update Banner Styling */
+.pwa-update-banner {
+  display: none; /* hidden by default */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2C1A0E; /* Matches your theme-color */
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  z-index: 9999;
+  border-left: 4px solid #C59B27; /* Cultural gold accent */
+  font-family: inherit;
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Shown state triggered by app.js */
+.pwa-update-banner.show {
+  display: block;
+}
+
+.pwa-update-banner p {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+}
+
+.pwa-update-banner button {
+  background: #C59B27;
+  color: #2C1A0E;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.pwa-update-banner button:hover {
+  background: #dfb132;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
 /* ── PWA OFFLINE TOAST & INSTALL PROMPT ───────────────────────────────────── */
 .pwa-toast {
   position: fixed;
