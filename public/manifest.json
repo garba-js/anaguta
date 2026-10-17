@@ -3,7 +3,7 @@
   "name": "Anaguta Tradomodern",
   "short_name": "Tradomodern",
   "description": "Cultural preservation, language dictionary, community initiatives, and heritage portal of the Anaguta people.",
-  "start_url": "index.html",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
