@@ -153,7 +153,7 @@ function initServiceWorker() {
       // Automatically detect if we are on GitHub Pages or Localhost
       const swUrl = window.location.pathname.startsWith('/anaguta') 
         ? '/anaguta/sw.js' 
-        : '/sw.js';
+        : './sw.js';
 
       navigator.serviceWorker.register(swUrl)
         .then((reg) => {

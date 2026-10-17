@@ -1,5 +1,5 @@
 {
-  "id": "/",
+  "id": "./",
   "name": "Anaguta Tradomodern",
   "short_name": "Tradomodern",
   "description": "Cultural preservation, language dictionary, community initiatives, and heritage portal of the Anaguta people.",
@@ -7,8 +7,8 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#F5EFE0",
-  "theme_color": "#F5EFE0",
+  "background_color": "#2C1A0E",
+  "theme_color": "#2C1A0E",
   "categories": ["education", "culture", "reference"],
   "icons": [
     {
