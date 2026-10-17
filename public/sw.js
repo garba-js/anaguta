@@ -1,4 +1,4 @@
-const CACHE_NAME = 'anaguta-cache-v1.2.1';
+const CACHE_NAME = 'anaguta-cache-v1.2.2';
 
 // 1. List all native audio files to cache permanently for offline use
 const ASSETS_TO_CACHE = [
