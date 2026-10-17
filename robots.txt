@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://garba-js.github.io/anaguta/sitemap.xml

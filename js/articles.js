@@ -118,6 +118,22 @@ function initArticleReader() {
 
   if (!article) return;
 
+  // SEO: set page title and meta tags for the selected article
+const pageUrl = 'https://garba-js.github.io/anaguta/article-detail.html?id=' + article.id;
+document.title = article.title + ' | Anaguta Tradomodern';
+
+const setMeta = (selector, value) => {
+  const el = document.querySelector(selector);
+  if (el) el.setAttribute('content', value);
+};
+setMeta('meta[name="description"]', article.excerpt || '');
+setMeta('meta[property="og:title"]', article.title);
+setMeta('meta[property="og:description"]', article.excerpt || '');
+setMeta('meta[property="og:url"]', pageUrl);
+
+const canonical = document.querySelector('link[rel="canonical"]');
+if (canonical) canonical.setAttribute('href', pageUrl);
+
   // Populate elements
   const titleEl = document.getElementById('articleTitle');
   const catEl = document.getElementById('articleCategory');
