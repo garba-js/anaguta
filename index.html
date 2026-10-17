@@ -35,7 +35,10 @@
   <meta name="theme-color" content="#2C1A0E">
   <link rel="icon" type="image/png" href="images/mobile_icon.png">
   <link rel="apple-touch-icon" href="images/icon.png">
-
+  <link rel="preload" as="image" href="images/home_page_hero.webp" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
 
   <script type="application/ld+json">
@@ -131,8 +134,8 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-img">
-      <img src="images/home_page_hero.webp" alt="Anaguta Traditional Homeland" />
-    </div>
+<img src="images/home_page_hero.webp" alt="Anaguta Traditional Homeland"
+     fetchpriority="high" decoding="async" width="1600" height="900" />    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="hero-tag">Plateau State &middot; Nigeria</span>
