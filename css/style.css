@@ -1885,30 +1885,31 @@ footer {
 
 /* PWA Update Banner Styling */
 .pwa-update-banner {
-  display: none; /* hidden by default */
+  display: none;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #2C1A0E; /* Matches your theme-color */
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 420px;
+  background: #2C1A0E;
   color: #fff;
   padding: 16px 20px;
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-  z-index: 9999;
-  border-left: 4px solid #C59B27; /* Cultural gold accent */
+  z-index: 10000;
+  border-left: 4px solid #C59B27;
   font-family: inherit;
-  animation: slideUp 0.3s ease-out;
 }
 
-/* Shown state triggered by app.js */
 .pwa-update-banner.show {
   display: block;
-  animation: slideUp 0.3s ease-out;
+  animation: slideDown 0.3s ease-out;
 }
 
-.pwa-update-banner p {
-  margin: 0 0 10px 0;
-  font-size: 0.95rem;
+@keyframes slideDown {
+  from { top: -80px; opacity: 0; }
+  to   { top: 20px;  opacity: 1; }
 }
 
 .pwa-update-banner button {
