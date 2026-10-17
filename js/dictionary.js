@@ -51,7 +51,7 @@ function initDedicatedDictionary() {
   }
 
   // Build Alphabet Bar
-  const alphabet = ['All', 'B', 'G', 'I', 'K', 'M', 'N', 'R', 'S', 'T', 'U', 'W', 'Z'];
+  const alphabet = ['All', 'A', 'B', 'C', 'G', 'I', 'K', 'M', 'N', 'R', 'S', 'T', 'U', 'W', 'Z'];
   if (alphabetBar) {
     alphabetBar.innerHTML = alphabet
       .map(
