@@ -1958,6 +1958,9 @@ footer {
 @media (max-width: 960px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
+    .about { gap: 2rem; }                 /* was 6vw */
+  .about-stat-bar { margin-bottom: 0; } /* remove the extra 2rem under the bar */
+  .about-img-main { height: 380px; }    /* optional: shorter image on small screens */
   .about, .leadership, .contact-body { grid-template-columns: 1fr; }
   .about-img-accent { display: none; }
   .leadership-img::before { display: none; }
