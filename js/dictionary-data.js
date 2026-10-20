@@ -90,7 +90,7 @@ const AnagutaDictionary = [
   },
   {
     id: 7,
-    word: "udətar",
+    word: "Udətar",
     phonetic: "/ou-tha-ta-r/",
     partOfSpeech: "noun",
     meaning: "Chair",

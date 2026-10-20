@@ -1,6 +1,5 @@
-const CACHE_NAME = 'anaguta-cache-v1.3.0';
+const CACHE_NAME = 'anaguta-cache-v1.3.1.1';   // bump this on every deploy
 
-// 1. List all native audio files to cache permanently for offline use
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -30,11 +29,11 @@ const ASSETS_TO_CACHE = [
   './audio/gwat.mp3',
   './audio/pozoh.mp3'
 ];
-// 2. Install event: Pre-cache audio files
+
+// Install: pre-cache everything (one missing file won't break the install)
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
-      console.log('[Service Worker] Pre-caching native audio & static assets...');
       await Promise.all(
         ASSETS_TO_CACHE.map(async (url) => {
           try {
@@ -48,40 +47,63 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// 3. Listen for message from app to force activation (SKIP_WAITING)
+// Let the "Update now" banner activate the waiting worker
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
 });
 
-// 4. Activate event: Cleanup old caches
+// Activate: delete old caches, then take control
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            console.log('[Service Worker] Deleting old cache:', key);
-            return caches.delete(key);
-          }
-        })
-      );
-    })
+    caches.keys()
+      .then((keys) =>
+        Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+      )
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
-// 5. Fetch event: Cache-First strategy for Audio & Static Assets
+// Fetch
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      // Return cached native audio file immediately if offline
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      // Otherwise fetch from network
-      return fetch(event.request);
-    })
-  );
+  const req = event.request;
+  const url = new URL(req.url);
+
+  // Only handle same-origin GET requests
+  if (req.method !== 'GET' || url.origin !== self.location.origin) return;
+
+  const isCode =
+    req.mode === 'navigate' ||
+    /\.(html|css|js|json)$/.test(url.pathname) ||
+    url.pathname.endsWith('/');
+
+  if (isCode) {
+    // NETWORK-FIRST: always fresh when online, cached copy when offline
+    event.respondWith(
+      fetch(req, { cache: 'no-cache' })
+        .then((res) => {
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE_NAME).then((c) => c.put(req, copy));
+          }
+          return res;
+        })
+        .catch(() => caches.match(req, { ignoreSearch: true }))
+    );
+  } else {
+    // CACHE-FIRST: audio, images (rarely change, fast and offline-ready)
+    event.respondWith(
+      caches.match(req).then((hit) => {
+        if (hit) return hit;
+        return fetch(req).then((res) => {
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE_NAME).then((c) => c.put(req, copy));
+          }
+          return res;
+        });
+      })
+    );
+  }
 });
