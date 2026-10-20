@@ -50,8 +50,15 @@ function initDedicatedDictionary() {
     if (clearBtn) clearBtn.style.display = 'block';
   }
 
-  // Build Alphabet Bar
-  const alphabet = ['All', 'A', 'B', 'C', 'G', 'I', 'K', 'M', 'N', 'R', 'S', 'T', 'U', 'W', 'Z'];
+  // Build Alphabet Bar (letters come from the actual words in the dictionary)
+  const letters = [...new Set(
+    dictionary
+      .map((d) => (d.word || '').trim().charAt(0).toUpperCase())
+      .filter(Boolean)
+  )].sort((a, b) => a.localeCompare(b));
+
+  const alphabet = ['All', ...letters];
+
   if (alphabetBar) {
     alphabetBar.innerHTML = alphabet
       .map(
