@@ -38,7 +38,7 @@ const AnagutaDictionary = [
     word: "Ata",
     phonetic: "/ah-tah/",
     partOfSpeech: "noun",
-    meaning: "Mr.",
+    meaning: "Mr - a respectful title used before a man's name. (It is short for mister).",
     category: "Greetings & Social",
     exampleAnaguta: "Ata John Doe.",
     exampleEnglish: "Mr John Doe.",
