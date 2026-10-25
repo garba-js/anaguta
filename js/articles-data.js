@@ -73,11 +73,11 @@ const AnagutaArticles = [
       <h3>The History Session</h3>
       <p>A major highlight of the expedition was an oral history session with an Anaguta Elder who narrated the authentic origin and significance of the mountain. This is history you will not find on Google. The full video interview will be published on our platforms in the coming days.</p>
 
-      <!-- WHEN VIDEO IS READY, uncomment and replace VIDEO_ID:
+      <!-- WHEN VIDEO IS READY, uncomment and replace VIDEO_ID:      -->
       <div style="position:relative;padding-bottom:56.25%;height:0;margin:2rem 0;">
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Anaguta Elder oral history interview" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2291402401700294%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="Anaguta Elder oral history interview" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
-      -->
+
 
       <h3>Amanza Waterfalls</h3>
       <p>The team proceeded to Amanza Waterfalls, a sacred and historical landmark central to Anaguta identity. Known for its cultural and historical depth, Amanza remains one of the most important heritage sites in Jos.</p>
