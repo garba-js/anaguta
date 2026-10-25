@@ -86,7 +86,7 @@ const AnagutaArticles = [
       <p>At Anaguta Tradomodern, our mission is simple: <strong>Document. Preserve. Project.</strong></p>
       <p>Expeditions like this are part of our ongoing effort to physically trace, record, and share Anaguta heritage before it is lost to urbanization and misrepresentation. We are grateful to all team members who participated.</p>
 
-      <p><strong>Team:</strong> Emmanuel Kinaru, Garba Joseph, Mayam Dauji, Zamuta Ishaya, Kefas Ishaya, Nanman Danan <br>
+      <p><strong>Team:</strong> Emmanuel Kinaru, Garba Joseph, Mayam Dauji, Zamuta Ishaya, Kefas Ishaya, Enoch Barandu, Nanman Danan <br>
       <strong>Documentation by:</strong> Anaguta Tradomodern Media<br>
       <strong>Location:</strong> Anaguta Mountains &amp; Amanza Falls, Jos, Plateau State</p>
 
