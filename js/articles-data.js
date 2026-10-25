@@ -204,6 +204,54 @@ const AnagutaArticles = [
       <p>Free blood pressure, vision, and wellness screenings for elder community members.</p>
     `
   },
+    {
+    id: 14,
+    type: "project",
+    title: "Anaguta Tradomodern Visits His Royal Majesty, the Ujah of Anaguta",
+    author: "Anaguta Tradomodern Media",
+    date: "March 7, 2026",
+    readTime: "2 min read",
+    category: "Community & Outreach",
+    image: "images/brand_to_ujah_01.webp",
+    excerpt: "The Anaguta Tradomodern team met His Royal Majesty, the Ujah of Anaguta, to present completed projects and upcoming initiatives, and to discuss this year's Ishokori Festival.",
+    tags: ["Ujah of Anaguta", "Anaguta royalty", "Ishokori Festival", "Anaguta unity", "Anaguta Tradomodern", "Plateau State"],
+   
+    // PHOTO CAROUSEL: remove the // from the lines below and list your photos
+  gallery: [
+    { src: "images/brand_to_ujah_02.webp", caption: "The team with His Royal Majesty" },
+    { src: "images/brand_to_ujah_03.webp", caption: "Presenting the Anaguta Nation flag" },
+    { src: "images/brand_to_ujah_04.webp", caption: "Presenting the Anaguta Nation flag" },
+    { src: "images/brand_to_ujah_05.webp", caption: "Presenting the Anaguta Nation flag" },
+    { src: "images/brand_to_ujah_06.webp", caption: "Presenting the Anaguta Nation flag" },
+    { src: "images/brand_to_ujah_07.webp", caption: "Presenting the Anaguta Nation flag" },
+    { src: "images/brand_to_ujah_01.webp", caption: "Presenting the Anaguta Nation flag" },
+  ],
+    content: `
+      <p>The Anaguta Tradomodern team had the honor of visiting His Royal Majesty, the Ujah of Anaguta, a First Class Chief in Plateau State. It was a privilege to sit with such a respected leader and share the vision behind what we are building.</p>
+
+      <h3>Presenting Our Work</h3>
+      <p>During the meeting, we presented some of the projects Anaguta Tradomodern has successfully completed, and shared the upcoming initiatives aimed at promoting and preserving the rich culture of the Anaguta people.</p>
+
+      <h3>Words of Wisdom</h3>
+      <p>His Royal Majesty was very pleased with the efforts and vision. He gave the team words of wisdom and guidance, reminding us that the strength of any people lies in peace, unity, and collective progress.</p>
+      <p>One of his strongest wishes was that the Anaguta people continue to build peace and unity, not only as a tribe, but as a community and as a nation.</p>
+
+      <h3>The Upcoming Ishokori Festival</h3>
+      <p>We also discussed the upcoming Ishokori Festival, the annual Anaguta festival that celebrates our culture and heritage. This year's celebration promises to be one of its kind. <a href="event.html">See festival details</a>.</p>
+
+      <h3>A Token of Respect</h3>
+      <p>As a token of appreciation and respect, we presented His Royal Majesty with a branded Anaguta Trado-Modern shirt and the Anaguta Nation flag.</p>
+      <p>At Anaguta Tradomodern, we believe our leaders are our shepherds and we are the followers. Sometimes, even the smallest gestures can remind them that their people stand with them and support the journey forward.</p>
+
+      <h3>Looking Ahead</h3>
+      <p>This visit strengthened our commitment to promoting Anaguta culture, unity, and identity for generations to come. The future is bright for the Anaguta people.</p>
+
+      <p><strong>Documentation by:</strong> Anaguta Tradomodern Media<br>
+      <strong>Location:</strong> Jos, Plateau State</p>
+
+      <p>Follow, share, and join our community as we continue this work. <a href="articles.html?type=project">See more projects</a>.</p>
+    `
+  },
 
   /* ===================== ARTICLES ===================== */
   {

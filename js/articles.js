@@ -48,6 +48,7 @@ const TYPE_INFO = {
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('articlesListGrid')) initListing();
   if (document.getElementById('articleContainer')) initArticleReader();
+  if (document.getElementById('homeProjectsGrid') || document.getElementById('homeArticlesGrid')) initHomeFeed();
 });
 
 /* ---------- helpers ---------- */
@@ -236,6 +237,16 @@ function initListing() {
 /* ---------- 2. Reader page (article-detail.html?id=N) ---------- */
 
 function initArticleReader() {
+  const container = document.getElementById('articleContainer');
+  const reveal = () => container && container.classList.add('ready');
+  try {
+    renderArticle();
+  } finally {
+    reveal(); // always show the page, even if something above failed
+  }
+}
+
+function renderArticle() {
   const articles = getItems();
   if (!articles.length) return;
 
@@ -401,4 +412,46 @@ function renderGallery(article) {
   if (next) next.addEventListener('click', () => goTo(current + 1));
   dots.forEach((d) => d.addEventListener('click', () => goTo(parseInt(d.dataset.i, 10))));
   update();
+}
+
+/* ---------- 4. Homepage feed: newest projects + newest articles ---------- */
+// How many cards the homepage shows in each section. Change the numbers if you want more or fewer.
+const HOME_FEED = { projects: 3, articles: 3 };
+
+function initHomeFeed() {
+  const items = getItems(); // already newest first
+
+  const fill = (gridId, type, limit) => {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+    const list = items.filter((a) => itemType(a) === type).slice(0, limit);
+
+    // Nothing of this type yet: hide the whole section instead of showing an empty gap
+    if (!list.length) {
+      const section = grid.closest('section');
+      if (section) section.style.display = 'none';
+      return;
+    }
+
+    const cta = TYPE_INFO[type].cta;
+    grid.innerHTML = list
+      .map(
+        (art) => `
+        <div class="project-card reveal visible">
+          <div class="project-card-img">
+            <img src="${esc(art.image || 'images/culture (11).webp')}" alt="${esc(art.title)}" loading="lazy" />
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-label">${esc(art.category)} &middot; ${esc(art.readTime || '5 min read')}</span>
+            <h3 class="project-card-title">${esc(art.title)}</h3>
+            <p>${esc(art.excerpt || '')}</p>
+            <a href="article-detail.html?id=${encodeURIComponent(art.id)}" class="btn-text">${cta}</a>
+          </div>
+        </div>`
+      )
+      .join('');
+  };
+
+  fill('homeProjectsGrid', 'project', HOME_FEED.projects);
+  fill('homeArticlesGrid', 'article', HOME_FEED.articles);
 }

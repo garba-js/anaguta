@@ -287,6 +287,7 @@ function initArticleReader() {
   set('articleBody', (el) => {
     if (article.content) el.innerHTML = article.content;
   });
+  renderGallery(article);
 
   // Back button + related heading follow the type
   set('backLink', (el) => {
@@ -331,4 +332,73 @@ function initArticleReader() {
       )
       .join('');
   }
+}
+
+/* ---------- 3. Photo carousel (optional "gallery" field in the data) ---------- */
+// gallery: ["images/a.webp", "images/b.webp"]  or  [{ src: "images/a.webp", caption: "Optional caption" }]
+function renderGallery(article) {
+  const host = document.getElementById('articleGallery');
+  if (!host) return;
+
+  const photos = (article.gallery || [])
+    .map((g, i) => {
+      const o = typeof g === 'string' ? { src: g } : g;
+      return { src: o.src, caption: o.caption || '', alt: o.alt || o.caption || article.title + ' \u2014 photo ' + (i + 1) };
+    })
+    .filter((g) => g.src);
+
+  if (!photos.length) {
+    host.style.display = 'none';
+    return;
+  }
+
+  const many = photos.length > 1;
+  host.innerHTML = `
+    <span class="section-label">Photo Gallery</span>
+    <div class="gc-viewport">
+      <div class="gc-track" tabindex="0" aria-label="Photo gallery, use arrow keys or swipe">
+        ${photos
+          .map(
+            (g, i) => `
+          <figure class="gc-slide">
+            <img src="${esc(g.src)}" alt="${esc(g.alt)}" ${i === 0 ? '' : 'loading="lazy"'} />
+          </figure>`
+          )
+          .join('')}
+      </div>
+      ${many ? '<button type="button" class="gc-btn gc-prev" aria-label="Previous photo">&#8249;</button><button type="button" class="gc-btn gc-next" aria-label="Next photo">&#8250;</button>' : ''}
+    </div>
+    <div class="gc-meta">
+      <p class="gc-caption"></p>
+      ${many ? '<span class="gc-count"></span>' : ''}
+    </div>
+    ${many ? `<div class="gc-dots">${photos.map((_, i) => `<button type="button" class="gc-dot" data-i="${i}" aria-label="Go to photo ${i + 1}"></button>`).join('')}</div>` : ''}
+  `;
+
+  const track = host.querySelector('.gc-track');
+  const dots = host.querySelectorAll('.gc-dot');
+  const caption = host.querySelector('.gc-caption');
+  const count = host.querySelector('.gc-count');
+  let current = 0;
+
+  const goTo = (i) => {
+    const n = photos.length;
+    track.scrollTo({ left: ((i % n) + n) % n * track.clientWidth, behavior: 'smooth' });
+  };
+
+  const update = () => {
+    current = Math.round(track.scrollLeft / (track.clientWidth || 1));
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    if (count) count.textContent = current + 1 + ' / ' + photos.length;
+    if (caption) caption.textContent = (photos[current] && photos[current].caption) || '';
+  };
+
+  track.addEventListener('scroll', () => window.requestAnimationFrame(update), { passive: true });
+  window.addEventListener('resize', () => goTo(current));
+  const prev = host.querySelector('.gc-prev');
+  const next = host.querySelector('.gc-next');
+  if (prev) prev.addEventListener('click', () => goTo(current - 1));
+  if (next) next.addEventListener('click', () => goTo(current + 1));
+  dots.forEach((d) => d.addEventListener('click', () => goTo(parseInt(d.dataset.i, 10))));
+  update();
 }

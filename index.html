@@ -75,8 +75,6 @@
 </script>
 </head>
 <body>
-
-<body>
   <!-- EVENT BANNER -->
   <div class="event-bar" id="eventBar">
     <div class="event-bar-text">
@@ -86,12 +84,6 @@
     </div>
     <button class="event-bar-close" id="closeEventBar" aria-label="Dismiss banner">&times;</button>
   </div>
-
-<!-- Popup Update Banner -->
-<div id="pwaUpdateBanner" class="pwa-update-banner">
-  <p>A new version of the app is available!</p>
-  <button onclick="applyPwaUpdate()">Update Now</button>
-</div>
 
 
   <!-- NAV -->
@@ -104,10 +96,10 @@
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about_us.html">About</a></li>
       <li><a href="history.html">History</a></li>
-      <li><a href="projects.html">Projects</a></li>
+      <li><a href="articles.html?type=project">Projects</a></li>
       <li><a href="dictionary.html">Dictionary</a></li>
       <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="articles.html">Articles</a></li>
+      <li><a href="articles.html?type=article">Articles</a></li>
       <li><a href="event.html">Event</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" class="nav-cta" target="_blank" rel="noopener">Join Community</a></li>
@@ -122,10 +114,10 @@
     <a href="index.html" class="active" onclick="closeMobile()">Home</a>
     <a href="about_us.html" onclick="closeMobile()">About</a>
     <a href="history.html" onclick="closeMobile()">History</a>
-    <a href="projects.html" onclick="closeMobile()">Projects</a>
+    <a href="articles.html?type=project" onclick="closeMobile()">Projects</a>
     <a href="dictionary.html" onclick="closeMobile()">Dictionary</a>
     <a href="gallery.html" onclick="closeMobile()">Gallery</a>
-    <a href="articles.html" onclick="closeMobile()">Articles</a>
+    <a href="articles.html?type=article" onclick="closeMobile()">Articles</a>
     <a href="event.html" onclick="closeMobile()">Event</a>
     <a href="contact.html" onclick="closeMobile()">Contact</a>
     <a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" class="nav-cta" target="_blank" rel="noopener" onclick="closeMobile()">Join Community</a>
@@ -144,7 +136,7 @@
       <div class="hero-btns">
         <a href="history.html" class="btn-primary">Explore Our Story</a>
         <a href="dictionary.html" class="btn-secondary">Language Lexicon</a>
-        <a href="projects.html" class="btn-outline">Current Projects</a>
+        <a href="articles.html?type=project" class="btn-outline">Current Projects</a>
       </div>
     </div>
     <div class="hero-scroll">
@@ -234,7 +226,7 @@
     </div>
 
     <div class="projects-more reveal">
-      <a href="articles.html" class="btn-primary">Explore Cultural Essays</a>
+      <a href="articles.html?type=article" class="btn-primary">Explore Cultural Essays</a>
     </div>
   </section>
 
@@ -267,70 +259,29 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
+  <!-- RECENT PROJECTS (fills itself with the newest projects from js/articles-data.js) -->
   <section class="projects" id="projects">
     <span class="section-label reveal">What We Do</span>
     <h2 class="section-title reveal">Recent <em>Projects</em></h2>
     <div class="divider reveal"></div>
 
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-card-img">
-          <img src="images/AFM.webp" alt="AFM Documentation" loading="lazy" />
-        </div>
-        <div class="project-card-body">
-          <span class="project-card-label">Documentation &middot; 2026</span>
-          <h3 class="project-card-title">AFM Cultural Documentation Project</h3>
-          <p>Comprehensive multimedia recording of oral histories, elder interviews, and clan genealogical lines across Jos North.</p>
-          <button class="btn-text open-modal"
-            data-title="AFM Cultural Documentation Project"
-            data-year="Documentation &middot; 2026"
-            data-image="images/AFM.webp"
-            data-description="The AFM Cultural Documentation Project captures interviews, archival photographs, and stories from village elders to preserve the ancestral identity of the Anaguta people for future generations.">
-            View Details
-          </button>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-card-img">
-          <img src="images/love_culture.webp" alt="Love and Culture" loading="lazy" />
-        </div>
-        <div class="project-card-body">
-          <span class="project-card-label">Culture &middot; 2026</span>
-          <h3 class="project-card-title">Anaguta Love and Culture &mdash; Then and Now</h3>
-          <p>A visual and oral history project documenting the evolution of courtship, marriage rites, and community bonds.</p>
-          <button class="btn-text open-modal"
-            data-title="Anaguta Love and Culture &mdash; Then and Now"
-            data-year="Culture &middot; 2026"
-            data-image="images/love_tandn.jpg"
-            data-description="A visual and oral history project documenting the evolution of Anaguta courtship and family customs across generations. Captured through archival photography and storytelling with elders.">
-            View Details
-          </button>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-card-img">
-          <img src="images/barbing.webp" alt="Youth Empowerment" loading="lazy" />
-        </div>
-        <div class="project-card-body">
-          <span class="project-card-label">Community &middot; 2026</span>
-          <h3 class="project-card-title">Youth Heritage &amp; Vocational Empowerment Drive</h3>
-          <p>Practical vocational skills, mentorship, and creative arts workshops equipping Anaguta youths for modern entrepreneurship.</p>
-          <button class="btn-text open-modal"
-            data-title="Youth Heritage &amp; Vocational Empowerment Drive"
-            data-year="Community &middot; 2026"
-            data-image="images/barbing.webp"
-            data-description="A grassroots initiative providing technical vocational skills, business mentorship, and cultural leadership for young men and women in Naraguta and Jos North communities.">
-            View Details
-          </button>
-        </div>
-      </div>
-    </div>
+    <div class="projects-grid" id="homeProjectsGrid"></div>
 
     <div class="projects-more reveal">
-      <a href="projects.html" class="btn-primary">View All Projects</a>
+      <a href="articles.html?type=project" class="btn-primary">View All Projects</a>
+    </div>
+  </section>
+
+  <!-- LATEST ESSAYS (fills itself with the newest articles from js/articles-data.js) -->
+  <section class="projects" id="latest-articles">
+    <span class="section-label reveal">From Our Archive</span>
+    <h2 class="section-title reveal">Latest <em>Essays</em></h2>
+    <div class="divider reveal"></div>
+
+    <div class="projects-grid" id="homeArticlesGrid"></div>
+
+    <div class="projects-more reveal">
+      <a href="articles.html?type=article" class="btn-primary">Read All Essays</a>
     </div>
   </section>
 
@@ -379,9 +330,9 @@
           <li><a href="about_us.html">About Us</a></li>
           <li><a href="history.html">History</a></li>
           <li><a href="dictionary.html">Language Dictionary</a></li>
-          <li><a href="projects.html">Community Projects</a></li>
+          <li><a href="articles.html?type=project">Community Projects</a></li>
           <li><a href="gallery.html">Visual Gallery</a></li>
-          <li><a href="articles.html">Cultural Essays</a></li>
+          <li><a href="articles.html?type=article">Cultural Essays</a></li>
           <li><a href="event.html">Annual Festival</a></li>
         </ul>
       </div>
@@ -428,7 +379,9 @@
 
 <script src="js/dictionary-data.js"></script>
   <script src="js/dictionary.js"></script>
+  <script src="js/articles-data.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/articles.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
