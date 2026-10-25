@@ -4,7 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cultural Essay | Anaguta Tradomodern</title>
-  <meta name="description" content="Read essays on Anaguta culture, language, festivals and history.">
+  <meta name="description" content="Read projects and essays on Anaguta culture, language, festivals and history.">
+  <link rel="canonical" href="https://garba-js.github.io/anaguta/article-detail.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anaguta Tradomodern">
+  <meta property="og:title" content="Anaguta Tradomodern">
+  <meta property="og:description" content="Read projects and essays on Anaguta culture, language, festivals and history.">
+  <meta property="og:url" content="https://garba-js.github.io/anaguta/article-detail.html">
+  <meta property="og:image" content="https://garba-js.github.io/anaguta/images/og-image.jpg">
+  <meta property="og:locale" content="en_NG">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Anaguta Tradomodern">
+  <meta name="twitter:description" content="Read projects and essays on Anaguta culture, language, festivals and history.">
+  <meta name="twitter:image" content="https://garba-js.github.io/anaguta/images/og-image.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap">
@@ -12,6 +24,26 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2C1A0E">
   <link rel="icon" type="image/jpeg" href="images/mobile_icon.png">
+  <style>
+    .gallery-carousel{margin:3rem 0 2.5rem}
+    .gc-viewport{position:relative;margin-top:.75rem;border-radius:4px;overflow:hidden;background:#1a0f08}
+    .gc-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;outline:none}
+    .gc-track::-webkit-scrollbar{display:none}
+    .gc-track:focus-visible{box-shadow:inset 0 0 0 3px rgba(255,255,255,.6)}
+    .gc-slide{flex:0 0 100%;margin:0;scroll-snap-align:center;scroll-snap-stop:always;aspect-ratio:16/10;max-height:70vh;display:flex;align-items:center;justify-content:center}
+    .gc-slide img{width:100%;height:100%;object-fit:contain;display:block}
+    .gc-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;border-radius:50%;background:rgba(44,26,14,.7);color:#fff;font-size:1.9rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0 0 .2rem;transition:background .2s}
+    .gc-btn:hover{background:rgba(44,26,14,.95)}
+    .gc-prev{left:.75rem}
+    .gc-next{right:.75rem}
+    .gc-meta{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin-top:.6rem;font-size:.9rem;color:var(--muted,#7a6a5c)}
+    .gc-caption{margin:0;font-style:italic;flex:1}
+    .gc-count{white-space:nowrap}
+    .gc-dots{display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+    .gc-dot{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:rgba(44,26,14,.25);cursor:pointer}
+    .gc-dot.active{background:var(--deep-brown,#2C1A0E);transform:scale(1.25)}
+    @media (max-width:600px){.gc-btn{width:38px;height:38px;font-size:1.6rem}.gc-slide{aspect-ratio:4/3}}
+  </style>
 </head>
 <body>
   <!-- NAV -->
@@ -23,10 +55,11 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about_us.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
+      <li><a href="history.html">History</a></li>
+      <li><a href="articles.html?type=project" data-nav-type="project">Projects</a></li>
       <li><a href="dictionary.html">Dictionary</a></li>
       <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="articles.html" class="active">Articles</a></li>
+      <li><a href="articles.html?type=article" data-nav-type="article">Articles</a></li>
       <li><a href="event.html">Event</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" class="nav-cta" target="_blank" rel="noopener">Join Community</a></li>
@@ -40,10 +73,11 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html" onclick="closeMobile()">Home</a>
     <a href="about_us.html" onclick="closeMobile()">About</a>
-    <a href="projects.html" onclick="closeMobile()">Projects</a>
+    <a href="history.html" onclick="closeMobile()">History</a>
+    <a href="articles.html?type=project" data-nav-type="project" onclick="closeMobile()">Projects</a>
     <a href="dictionary.html" onclick="closeMobile()">Dictionary</a>
     <a href="gallery.html" onclick="closeMobile()">Gallery</a>
-    <a href="articles.html" class="active" onclick="closeMobile()">Articles</a>
+    <a href="articles.html?type=article" data-nav-type="article" onclick="closeMobile()">Articles</a>
     <a href="event.html" onclick="closeMobile()">Event</a>
     <a href="contact.html" onclick="closeMobile()">Contact</a>
     <a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" class="nav-cta" target="_blank" rel="noopener" onclick="closeMobile()">Join Community</a>
@@ -69,15 +103,18 @@
       <!-- Injected from AnagutaArticles -->
     </div>
 
+    <!-- PHOTO CAROUSEL (filled from the "gallery" list in articles-data.js) -->
+    <div class="gallery-carousel" id="articleGallery"></div>
+
     <div class="reader-actions">
-      <a href="articles.html" class="btn-primary">&larr; Back to All Essays</a>
+      <a href="articles.html" class="btn-primary" id="backLink">&larr; Back to All Essays</a>
       <a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" target="_blank" rel="noopener" class="btn-outline dark">Discuss with Community</a>
     </div>
 
     <!-- RELATED ESSAYS -->
     <div class="related-articles-section">
       <span class="section-label">Continue Reading</span>
-      <h2 class="section-title">Related <em>Essays</em></h2>
+      <h2 class="section-title" id="relatedTitle">Related <em>Essays</em></h2>
       <div class="projects-grid" id="relatedArticlesList">
         <!-- Injected from js/articles.js -->
       </div>
@@ -98,6 +135,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about_us.html">About Us</a></li>
+          <li><a href="history.html">History</a></li>
           <li><a href="dictionary.html">Language Dictionary</a></li>
           <li><a href="projects.html">Community Projects</a></li>
           <li><a href="gallery.html">Visual Gallery</a></li>

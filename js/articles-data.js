@@ -1,34 +1,206 @@
 /**
  * ============================================================================
- * ANAGUTA TRADOMODERN - DEDICATED ARTICLES DATA (js/articles-data.js)
+ * ANAGUTA TRADOMODERN - CONTENT DATA (js/articles-data.js)
  * ============================================================================
- * 
- * HOW TO ADD A NEW ARTICLE:
- * Simply copy and paste this template into the AnagutaArticles array below:
- * 
+ * This ONE file feeds the whole Projects + Articles page.
+ *
+ * TO ADD ANYTHING NEW: copy the template below, paste it into the array, and
+ * change the values. Nothing else needs editing:
+ *   - It appears on articles.html in the right tab (Projects or Articles)
+ *   - A filter button for its category is created automatically
+ *   - Newest items (by "date") are shown first, wherever you paste it
+ *   - It opens at article-detail.html?id=YOUR_ID
+ *
  * {
- *   id: 7,
- *   title: "Your Article Title",
- *   author: "Author Name & Title",
- *   date: "Month Day, Year",
- *   readTime: "X min read",
- *   category: "Heritage & Warfare | Rituals & Festivals | Linguistics & Oral History | Royal Dynasty | Traditional Arts",
+ *   id: 14,                       // unique number, never reuse one
+ *   type: "project",              // "project" or "article"
+ *   title: "Your Title",
+ *   author: "Author or Team",
+ *   date: "October 24, 2026",     // "Month Day, Year" so sorting works
+ *   readTime: "3 min read",
+ *   category: "Expeditions",      // any text; same text = same filter button
  *   image: "images/your-image.webp",
- *   excerpt: "A brief 1-2 sentence preview summary of the essay...",
+ *   excerpt: "One or two sentences shown on the card and in Google results.",
  *   tags: ["Tag1", "Tag2"],
+ *   gallery: ["images/a.webp", "images/b.webp"],   // OPTIONAL: shows a swipeable photo carousel under the article
  *   content: `
- *     <p>First paragraph of the essay...</p>
- *     <h3>Subheading Title</h3>
- *     <p>Detailed discussion...</p>
+ *     <p>First paragraph...</p>
+ *     <h3>Subheading</h3>
+ *     <p>More text...</p>
  *   `
  * },
- * 
+ *
+ * Current project categories: Expeditions | Documentation & Archiving | Community & Outreach
+ * Current article categories: Heritage & Warfare | Rituals & Festivals | Linguistics & Oral History | Royal Dynasty | History & Origins | Traditional Arts
  * ============================================================================
  */
 
 const AnagutaArticles = [
+  /* ===================== PROJECTS ===================== */
+  {
+    id: 7,
+    type: "project",
+    title: "Anaguta Ancestral Trail: Our Expedition to the Sacred Peaks and Amanza Waterfalls",
+    author: "Anaguta Tradomodern Media",
+    date: "October 24, 2026",
+    readTime: "3 min read",
+    category: "Expeditions",
+    image: "images/beyound_rocks_01.webp",
+    excerpt: "Anaguta Tradomodern team treks Anaguta sacred mountains and Amanza Waterfalls to document untold oral histories and indigenous heritage in Jos, Plateau State.",
+    tags: ["Anaguta", "Anaguta people", "Amanza Waterfalls", "Jos history", "Plateau heritage", "Anaguta Tradomodern"],
+    
+    // PHOTO CAROUSEL: remove the // from the lines below and list your photos (8 or more is fine)
+ gallery: [
+   { src: "images/beyound_rocks_02.webp", caption: "The team with an Elder" },
+   { src: "images/beyound_rocks_03.webp", caption: "The team begins the journey" },
+   { src: "images/beyound_rocks_04.webp", caption: "The team climbs the hill" },
+   { src: "images/beyound_rocks_05.webp", caption: "View from the sacred peak" },
+   { src: "images/beyound_rocks_06.webp", caption: "View of the sacred historical hill" },
+   { src: "images/beyound_rocks_07.webp", caption: "The team climbs the hill" },
+   { src: "images/beyound_rocks_08.webp", caption: "View from the sacred peak" },
+   { src: "images/beyound_rocks_09.webp", caption: "Our guide" },
+   "images/beyound_rocks_01.webp",
+ ],
+    content: `
+      <p>The story of a people is not only found in books. It is found in the mountains they climbed, the waterfalls they revered, and the stories elders still carry.</p>
+
+      <p>On Saturday, October 24, 2026 the Anaguta Tradomodern team carried out a heritage documentation expedition across two of the most significant sites of Anaguta land in Jos North, Plateau State.</p>
+
+      <h3>The Journey</h3>
+      <p>What started as a routine morning meetup quickly became a rigorous trek through bush paths, rocky outcrops, and steep ancestral routes. The team, which included both male and female members, navigated difficult terrain that once served as home and fortress for Anaguta ancestors.</p>
+      <p>The peak offered more than a view. It offered perspective. From the top, the entire landscape of Anaguta land unfolds &mdash; a reminder of why our ancestors chose the high ground for safety, identity, and spirituality.</p>
+
+      <h3>The History Session</h3>
+      <p>A major highlight of the expedition was an oral history session with an Anaguta Elder who narrated the authentic origin and significance of the mountain. This is history you will not find on Google. The full video interview will be published on our platforms in the coming days.</p>
+
+      <!-- WHEN VIDEO IS READY, uncomment and replace VIDEO_ID:
+      <div style="position:relative;padding-bottom:56.25%;height:0;margin:2rem 0;">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Anaguta Elder oral history interview" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+      </div>
+      -->
+
+      <h3>Amanza Waterfalls</h3>
+      <p>The team proceeded to Amanza Waterfalls, a sacred and historical landmark central to Anaguta identity. Known for its cultural and historical depth, Amanza remains one of the most important heritage sites in Jos.</p>
+
+      <h3>Why This Project Matters</h3>
+      <p>At Anaguta Tradomodern, our mission is simple: <strong>Document. Preserve. Project.</strong></p>
+      <p>Expeditions like this are part of our ongoing effort to physically trace, record, and share Anaguta heritage before it is lost to urbanization and misrepresentation. We are grateful to all team members who participated.</p>
+
+      <p><strong>Team:</strong> [Add names]<br>
+      <strong>Documentation by:</strong> Anaguta Tradomodern Media<br>
+      <strong>Location:</strong> Anaguta Mountains &amp; Amanza Falls, Jos, Plateau State</p>
+
+
+      <p>Support our work by following, sharing, and volunteering for the next expedition. <a href="articles.html?type=project">See more projects</a>.</p>
+    `
+  },
+  {
+    id: 8,
+    type: "project",
+    title: "AFM Cultural Documentation Project",
+    author: "Anaguta Tradomodern Media",
+    date: "2026",
+    readTime: "2 min read",
+    category: "Documentation & Archiving",
+    image: "images/AFM.webp",
+    excerpt: "Comprehensive multimedia recording of oral histories, elder genealogies, clan boundaries, and ritual songs across Jos North.",
+    tags: ["Documentation", "Oral History", "Elders", "Jos North"],
+    content: `
+      <p>The AFM Cultural Documentation Project records video interviews, genealogical chants, and sacred rites with surviving village elders across Jos North.</p>
+      <h3>What We Record</h3>
+      <p>Oral histories, elder genealogies, clan boundaries, and ritual songs.</p>
+      <h3>Impact</h3>
+      <p>Over 60 hours of high-definition oral testimony have been preserved in digital archives to guarantee the transmission of Anaguta ancestral knowledge.</p>
+    `
+  },
+  {
+    id: 9,
+    type: "project",
+    title: "Anaguta Love and Culture \u2014 Then & Now",
+    author: "Anaguta Tradomodern Media",
+    date: "2026",
+    readTime: "2 min read",
+    category: "Documentation & Archiving",
+    image: "images/love_culture.webp",
+    excerpt: "An archival photo and interview exhibition examining the evolution of courtship, marriage rites, and community solidarity across generations.",
+    tags: ["Culture", "Courtship", "Marriage", "Archive"],
+    content: `
+      <p>A visual and oral history project documenting the evolution of Anaguta customs across generations.</p>
+      <h3>About the Project</h3>
+      <p>This project captures interviews, archival photographs, and stories from elders to preserve the identity of the Anaguta people for future generations, looking at courtship, marriage rites, and community solidarity then and now.</p>
+    `
+  },
+  {
+    id: 10,
+    type: "project",
+    title: "Youth Heritage & Vocational Empowerment Drive",
+    author: "Anaguta Tradomodern Media",
+    date: "2026",
+    readTime: "2 min read",
+    category: "Community & Outreach",
+    image: "images/barbing.webp",
+    excerpt: "Hands-on skills workshops in barbering, tailoring, craftsmanship, and entrepreneurship for Anaguta young men and women.",
+    tags: ["Youth", "Skills", "Entrepreneurship", "Community"],
+    content: `
+      <p>Empowering the rising generation of Anaguta youth through practical vocational skills training, modern entrepreneurship, and digital storytelling while anchoring them in cultural leadership and civic pride.</p>
+      <h3>Workshops</h3>
+      <p>Hands-on skills workshops in barbering, tailoring, craftsmanship, and entrepreneurship for Anaguta young men and women.</p>
+    `
+  },
+  {
+    id: 11,
+    type: "project",
+    title: "Naraguta Hills Heritage Eco-Hike & Archery Rites",
+    author: "Anaguta Tradomodern Media",
+    date: "2026",
+    readTime: "2 min read",
+    category: "Expeditions",
+    image: "images/hike.webp",
+    excerpt: "Annual guided mountain expeditions tracing ancestral watchtower caves, natural defensive ridges, and live archery exhibitions.",
+    tags: ["Hike", "Archery", "Naraguta", "Conservation"],
+    content: `
+      <p>A community expedition that brings together youths, tourists, and cultural enthusiasts to explore the rocky granite peaks of Naraguta.</p>
+      <h3>What Happens</h3>
+      <p>Guided hikes trace ancestral watchtower caves and natural defensive ridges, with live demonstrations of traditional archery by master hunters and environmental conservation awareness.</p>
+    `
+  },
+  {
+    id: 12,
+    type: "project",
+    title: "Anaguta Traditional Music & Chant Archiving",
+    author: "Anaguta Tradomodern Media",
+    date: "2026",
+    readTime: "2 min read",
+    category: "Documentation & Archiving",
+    image: "images/uwenni_jaja.webp",
+    excerpt: "Digitizing sacred drum rhythms, hunting horns, and choral chants performed during the Ishokori harvest festival.",
+    tags: ["Music", "Chants", "Ishokori", "Archive"],
+    content: `
+      <p>Studio and field recordings capturing traditional percussion, ceremonial animal-horn instruments, and call-and-response oral chants to ensure ancient musical rhythms are passed to upcoming musicians.</p>
+    `
+  },
+  {
+    id: 13,
+    type: "project",
+    title: "Plateau Elder Care & Health Screening Clinic",
+    author: "Anaguta Tradomodern Media",
+    date: "2026",
+    readTime: "2 min read",
+    category: "Community & Outreach",
+    image: "images/community (1).webp",
+    excerpt: "Grassroots health support providing free blood pressure, vision, and wellness screenings for elder community members.",
+    tags: ["Health", "Elders", "Outreach", "Naraguta"],
+    content: `
+      <p>Partnering with medical volunteers to bring mobile health screening, wellness supplies, and nutritional counseling directly to village elders and rural families across Naraguta.</p>
+      <h3>Services</h3>
+      <p>Free blood pressure, vision, and wellness screenings for elder community members.</p>
+    `
+  },
+
+  /* ===================== ARTICLES ===================== */
   {
     id: 1,
+    type: "article",
     title: "The Sacred Bow: Warfare, Medicine & Defense in Anaguta Heritage",
     author: "Elder Bitrus Azi & Tradomodern Heritage Lab",
     date: "October 10, 2026",
@@ -59,6 +231,7 @@ const AnagutaArticles = [
   },
   {
     id: 2,
+    type: "article",
     title: "Ishokori: The Spiritual Anatomy of the Annual Harvest Thanksgiving",
     author: "Grace Azi & Cultural Documentation Team",
     date: "September 28, 2026",
@@ -82,6 +255,7 @@ const AnagutaArticles = [
   },
   {
     id: 3,
+    type: "article",
     title: "The Living Word: Preserving the Anaguta Tongue in a Modern World",
     author: "Garba Joseph & Linguistics Initiative",
     date: "September 15, 2026",
@@ -105,6 +279,7 @@ const AnagutaArticles = [
   },
   {
     id: 4,
+    type: "article",
     title: "The Stool of the Ujah: Sacred Kingship and Elder Governance",
     author: "Dr. Joshua M. Garba",
     date: "August 30, 2026",
@@ -128,6 +303,7 @@ const AnagutaArticles = [
   },
   {
     id: 5,
+    type: "article",
     title: "Origins and Settlement History of the Naraguta Highland People",
     author: "Elder Yakubu Magaji & Historical Research Cell",
     date: "August 12, 2026",
@@ -148,6 +324,7 @@ const AnagutaArticles = [
   },
   {
     id: 6,
+    type: "article",
     title: "Mastery of the Earth: The Living Tradition of Naraguta Pottery",
     author: "Women's Craft Collective & Grace Azi",
     date: "July 20, 2026",
