@@ -228,7 +228,7 @@ const AnagutaDictionary = [
     meaning: "Bag ",
     category: "Nature & Wildlife",
     exampleAnaguta: "In kpa ashoko ni ri' ʒhamin.",
-    exampleEnglish: ".",
+    exampleEnglish: "I bought a bag in the market.",
     audioPath: "audio/zana.mp3"
   },
   {
