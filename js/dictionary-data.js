@@ -109,6 +109,160 @@ const AnagutaDictionary = [
     exampleAnaguta: "Ure nu pko.",
     exampleEnglish: "rain is falling.",
     audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 9,
+    word: "Ugura kpə",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Unity",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Ugura kpə nazhi uria tuba.",
+    exampleEnglish: "Unity is progress.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 10,
+    word: "Undiganu",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Elder",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Undo di undiganu.",
+    exampleEnglish: "This man is an elder.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 11,
+    word: "Usu",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Mortar",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Na yam usu.",
+    exampleEnglish: "Come and give me the mortar",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 12,
+    word: "Uʒhunu",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Pestle",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "ka chiram uʒhunu.",
+    exampleEnglish: "Go and get me the pestle.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 13,
+    word: "Usaka",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "River",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Pirma goro na ahwu, tu wungulu 'saka.",
+    exampleEnglish: "We are going to Grandma's place but we will cross the river.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 14,
+    word: "Unabizu",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Hunter ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Undọ di unabizu.",
+    exampleEnglish: "This man is a hunter.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 15,
+    word: "Næ izu",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Yesterday ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Nǝ izu tini hanandu ni ra u bisa ǝzhi.",
+    exampleEnglish: "Yesterday we went to church .",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 16,
+    word: "Ufoto",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Wound",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "usharai uhm nu'foto.",
+    exampleEnglish: "My husband has a wound.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 17,
+    word: "Ukangkang",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Plate",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "In kpa ukangkang.",
+    exampleEnglish: "I bought a plate.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 18,
+    word: "Basha",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Girl ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Basha di ran ashira.",
+    exampleEnglish: "This girl knows how to cook.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 19,
+    word: "Ashoko",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Bag ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "In kpa ashoko ni ri' ʒhamin.",
+    exampleEnglish: ".",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 20,
+    word: "Iria",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Food ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "In rin zi iria ko yan du wen.",
+    exampleEnglish: "I eat food everyday.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 21,
+    word: "Ituma",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Plate",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Pir mum ni ri 'tuma.",
+    exampleEnglish: "I am going to work.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 22,
+    word: "Ulam",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Farm ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Pir mhum nu 'lam.",
+    exampleEnglish: "I am going to the farm..",
+    audioPath: "audio/zana.mp3"
   }
 ];
 

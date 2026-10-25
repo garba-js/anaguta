@@ -1,4 +1,4 @@
-const CACHE_NAME = 'anaguta-cache-v1.3.1.5';   // bump this on every deploy
+const CACHE_NAME = 'anaguta-cache-v1.3.1.6';   // bump this on every deploy
 
 const ASSETS_TO_CACHE = [
   './',
