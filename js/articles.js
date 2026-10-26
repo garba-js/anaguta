@@ -121,7 +121,7 @@ function initListing() {
 
     // Impact numbers only make sense on the Projects tab
     const stats = document.getElementById('projectStats');
-    if (stats) stats.style.display = activeType === 'project' ? '' : 'none';
+    if (stats) stats.hidden = activeType !== 'project';
   }
 
   function buildFilters() {
@@ -153,9 +153,9 @@ function initListing() {
 
     if (!filtered.length) {
       grid.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background: #fff; border: 1px solid var(--border-light);">
-          <h3 style="font-family: var(--serif); font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--deep-brown);">Nothing Found</h3>
-          <p style="color: var(--muted); font-size: 0.95rem;">Try different search words or another category.</p>
+        <div class="empty-state">
+          <h3>Nothing Found</h3>
+          <p>Try different search words or another category.</p>
         </div>`;
       return;
     }

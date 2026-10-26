@@ -32,15 +32,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    .type-tabs{display:flex;justify-content:center;gap:.5rem;margin:0 auto 2rem;padding:.35rem;max-width:420px;border:1px solid var(--border-light,#e4d9cc);border-radius:999px;background:#fff}
-    .type-tab{flex:1;border:0;background:transparent;cursor:pointer;font:600 .95rem/1 var(--sans,'Outfit',sans-serif);letter-spacing:.04em;padding:.85rem 1.25rem;border-radius:999px;color:var(--deep-brown,#2C1A0E);transition:background .2s,color .2s}
-    .type-tab:hover{background:rgba(44,26,14,.06)}
-    .type-tab.active{background:var(--deep-brown,#2C1A0E);color:#fff}
-    .type-count{font-weight:400;opacity:.7;margin-left:.25rem}
-    .type-count:not(:empty)::before{content:"("}
-    .type-count:not(:empty)::after{content:")"}
-  </style>
 </head>
 <body>
   <!-- NAV -->
@@ -94,7 +85,7 @@
   </div>
 
   <!-- IMPACT BAR (shown on the Projects tab only) -->
-  <section class="container reveal visible" id="projectStats" style="display:none">
+  <section class="container reveal visible" id="projectStats" hidden>
     <div class="about-stat-bar">
       <div class="stat-item">
         <div class="stat-num">4+</div>

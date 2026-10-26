@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Cultural Essays & Articles | Anaguta Tradomodern</title>
-  <meta name="description" content="Essays on Anaguta heritage, festivals, language, royalty and traditional arts.">
+  <meta name="description" content="Anaguta Tradomodern projects, expeditions and essays on Anaguta heritage, festivals, language, royalty and traditional arts.">
   <meta name="author" content="Anaguta Tradomodern">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <link rel="canonical" href="https://garba-js.github.io/anaguta/FILE">
+  <link rel="canonical" href="https://garba-js.github.io/anaguta/articles.html">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Anaguta Tradomodern">
   <meta property="og:title" content="Cultural Essays & Articles | Anaguta Tradomodern">
-  <meta property="og:description" content="Cultural Essays & Articles | Anaguta Tradomodern">
-  <meta property="og:url" content="https://garba-js.github.io/anaguta/article.html">
+  <meta property="og:description" content="Projects, expeditions and essays on Anaguta heritage, festivals, language, royalty and traditional arts.">
+  <meta property="og:url" content="https://garba-js.github.io/anaguta/articles.html">
   <meta property="og:image" content="https://garba-js.github.io/anaguta/images/og-image.jpg">
   <meta property="og:image:alt" content="Anaguta Tradomodern">
   <meta property="og:locale" content="en_NG">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cultural Essays & Articles | Anaguta Tradomodern">
-  <meta name="twitter:description" content="Cultural Essays & Articles | Anaguta Tradomodern">
+  <meta name="twitter:description" content="Projects, expeditions and essays on Anaguta heritage, festivals, language, royalty and traditional arts.">
   <meta name="twitter:image" content="https://garba-js.github.io/anaguta/images/og-image.jpg">
 
   <link rel="manifest" href="manifest.json">
@@ -32,6 +32,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .type-tabs{display:flex;justify-content:center;gap:.5rem;margin:0 auto 2rem;padding:.35rem;max-width:420px;border:1px solid var(--border-light,#e4d9cc);border-radius:999px;background:#fff}
+    .type-tab{flex:1;border:0;background:transparent;cursor:pointer;font:600 .95rem/1 var(--sans,'Outfit',sans-serif);letter-spacing:.04em;padding:.85rem 1.25rem;border-radius:999px;color:var(--deep-brown,#2C1A0E);transition:background .2s,color .2s}
+    .type-tab:hover{background:rgba(44,26,14,.06)}
+    .type-tab.active{background:var(--deep-brown,#2C1A0E);color:#fff}
+    .type-count{font-weight:400;opacity:.7;margin-left:.25rem}
+    .type-count:not(:empty)::before{content:"("}
+    .type-count:not(:empty)::after{content:")"}
+  </style>
 </head>
 <body>
   <!-- NAV -->
@@ -44,10 +53,10 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about_us.html">About</a></li>
       <li><a href="history.html">History</a></li>
-      <li><a href="projects.html">Projects</a></li>
+      <li><a href="articles.html?type=project" data-nav-type="project">Projects</a></li>
       <li><a href="dictionary.html">Dictionary</a></li>
       <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="articles.html" class="active">Articles</a></li>
+      <li><a href="articles.html?type=article" data-nav-type="article">Articles</a></li>
       <li><a href="event.html">Event</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" class="nav-cta" target="_blank" rel="noopener">Join Community</a></li>
@@ -62,10 +71,10 @@
     <a href="index.html" onclick="closeMobile()">Home</a>
     <a href="about_us.html" onclick="closeMobile()">About</a>
     <a href="history.html" onclick="closeMobile()">History</a>
-    <a href="projects.html" onclick="closeMobile()">Projects</a>
+    <a href="articles.html?type=project" data-nav-type="project" onclick="closeMobile()">Projects</a>
     <a href="dictionary.html" onclick="closeMobile()">Dictionary</a>
     <a href="gallery.html" onclick="closeMobile()">Gallery</a>
-    <a href="articles.html" class="active" onclick="closeMobile()">Articles</a>
+    <a href="articles.html?type=article" data-nav-type="article" onclick="closeMobile()">Articles</a>
     <a href="event.html" onclick="closeMobile()">Event</a>
     <a href="contact.html" onclick="closeMobile()">Contact</a>
     <a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" class="nav-cta" target="_blank" rel="noopener" onclick="closeMobile()">Join Community</a>
@@ -78,34 +87,52 @@
     </div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
-      <p class="page-hero-eyebrow">Essays &middot; Archives &middot; Memoirs</p>
-      <h1>Cultural <em>Essays</em> &amp;<br>Stories</h1>
-      <p>In-depth historical analyses, elder memoirs, anthropological records, and literary reflections on Anaguta heritage.</p>
+      <p class="page-hero-eyebrow" id="heroEyebrow">Essays &middot; Archives &middot; Memoirs</p>
+      <h1 id="heroTitle">Cultural <em>Essays</em> &amp;<br>Stories</h1>
+      <p id="heroText">In-depth historical analyses, elder memoirs, anthropological records, and literary reflections on Anaguta heritage.</p>
     </div>
   </div>
 
-  <!-- ARTICLES DIRECTORY -->
+  <!-- IMPACT BAR (shown on the Projects tab only) -->
+  <section class="container reveal visible" id="projectStats" style="display:none">
+    <div class="about-stat-bar">
+      <div class="stat-item">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Active Initiatives</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Communities Reached</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">60+</div>
+        <div class="stat-label">Hours of Audio/Video</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1,200+</div>
+        <div class="stat-label">Youths Engaged</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS + ARTICLES DIRECTORY -->
   <section class="container reveal articles-section">
+    <div class="type-tabs" id="typeTabs" role="tablist" aria-label="Content type">
+      <button class="type-tab" data-type="project" role="tab" aria-selected="false">Projects <span class="type-count"></span></button>
+      <button class="type-tab" data-type="article" role="tab" aria-selected="true">Articles <span class="type-count"></span></button>
+    </div>
+
     <div class="dict-search-container">
       <div class="dict-search-wrapper">
         <span class="dict-search-icon">&telrec;</span>
-        <input type="text" class="dict-input" id="articlesSearchInput" placeholder="Search essays by title, topic, or keyword..." />
+        <input type="text" class="dict-input" id="articlesSearchInput" placeholder="Search by title, topic, or keyword..." />
       </div>
-      <div class="filter-pills" id="articlesFilterBar">
-        <button class="filter-pill article-filter-btn active" data-category="all">All Essays</button>
-        <button class="filter-pill article-filter-btn" data-category="Heritage & Warfare">Heritage &amp; Warfare</button>
-        <button class="filter-pill article-filter-btn" data-category="Rituals & Festivals">Rituals &amp; Festivals</button>
-        <button class="filter-pill article-filter-btn" data-category="Linguistics & Oral History">Linguistics</button>
-        <button class="filter-pill article-filter-btn" data-category="Royal Dynasty">Royal Dynasty</button>
-        <button class="filter-pill article-filter-btn" data-category="History & Origins">Origins</button>
-        <button class="filter-pill article-filter-btn" data-category="Traditional Arts">Traditional Arts</button>
-      </div>
+      <!-- Category buttons are built automatically by js/articles.js from js/articles-data.js -->
+      <div class="filter-pills" id="articlesFilterBar"></div>
     </div>
 
-    <!-- DYNAMIC GRID POPULATED VIA JS/ARTICLES.JS FROM JS/ARTICLES-DATA.JS -->
-    <div class="projects-grid" id="articlesListGrid">
-      <!-- Injected from AnagutaArticles -->
-    </div>
+    <!-- Cards are built automatically from js/articles-data.js -->
+    <div class="projects-grid" id="articlesListGrid"></div>
   </section>
 
   <!-- FOOTER -->

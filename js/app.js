@@ -24,6 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
 let newWorker;
 
 // 1. Scrolled Navbar
+// The event announcement bar sits at the top of the page, and the navbar is fixed.
+// updateNavOffset() keeps the navbar just under the bar, then lets it slide up to the top
+// of the screen as the bar scrolls out of view (or when the bar is dismissed).
+function updateNavOffset() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+  const bar = document.getElementById('eventBar');
+  const barHeight = bar && bar.offsetParent !== null ? bar.getBoundingClientRect().height : 0;
+  navbar.style.top = Math.max(0, barHeight - window.scrollY) + 'px';
+}
+
 function initNavbar() {
   const navbar = document.getElementById('navbar');
   if (!navbar) return;
@@ -34,9 +45,12 @@ function initNavbar() {
     } else {
       navbar.classList.remove('scrolled');
     }
+    updateNavOffset();
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', updateNavOffset);
+  window.addEventListener('load', updateNavOffset); // web fonts can change the bar height
   onScroll();
 }
 
@@ -46,16 +60,35 @@ function initMobileMenu() {
   const mobileMenu = document.getElementById('mobileMenu');
 
   if (hamburger && mobileMenu) {
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-controls', 'mobileMenu');
+
     hamburger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        closeMobile();
+        hamburger.focus();
+      }
     });
   }
 }
 
 function closeMobile() {
   const mobileMenu = document.getElementById('mobileMenu');
+  const hamburger = document.getElementById('hamburger');
   if (mobileMenu) {
     mobileMenu.classList.remove('open');
+  }
+  if (hamburger) {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Open menu');
   }
 }
 window.closeMobile = closeMobile;
@@ -142,8 +175,11 @@ function initEventBanner() {
     closeBtn.addEventListener('click', () => {
       eventBar.style.display = 'none';
       sessionStorage.setItem('anaguta_event_dismissed', 'true');
+      updateNavOffset();
     });
   }
+
+  updateNavOffset();
 }
 
 // 6. Service Worker, Update Detection & Offline Status
