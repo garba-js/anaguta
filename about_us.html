@@ -37,47 +37,12 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/layout.js"></script>
 
 </head>
 
 <body>
-  <!-- NAV -->
-  <nav id="navbar">
-    <a class="nav-brand-wrap" href="index.html">
-      <img src="images/mobile_icon.png" alt="Bow Icon" class="nav-brand-logo" />
-      <span class="nav-logo">Anaguta <span>Trado-Modern</span></span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about_us.html" class="active">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="dictionary.html">Dictionary</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="articles.html">Articles</a></li>
-      <li><a href="event.html">Event</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" class="nav-cta" target="_blank"
-          rel="noopener">Join Community</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html" onclick="closeMobile()">Home</a>
-    <a href="about_us.html" class="active" onclick="closeMobile()">About</a>
-    <a href="history.html" onclick="closeMobile()">History</a>
-    <a href="projects.html" onclick="closeMobile()">Projects</a>
-    <a href="dictionary.html" onclick="closeMobile()">Dictionary</a>
-    <a href="gallery.html" onclick="closeMobile()">Gallery</a>
-    <a href="articles.html" onclick="closeMobile()">Articles</a>
-    <a href="event.html" onclick="closeMobile()">Event</a>
-    <a href="contact.html" onclick="closeMobile()">Contact</a>
-    <a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" class="nav-cta" target="_blank" rel="noopener"
-      onclick="closeMobile()">Join Community</a>
-  </div>
+  <site-header></site-header>
 
   <!-- PAGE HERO -->
   <div class="page-hero">
@@ -163,7 +128,8 @@
     <span class="section-label">PEOPLE BEHIND THE MISSION</span>
     <h2 class="section-title">Our <em>Team</em></h2>
     <div class="divider"></div>
-    <p class="section-sub">A passionate team of creative media producers, fashion strategists, developers, and community advocates united to archive, elevate, and celebrate our rich heritage.</p>
+    <p class="section-sub">A passionate team of creative media producers, fashion strategists, developers, and community
+      advocates united to archive, elevate, and celebrate our rich heritage.</p>
 
     <div class="team-grid">
       <div class="team-card">
@@ -181,7 +147,7 @@
         </div>
       </div>
       <div class="team-card">
-        <img src="images/mayam.jpeg" alt="Creative Lead" loading="lazy" />
+        <img src="images/mayam.jpeg" alt="Mayam Dauji - Executive Secretary" loading="lazy" />
         <div class="team-body">
           <div class="team-name">Mayam Dauji</div>
           <div class="team-role">Executive Secretary</div>
@@ -194,6 +160,7 @@
           <div class="team-role">Financial Secretary</div>
         </div>
       </div>
+
       <div class="team-card">
         <img src="images/trippy.jpeg" alt="Community & Public Outreach Lead" loading="lazy" />
         <div class="team-body">
@@ -241,61 +208,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-top">
-      <div>
-        <img src="images/logo.png" alt="Anaguta Tradomodern Primary Logo" class="footer-brand-logo" />
-        <div class="footer-brand-name">Anaguta Tradomodern</div>
-        <p class="footer-brand-desc">Promoting Anaguta culture, heritage, language, and community development through
-          design, storytelling, and collective action. Jos, Plateau State, Nigeria.</p>
-        <img src="images/tri-stripe.png" alt="Tri-Stripe Accent Bar" class="tri-stripe-img" />
-      </div>
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about_us.html">About Us</a></li>
-          <li><a href="history.html">History</a></li>
-          <li><a href="dictionary.html">Language Dictionary</a></li>
-          <li><a href="projects.html">Community Projects</a></li>
-          <li><a href="gallery.html">Visual Gallery</a></li>
-          <li><a href="articles.html">Cultural Essays</a></li>
-          <li><a href="event.html">Annual Festival</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="contact.html">Contact Secretariat</a></li>
-          <li><a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" target="_blank" rel="noopener">Join
-              WhatsApp Community</a></li>
-          <li><a href="contact.html#secretariat">Jos North, Plateau State</a></li>
-          <li><a href="contact.html#inquiries">anagutatradomodern01@gmail.com</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern · Jos, Nigeria. All rights reserved.
-      </p>
-      <div class="social-links">
-        <a href="https://web.facebook.com/Anagutatradomodern" target="_blank" rel="noopener" aria-label="Facebook">f</a>
-        <a href="https://www.instagram.com/anagutatradomodern/" target="_blank" rel="noopener"
-          aria-label="Instagram">in</a>
-        <a href="https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q" target="_blank" rel="noopener"
-          aria-label="WhatsApp">w</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- PWA OFFLINE TOAST -->
-  <div class="pwa-toast" id="pwaToast">
-    <span>Offline mode active: browsing cached Anaguta heritage archives.</span>
-  </div>
-  <div class="pwa-update-banner" id="pwaUpdateBanner">
-    <p>A new version of Anaguta Tradomodern is available.</p>
-    <button type="button" onclick="applyPwaUpdate()">Update now</button>
-  </div>
+  <site-footer></site-footer>
 
   <script src="js/dictionary-data.js"></script>
   <script src="js/data.js"></script>

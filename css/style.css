@@ -2458,3 +2458,13 @@ footer :focus-visible {
     background: linear-gradient(180deg, transparent 40%, rgba(20, 10, 5, 0.95) 100%);
   }
 }
+
+
+/* ============================================================================
+   SHARED HEADER / FOOTER (drawn by js/layout.js)
+   The two wrapper tags must not take part in the page layout.
+   ============================================================================ */
+site-header,
+site-footer {
+  display: contents;
+}

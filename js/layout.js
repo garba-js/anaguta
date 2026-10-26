@@ -1,0 +1,189 @@
+/**
+ * ============================================================================
+ * ANAGUTA TRADOMODERN - SHARED HEADER & FOOTER (js/layout.js)
+ * ============================================================================
+ * Every page contains just two tags:
+ *
+ *     <site-header></site-header>     (menu bar + mobile menu)
+ *     <site-footer></site-footer>     (footer + offline toast + update banner)
+ *
+ * and this file draws them. To change the menu, the footer links, the social
+ * links or the footer text, edit the lists below ONCE, upload this file, and
+ * every page updates.
+ *
+ * The page you are on is highlighted automatically.
+ * ============================================================================
+ */
+(function () {
+  'use strict';
+
+  var WHATSAPP = 'https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q';
+
+  /* ---------------------------------------------------------------------------
+     1. MAIN MENU  (top bar and phone menu both come from this list)
+     page    = the file name that should highlight this item
+     navType = for Projects / Articles, which live together on articles.html
+     --------------------------------------------------------------------------- */
+  var NAV = [
+    { label: 'Home',       href: 'index.html',                 page: 'index.html' },
+    { label: 'About',      href: 'about_us.html',              page: 'about_us.html' },
+    { label: 'History',    href: 'history.html',               page: 'history.html' },
+    { label: 'Projects',   href: 'articles.html?type=project', navType: 'project' },
+    { label: 'Dictionary', href: 'dictionary.html',            page: 'dictionary.html' },
+    { label: 'Gallery',    href: 'gallery.html',               page: 'gallery.html' },
+    { label: 'Articles',   href: 'articles.html?type=article', navType: 'article' },
+    { label: 'Event',      href: 'event.html',                 page: 'event.html' },
+    { label: 'Contact',    href: 'contact.html',               page: 'contact.html' }
+  ];
+
+  /* ---------------------------------------------------------------------------
+     2. FOOTER TEXT AND LINKS
+     --------------------------------------------------------------------------- */
+  var BRAND_NAME = 'Anaguta Trado-Modern';
+  var BRAND_DESC =
+    'Promoting Anaguta culture, heritage, language, and community development through design, storytelling, and collective action. Jos, Plateau State, Nigeria.';
+
+  var FOOTER_EXPLORE = [
+    ['Home',                'index.html'],
+    ['About Us',            'about_us.html'],
+    ['History',             'history.html'],
+    ['Language Dictionary', 'dictionary.html'],
+    ['Community Projects',  'articles.html?type=project'],
+    ['Visual Gallery',      'gallery.html'],
+    ['Cultural Essays',     'articles.html?type=article'],
+    ['Annual Festival',     'event.html']
+  ];
+
+  // third item: true = opens in a new tab
+  var FOOTER_CONNECT = [
+    ['Contact Secretariat',                'contact.html',              false],
+    ['Join WhatsApp Community',            WHATSAPP,                    true],
+    ['Jos North, Plateau State',           'contact.html#secretariat',  false],
+    ['anagutatradomodern01@gmail.com',     'contact.html#inquiries',    false]
+  ];
+
+  var SOCIAL = [
+    { label: 'Facebook',  short: 'f',  href: 'https://web.facebook.com/Anagutatradomodern' },
+    { label: 'Instagram', short: 'in', href: 'https://www.instagram.com/anagutatradomodern/' },
+    { label: 'WhatsApp',  short: 'w',  href: 'https://whatsapp.com/channel/0029Vb9959Z6mYPP4mNX4o0q' }
+  ];
+
+  /* ---------------------------------------------------------------------------
+     Work out which page we are on
+     --------------------------------------------------------------------------- */
+  var file = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  if (file.indexOf('.') === -1) file += '.html'; // GitHub Pages also serves /about_us without ".html"
+  var params = new URLSearchParams(window.location.search);
+
+  function isActive(item) {
+    if (item.navType) {
+      // Projects / Articles share articles.html. On article-detail.html the page's own
+      // script (js/articles.js) highlights the right one once it knows the article's type.
+      return file === 'articles.html' && (params.get('type') === 'project' ? 'project' : 'article') === item.navType;
+    }
+    return item.page === file;
+  }
+
+  /* ---------------------------------------------------------------------------
+     HTML builders
+     --------------------------------------------------------------------------- */
+  function linkAttrs(item) {
+    var a = 'href="' + item.href + '"';
+    if (item.navType) a += ' data-nav-type="' + item.navType + '"';
+    if (isActive(item)) a += ' class="active" aria-current="page"';
+    return a;
+  }
+
+  function headerHTML() {
+    var desktop = NAV.map(function (n) {
+      return '<li><a ' + linkAttrs(n) + '>' + n.label + '</a></li>';
+    }).join('\n      ');
+
+    var mobile = NAV.map(function (n) {
+      return '<a ' + linkAttrs(n) + ' onclick="closeMobile()">' + n.label + '</a>';
+    }).join('\n    ');
+
+    return (
+      '<nav id="navbar">\n' +
+      '    <a class="nav-brand-wrap" href="index.html">\n' +
+      '      <img src="images/mobile_icon.png" alt="Bow Icon" class="nav-brand-logo" />\n' +
+      '      <span class="nav-logo">Anaguta <span>Trado-Modern</span></span>\n' +
+      '    </a>\n' +
+      '    <ul class="nav-links">\n      ' + desktop + '\n' +
+      '      <li><a href="' + WHATSAPP + '" class="nav-cta" target="_blank" rel="noopener">Join Community</a></li>\n' +
+      '    </ul>\n' +
+      '    <button class="hamburger" id="hamburger" aria-label="Open menu">\n' +
+      '      <span></span><span></span><span></span>\n' +
+      '    </button>\n' +
+      '  </nav>\n\n' +
+      '  <div class="mobile-menu" id="mobileMenu">\n    ' + mobile + '\n' +
+      '    <a href="' + WHATSAPP + '" class="nav-cta" target="_blank" rel="noopener" onclick="closeMobile()">Join Community</a>\n' +
+      '  </div>'
+    );
+  }
+
+  function footerHTML() {
+    var explore = FOOTER_EXPLORE.map(function (l) {
+      return '<li><a href="' + l[1] + '">' + l[0] + '</a></li>';
+    }).join('\n          ');
+
+    var connect = FOOTER_CONNECT.map(function (l) {
+      return '<li><a href="' + l[1] + '"' + (l[2] ? ' target="_blank" rel="noopener"' : '') + '>' + l[0] + '</a></li>';
+    }).join('\n          ');
+
+    var social = SOCIAL.map(function (s) {
+      return '<a href="' + s.href + '" target="_blank" rel="noopener" aria-label="' + s.label + '">' + s.short + '</a>';
+    }).join('\n        ');
+
+    return (
+      '<footer>\n' +
+      '    <div class="footer-top">\n' +
+      '      <div>\n' +
+      '        <img src="images/logo.png" alt="Anaguta Tradomodern Primary Logo" class="footer-brand-logo" />\n' +
+      '        <div class="footer-brand-name">' + BRAND_NAME + '</div>\n' +
+      '        <p class="footer-brand-desc">' + BRAND_DESC + '</p>\n' +
+      '        <img src="images/tri-stripe.png" alt="Tri-Stripe Accent Bar" class="tri-stripe-img" />\n' +
+      '      </div>\n' +
+      '      <div class="footer-col">\n' +
+      '        <h4>Explore</h4>\n' +
+      '        <ul>\n          ' + explore + '\n        </ul>\n' +
+      '      </div>\n' +
+      '      <div class="footer-col">\n' +
+      '        <h4>Connect</h4>\n' +
+      '        <ul>\n          ' + connect + '\n        </ul>\n' +
+      '      </div>\n' +
+      '    </div>\n' +
+      '    <div class="footer-bottom">\n' +
+      '      <p class="footer-copyright">&copy; <span id="yr"></span> Anaguta Tradomodern \u00b7 Jos, Nigeria. All rights reserved.</p>\n' +
+      '      <div class="social-links">\n        ' + social + '\n      </div>\n' +
+      '    </div>\n' +
+      '  </footer>\n\n' +
+      '  <div class="pwa-toast" id="pwaToast">\n' +
+      '    <span>Offline mode active: browsing cached Anaguta heritage archives.</span>\n' +
+      '  </div>\n' +
+      '  <div class="pwa-update-banner" id="pwaUpdateBanner">\n' +
+      '    <p>A new version of Anaguta Tradomodern is available.</p>\n' +
+      '    <button type="button" onclick="applyPwaUpdate()">Update now</button>\n' +
+      '  </div>'
+    );
+  }
+
+  /* ---------------------------------------------------------------------------
+     Custom tags. This file is loaded in the <head>, so the tags are filled in the
+     moment the browser reaches them: no flash of an empty menu.
+     --------------------------------------------------------------------------- */
+  function define(tag, build) {
+    if (window.customElements.get(tag)) return;
+    window.customElements.define(
+      tag,
+      class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = build();
+        }
+      }
+    );
+  }
+
+  define('site-header', headerHTML);
+  define('site-footer', footerHTML);
+})();
