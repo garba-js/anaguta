@@ -48,19 +48,19 @@ const AnagutaArticles = [
     image: "images/beyound_rocks_01.webp",
     excerpt: "Anaguta Tradomodern team treks Anaguta sacred mountains and Amanza Waterfalls to document untold oral histories and indigenous heritage in Jos, Plateau State.",
     tags: ["Anaguta", "Anaguta people", "Amanza Waterfalls", "Jos history", "Plateau heritage", "Anaguta Tradomodern"],
-    
+
     // PHOTO CAROUSEL: remove the // from the lines below and list your photos (8 or more is fine)
- gallery: [
-   { src: "images/beyound_rocks_02.webp", caption: "The team with an Elder" },
-   { src: "images/beyound_rocks_03.webp", caption: "The team begins the journey" },
-   { src: "images/beyound_rocks_04.webp", caption: "The team climbs the hill" },
-   { src: "images/beyound_rocks_05.webp", caption: "View from the sacred peak" },
-   { src: "images/beyound_rocks_06.webp", caption: "View of the sacred historical hill" },
-   { src: "images/beyound_rocks_07.webp", caption: "The team climbs the hill" },
-   { src: "images/beyound_rocks_08.webp", caption: "View from the sacred peak" },
-   { src: "images/beyound_rocks_09.webp", caption: "Our guide" },
-   "images/beyound_rocks_01.webp",
- ],
+    gallery: [
+      { src: "images/beyound_rocks_02.webp", caption: "The team with an Elder" },
+      { src: "images/beyound_rocks_03.webp", caption: "The team begins the journey" },
+      { src: "images/beyound_rocks_04.webp", caption: "The team climbs the hill" },
+      { src: "images/beyound_rocks_05.webp", caption: "View from the sacred peak" },
+      { src: "images/beyound_rocks_06.webp", caption: "View of the sacred historical hill" },
+      { src: "images/beyound_rocks_07.webp", caption: "The team climbs the hill" },
+      { src: "images/beyound_rocks_08.webp", caption: "View from the sacred peak" },
+      { src: "images/beyound_rocks_09.webp", caption: "Our guide" },
+      "images/beyound_rocks_01.webp",
+    ],
     content: `
       <p>The story of a people is not only found in books. It is found in the mountains they climbed, the waterfalls they revered, and the stories elders still carry.</p>
 
@@ -204,7 +204,7 @@ const AnagutaArticles = [
       <p>Free blood pressure, vision, and wellness screenings for elder community members.</p>
     `
   },
-    {
+  {
     id: 14,
     type: "project",
     title: "Anaguta Tradomodern Visits His Royal Majesty, the Ujah of Anaguta",
@@ -215,17 +215,17 @@ const AnagutaArticles = [
     image: "images/brand_to_ujah_01.webp",
     excerpt: "The Anaguta Tradomodern team met His Royal Majesty, the Ujah of Anaguta, to present completed projects and upcoming initiatives, and to discuss this year's Ishokori Festival.",
     tags: ["Ujah of Anaguta", "Anaguta royalty", "Ishokori Festival", "Anaguta unity", "Anaguta Tradomodern", "Plateau State"],
-   
+
     // PHOTO CAROUSEL: remove the // from the lines below and list your photos
-  gallery: [
-    { src: "images/brand_to_ujah_02.webp", caption: "The team with His Royal Majesty" },
-    { src: "images/brand_to_ujah_03.webp", caption: "Presenting the Anaguta Nation flag" },
-    { src: "images/brand_to_ujah_04.webp", caption: "Presenting the Anaguta Nation flag" },
-    { src: "images/brand_to_ujah_05.webp", caption: "Presenting the Anaguta Nation flag" },
-    { src: "images/brand_to_ujah_06.webp", caption: "Presenting the Anaguta Nation flag" },
-    { src: "images/brand_to_ujah_07.webp", caption: "Presenting the Anaguta Nation flag" },
-    { src: "images/brand_to_ujah_01.webp", caption: "Presenting the Anaguta Nation flag" },
-  ],
+    gallery: [
+      { src: "images/brand_to_ujah_02.webp", caption: "The team with His Royal Majesty" },
+      { src: "images/brand_to_ujah_03.webp", caption: "Presenting the Anaguta Nation flag" },
+      { src: "images/brand_to_ujah_04.webp", caption: "Presenting the Anaguta Nation flag" },
+      { src: "images/brand_to_ujah_05.webp", caption: "Presenting the Anaguta Nation flag" },
+      { src: "images/brand_to_ujah_06.webp", caption: "Presenting the Anaguta Nation flag" },
+      { src: "images/brand_to_ujah_07.webp", caption: "Presenting the Anaguta Nation flag" },
+      { src: "images/brand_to_ujah_01.webp", caption: "Presenting the Anaguta Nation flag" },
+    ],
     content: `
       <p>The Anaguta Tradomodern team had the honor of visiting His Royal Majesty, the Ujah of Anaguta, a First Class Chief in Plateau State. It was a privilege to sit with such a respected leader and share the vision behind what we are building.</p>
 
@@ -242,6 +242,12 @@ const AnagutaArticles = [
       <h3>A Token of Respect</h3>
       <p>As a token of appreciation and respect, we presented His Royal Majesty with a branded Anaguta Trado-Modern shirt and the Anaguta Nation flag.</p>
       <p>At Anaguta Tradomodern, we believe our leaders are our shepherds and we are the followers. Sometimes, even the smallest gestures can remind them that their people stand with them and support the journey forward.</p>
+
+      <!-- WHEN VIDEO IS READY, uncomment and replace VIDEO_ID:           -->
+ 
+          <div style="display:flow-root;clear:both;margin:2rem 0;text-align:center;">
+<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1460600612097558%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+      </div>
 
       <h3>Looking Ahead</h3>
       <p>This visit strengthened our commitment to promoting Anaguta culture, unity, and identity for generations to come. The future is bright for the Anaguta people.</p>
