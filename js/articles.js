@@ -299,6 +299,7 @@ function renderArticle() {
     if (article.content) el.innerHTML = article.content;
   });
   renderGallery(article);
+  renderShare(article, pageUrl, info.singular);
 
   // Back button + related heading follow the type
   set('backLink', (el) => {
@@ -454,4 +455,71 @@ function initHomeFeed() {
 
   fill('homeProjectsGrid', 'project', HOME_FEED.projects);
   fill('homeArticlesGrid', 'article', HOME_FEED.articles);
+}
+
+/* ---------- 5. Share buttons under every article / project ---------- */
+function renderShare(article, url, noun) {
+  const host = document.getElementById('shareBar');
+  if (!host) return;
+
+  const enc = encodeURIComponent;
+  const text = article.title + ' \u2014 Anaguta Tradomodern';
+  const svg = (paths) =>
+    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + paths + '</svg>';
+
+  const ICON = {
+    whatsapp: svg('<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>'),
+    facebook: svg('<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>'),
+    x: svg('<line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>'),
+    link: svg('<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>'),
+    share: svg('<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>')
+  };
+
+  const links = [
+    ['WhatsApp', 'https://wa.me/?text=' + enc(text + '\n' + url), ICON.whatsapp],
+    ['Facebook', 'https://www.facebook.com/sharer/sharer.php?u=' + enc(url), ICON.facebook],
+    ['X', 'https://twitter.com/intent/tweet?text=' + enc(text) + '&url=' + enc(url), ICON.x]
+  ];
+
+  host.innerHTML =
+    '<span class="share-label">Share this ' + esc(noun.toLowerCase()) + '</span>' +
+    '<div class="share-buttons">' +
+    (navigator.share
+      ? '<button type="button" class="share-btn" data-share="native">' + ICON.share + '<span>Share</span></button>'
+      : '') +
+    links
+      .map(
+        (l) =>
+          '<a class="share-btn" href="' + esc(l[1]) + '" target="_blank" rel="noopener">' + l[2] + '<span>' + l[0] + '</span></a>'
+      )
+      .join('') +
+    '<button type="button" class="share-btn" data-share="copy">' + ICON.link + '<span>Copy link</span></button>' +
+    '</div>';
+
+  const native = host.querySelector('[data-share="native"]');
+  if (native) {
+    native.addEventListener('click', () => {
+      navigator.share({ title: article.title, text: text, url: url }).catch(() => {});
+    });
+  }
+
+  const copyBtn = host.querySelector('[data-share="copy"]');
+  const copyLabel = copyBtn.querySelector('span');
+  copyBtn.addEventListener('click', () => {
+    const done = () => {
+      copyLabel.textContent = 'Link copied \u2713';
+      setTimeout(() => (copyLabel.textContent = 'Copy link'), 2200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, done);
+    } else {
+      const t = document.createElement('textarea');
+      t.value = url;
+      document.body.appendChild(t);
+      t.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      t.remove();
+      done();
+    }
+  });
 }

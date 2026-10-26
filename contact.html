@@ -109,7 +109,7 @@
         <h3 class="contact-form-title">Send Us an Inquiry</h3>
         <p class="contact-form-desc">Fill out the form below. Our secretariat team responds within 24 to 48 hours.</p>
 
-        <form action="https://formspree.io/f/xyz" method="POST" id="contactForm" onsubmit="handleContactSubmit(event)">
+        <form id="contactForm" method="post">
           <div class="form-row">
             <div class="form-group">
               <label for="senderName">Your Full Name</label>
@@ -152,12 +152,6 @@
 <script src="js/dictionary-data.js"></script>
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
-  <script>
-    function handleContactSubmit(e) {
-      e.preventDefault();
-      document.getElementById('contactSuccess').style.display = 'block';
-      e.target.reset();
-    }
-  </script>
+<script src="js/forms.js"></script>
 </body>
 </html>

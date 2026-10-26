@@ -2,18 +2,19 @@
  * Anaguta Tradomodern - Event Page Logic (js/event.js)
  * Handles:
  * - Live ticking festival countdown timer
- * - RSVP form submission handler
+ *
+ * (The RSVP form is handled by js/forms.js.)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
-  initRsvpForm();
 });
 
 // 1. Festival Countdown Timer
 function initCountdown() {
-  // Target date: December 31, 2026 at 00:00:00 (Month index 11 = December)
-  const targetDate = new Date(2026, 11, 31, 0, 0, 0);
+  // FESTIVAL START. Must match the date and time shown on event.html.
+  // new Date(year, month, day, hour, minute, second) - months start at 0, so 0 = January, 11 = December.
+  const targetDate = new Date(2026, 11, 31, 0, 0, 0); // December 31, 2026 at 00:00
 
   function updateCountdown() {
     const cdDays = document.getElementById('cdDays');
@@ -48,24 +49,3 @@ function initCountdown() {
   setInterval(updateCountdown, 1000);
   updateCountdown();
 }
-
-// 2. RSVP Form Handler
-function initRsvpForm() {
-  const rsvpForm = document.getElementById('rsvpForm'); // Ensure your <form> has id="rsvpForm" or use window handler below
-  
-  if (rsvpForm) {
-    rsvpForm.addEventListener('submit', handleRsvp);
-  }
-}
-
-function handleRsvp(e) {
-  e.preventDefault();
-  const successMsg = document.getElementById('rsvpSuccess');
-  if (successMsg) {
-    successMsg.style.display = 'block';
-  }
-  e.target.reset();
-}
-
-// Attach to window so inline target onsubmit="handleRsvp(event)" works if needed
-window.handleRsvp = handleRsvp;
