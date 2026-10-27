@@ -8,7 +8,7 @@ on:
     branches: [main, master]
     paths:
       - 'js/articles-data.js'
-      - 'tools/build-pages.js'
+      - 'tools/build-pages.cjs'
       - 'tools/article-template.html'
   workflow_dispatch:        # also lets you press "Run workflow" by hand in the Actions tab
 
@@ -23,10 +23,10 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Build pages
-        run: node tools/build-pages.js
+        run: node tools/build-pages.cjs
 
       - name: Save the built pages
         run: |
