@@ -263,7 +263,84 @@ const AnagutaDictionary = [
     exampleAnaguta: "Pir mhum nu 'lam.",
     exampleEnglish: "I am going to the farm..",
     audioPath: "audio/zana.mp3"
-  }
+  },
+  {
+    id: 23,
+    word: "Rəkpæ",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Head",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Rəkpæ rum nu puba .",
+    exampleEnglish: "I am having headache.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 24,
+    word: "Rəʒi",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Eye ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Ban rika na rəʒi ruwændæ wu.",
+    exampleEnglish: "I can't see with one eye.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 25,
+    word: "əʒi",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Eyes ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "əʒi aw sara'.",
+    exampleEnglish: "Your eyes are beautiful.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 26,
+    word: "Bimu",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Nose ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "em na bimu bu gaybu.",
+    exampleEnglish: "I have a long nose.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 27,
+    word: "Ututo",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Ear ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Uʒi ututo um nu puba.",
+    exampleEnglish: "One of my ear is paining me.",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 28,
+    word: "Unu",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Mouth ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Imi nunu ouw?.",
+    exampleEnglish: "What is in your mouth?",
+    audioPath: "audio/zana.mp3"
+  },
+  {
+    id: 29,
+    word: "rəɲin",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Tooth ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "rəɲin rom nu zuhu.",
+    exampleEnglish: "My tooth is shaking",
+    audioPath: "audio/zana.mp3"
+  },
 ];
 
 // Export to window for global access
