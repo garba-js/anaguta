@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 1. Festival Countdown Timer
 function initCountdown() {
-  // FESTIVAL START. Must match the date and time shown on event.html.
-  // new Date(year, month, day, hour, minute, second) - months start at 0, so 0 = January, 11 = December.
-  const targetDate = new Date(2026, 11, 31, 0, 0, 0); // December 31, 2026 at 00:00
+  // FESTIVAL START: January 1, 2027 at 6:00 PM Nigerian time (+01:00).
+  // Must match the date and time shown on event.html. Format: 'YYYY-MM-DDThh:mm:ss+01:00'
+  const targetDate = new Date('2027-01-01T18:00:00+01:00');
 
   function updateCountdown() {
     const cdDays = document.getElementById('cdDays');

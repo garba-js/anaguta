@@ -11,7 +11,7 @@
  *   - Search, newest-first ordering (by the "date" field)
  *   - URL stays shareable: articles.html?type=project&cat=Expeditions
  *
- * article-detail.html?id=N
+ * article-detail.html?id=N   (and the built pages in /projects and /articles)
  *   - Reader for either type, with related items of the same type
  * ============================================================================
  */
@@ -75,6 +75,14 @@ function getItems() {
 // Anything without type: "project" is treated as an article, so old entries never break.
 function itemType(a) {
   return a.type === 'project' ? 'project' : 'article';
+}
+
+// Where an item lives. Pages made by tools/build-pages.js are listed in window.AnagutaPages
+// (js/articles-pages.js, written automatically). Anything not built yet falls back to the
+// live reader page, so a link never leads to a missing page.
+function articleHref(a) {
+  const pages = window.AnagutaPages || {};
+  return pages[a.id] || 'article-detail.html?id=' + encodeURIComponent(a.id);
 }
 
 /* ---------- 1. Listing page (articles.html) ---------- */
@@ -171,7 +179,7 @@ function initListing() {
             <span class="project-card-label">${esc(art.category)} &middot; ${esc(art.readTime || '5 min read')}</span>
             <h3 class="project-card-title">${esc(art.title)}</h3>
             <p>${esc(art.excerpt || '')}</p>
-            <a href="article-detail.html?id=${encodeURIComponent(art.id)}" class="btn-text">${info.cta}</a>
+            <a href="${esc(articleHref(art))}" class="btn-text">${info.cta}</a>
           </div>
         </div>`
       )
@@ -237,6 +245,17 @@ function initListing() {
 /* ---------- 2. Reader page (article-detail.html?id=N) ---------- */
 
 function initArticleReader() {
+  // An old-style link (article-detail.html?id=7) moves to the built page when one exists,
+  // so links people already shared keep working and everyone lands on the same address.
+  if (!document.body.dataset.articleId) {
+    const oldId = new URLSearchParams(window.location.search).get('id');
+    const built = (window.AnagutaPages || {})[oldId];
+    if (built) {
+      window.location.replace(built + window.location.hash);
+      return;
+    }
+  }
+
   const container = document.getElementById('articleContainer');
   const reveal = () => container && container.classList.add('ready');
   try {
@@ -251,21 +270,23 @@ function renderArticle() {
   if (!articles.length) return;
 
   const params = new URLSearchParams(window.location.search);
-  const rawId = params.get('id');
+  const rawId = document.body.dataset.articleId || params.get('id');
   const article = articles.find((a) => String(a.id) === String(rawId)) || articles[0];
 
   const type = itemType(article);
   const info = TYPE_INFO[type];
 
   // SEO: page title and meta tags for the selected item
-  const pageUrl = SITE_BASE + 'article-detail.html?id=' + article.id;
+  const builtPath = (window.AnagutaPages || {})[article.id];
+  const pageUrl = SITE_BASE + (builtPath || 'article-detail.html?id=' + article.id);
   document.title = article.title + ' | Anaguta Tradomodern';
 
   const setMeta = (selector, value) => {
     const el = document.querySelector(selector);
     if (el) el.setAttribute('content', value);
   };
-  const imageUrl = article.image ? SITE_BASE + encodeURI(article.image) : '';
+  const shareImage = article.ogImage || article.image;
+  const imageUrl = shareImage ? SITE_BASE + encodeURI(shareImage) : '';
   setMeta('meta[name="description"]', article.excerpt || '');
   setMeta('meta[property="og:title"]', article.title);
   setMeta('meta[property="og:description"]', article.excerpt || '');
@@ -338,7 +359,7 @@ function renderArticle() {
             <span class="project-card-label">${esc(rel.category)}</span>
             <h3 class="project-card-title">${esc(rel.title)}</h3>
             <p>${esc(rel.excerpt || '')}</p>
-            <a href="article-detail.html?id=${encodeURIComponent(rel.id)}" class="btn-text">${info.cta}</a>
+            <a href="${esc(articleHref(rel))}" class="btn-text">${info.cta}</a>
           </div>
         </div>`
       )
@@ -446,7 +467,7 @@ function initHomeFeed() {
             <span class="project-card-label">${esc(art.category)} &middot; ${esc(art.readTime || '5 min read')}</span>
             <h3 class="project-card-title">${esc(art.title)}</h3>
             <p>${esc(art.excerpt || '')}</p>
-            <a href="article-detail.html?id=${encodeURIComponent(art.id)}" class="btn-text">${cta}</a>
+            <a href="${esc(articleHref(art))}" class="btn-text">${cta}</a>
           </div>
         </div>`
       )

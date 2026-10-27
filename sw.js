@@ -17,7 +17,7 @@
  * ============================================================================
  */
 
-const CACHE_NAME = 'anaguta-cache-v1.4.1.1.1.0';
+const CACHE_NAME = 'anaguta-cache-v1.4.2.0';
 
 // On a slow or "one bar" connection, wait this long for the network before showing the saved copy.
 const NETWORK_TIMEOUT_MS = 4000;
@@ -46,6 +46,7 @@ const ASSETS_TO_CACHE = [
   './js/dictionary-data.js',
   './js/dictionary.js',
   './js/articles-data.js',
+  './js/articles-pages.js',
   './js/articles.js',
   './js/event.js',
   './js/forms.js',

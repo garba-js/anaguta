@@ -1,0 +1,41 @@
+# Builds a real page for every project and article, plus sitemap.xml,
+# every time js/articles-data.js (or the page template) changes.
+# You do not need to do anything: edit articles-data.js, commit, and wait about a minute.
+name: Build article pages
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'js/articles-data.js'
+      - 'tools/build-pages.js'
+      - 'tools/article-template.html'
+  workflow_dispatch:        # also lets you press "Run workflow" by hand in the Actions tab
+
+permissions:
+  contents: write           # lets the workflow save the pages it builds
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build pages
+        run: node tools/build-pages.js
+
+      - name: Save the built pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+          else
+            git commit -m "Build article pages [skip ci]"
+            git push
+          fi
