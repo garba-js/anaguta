@@ -17,7 +17,7 @@
  * ============================================================================
  */
 
-const CACHE_NAME = 'anaguta-cache-v1.4.2.0.0.5';
+const CACHE_NAME = 'anaguta-cache-v1.4.2.0.0.6';
 
 // On a slow or "one bar" connection, wait this long for the network before showing the saved copy.
 const NETWORK_TIMEOUT_MS = 4000;
