@@ -17,7 +17,7 @@
  * ============================================================================
  */
 
-const CACHE_NAME = 'anaguta-cache-v1.4.2.0.0.6';
+const CACHE_NAME = 'anaguta-cache-v1.4.2.0.0.7';
 
 // On a slow or "one bar" connection, wait this long for the network before showing the saved copy.
 const NETWORK_TIMEOUT_MS = 4000;
@@ -58,7 +58,7 @@ const ASSETS_TO_CACHE = [
 
   // --- NATIVE AUDIO FILES ---
   './audio/ujah.mp3',
-  './audio/farm.mp3',
+  './audio/farm.MP3',
   './audio/chair.mp3',
   './audio/eye.mp3',
   './audio/ear.mp3',

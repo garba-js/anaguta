@@ -262,7 +262,7 @@ const AnagutaDictionary = [
     category: "Nature & Wildlife",
     exampleAnaguta: "Pir mhum nu 'lam.",
     exampleEnglish: "I am going to the farm..",
-    audioPath: "audio/farm.mp3"
+    audioPath: "audio/farm.MP3"
   },
   {
     id: 23,
