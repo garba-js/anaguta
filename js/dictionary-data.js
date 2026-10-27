@@ -97,7 +97,7 @@ const AnagutaDictionary = [
     category: "Nature & Wildlife",
     exampleAnaguta: "Rau na tashi nu'dətar.",
     exampleEnglish: "Come and sit on the chair.",
-    audioPath: "audio/shanu.mp3"
+    audioPath: "audio/chair.mp3"
   },
   {
     id: 8,
@@ -262,7 +262,7 @@ const AnagutaDictionary = [
     category: "Nature & Wildlife",
     exampleAnaguta: "Pir mhum nu 'lam.",
     exampleEnglish: "I am going to the farm..",
-    audioPath: "audio/zana.mp3"
+    audioPath: "audio/farm.mp3"
   },
   {
     id: 23,
@@ -273,7 +273,7 @@ const AnagutaDictionary = [
     category: "Nature & Wildlife",
     exampleAnaguta: "Rəkpæ rum nu puba .",
     exampleEnglish: "I am having headache.",
-    audioPath: "audio/zana.mp3"
+    audioPath: "audio/head.mp3"
   },
   {
     id: 24,
@@ -284,7 +284,7 @@ const AnagutaDictionary = [
     category: "Nature & Wildlife",
     exampleAnaguta: "Ban rika na rəʒi ruwændæ wu.",
     exampleEnglish: "I can't see with one eye.",
-    audioPath: "audio/zana.mp3"
+    audioPath: "audio/eye.mp3"
   },
   {
     id: 25,
@@ -306,7 +306,7 @@ const AnagutaDictionary = [
     category: "Nature & Wildlife",
     exampleAnaguta: "em na bimu bu gaybu.",
     exampleEnglish: "I have a long nose.",
-    audioPath: "audio/zana.mp3"
+    audioPath: "audio/nose.mp3"
   },
   {
     id: 27,
@@ -317,7 +317,7 @@ const AnagutaDictionary = [
     category: "Nature & Wildlife",
     exampleAnaguta: "Uʒi ututo um nu puba.",
     exampleEnglish: "One of my ear is paining me.",
-    audioPath: "audio/zana.mp3"
+    audioPath: "audio/ear.mp3"
   },
   {
     id: 28,
@@ -328,7 +328,7 @@ const AnagutaDictionary = [
     category: "Nature & Wildlife",
     exampleAnaguta: "Imi nunu ouw?.",
     exampleEnglish: "What is in your mouth?",
-    audioPath: "audio/zana.mp3"
+    audioPath: "audio/mouth.mp3"
   },
   {
     id: 29,
@@ -339,7 +339,7 @@ const AnagutaDictionary = [
     category: "Nature & Wildlife",
     exampleAnaguta: "rəɲin rom nu zuhu.",
     exampleEnglish: "My tooth is shaking",
-    audioPath: "audio/zana.mp3"
+    audioPath: "audio/tooth.mp3"
   },
 ];
 

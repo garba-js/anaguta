@@ -12,6 +12,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
+  initNavDropdowns();
   initMobileMenu();
   initScrollReveal();
   initProjectModal();
@@ -52,6 +53,68 @@ function initNavbar() {
   window.addEventListener('resize', updateNavOffset);
   window.addEventListener('load', updateNavOffset); // web fonts can change the bar height
   onScroll();
+}
+
+// 1b. Drop-down menus in the top bar (About, Stories, Culture)
+// Mouse: they open on hover (CSS). Touch and keyboard: they open when the button is pressed.
+function closeNavDropdowns(except) {
+  document.querySelectorAll('.has-dropdown.open').forEach((li) => {
+    if (li === except) return;
+    li.classList.remove('open');
+    const toggle = li.querySelector('.nav-dropdown-toggle');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  });
+}
+
+// Highlights a drop-down's button when the page you are on is inside it
+function syncNavParents() {
+  document.querySelectorAll('.has-dropdown').forEach((li) => {
+    const toggle = li.querySelector('.nav-dropdown-toggle');
+    if (toggle) toggle.classList.toggle('active', !!li.querySelector('.nav-dropdown a.active'));
+  });
+}
+window.closeNavDropdowns = closeNavDropdowns;
+window.syncNavParents = syncNavParents;
+
+function initNavDropdowns() {
+  const items = document.querySelectorAll('.has-dropdown');
+  if (!items.length) return;
+
+  items.forEach((li) => {
+    const toggle = li.querySelector('.nav-dropdown-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+      const willOpen = !li.classList.contains('open');
+      closeNavDropdowns(li);
+      li.classList.toggle('open', willOpen);
+      toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    });
+
+    // Keyboard: Escape closes and returns to the button; tabbing away closes
+    li.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeNavDropdowns();
+        toggle.focus();
+      }
+    });
+    li.addEventListener('focusout', () => {
+      // close only THIS menu, and only if focus really left it
+      setTimeout(() => {
+        if (!li.contains(document.activeElement) && !li.matches(':hover')) {
+          li.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 100);
+    });
+  });
+
+  // Click outside, or on a menu link, closes any open drop-down
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.has-dropdown') || e.target.closest('.nav-dropdown a')) closeNavDropdowns();
+  });
+
+  syncNavParents();
 }
 
 // 2. Mobile Menu

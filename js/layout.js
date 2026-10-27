@@ -21,19 +21,37 @@
 
   /* ---------------------------------------------------------------------------
      1. MAIN MENU  (top bar and phone menu both come from this list)
+     A plain link:     { label: 'Event', href: 'event.html', page: 'event.html' }
+     A drop-down menu: { label: 'About', children: [ ...plain links... ] }
      page    = the file name that should highlight this item
      navType = for Projects / Articles, which live together on articles.html
+     On phones the drop-downs open out as one simple list.
      --------------------------------------------------------------------------- */
   var NAV = [
-    { label: 'Home',       href: 'index.html',                 page: 'index.html' },
-    { label: 'About',      href: 'about_us.html',              page: 'about_us.html' },
-    { label: 'History',    href: 'history.html',               page: 'history.html' },
-    { label: 'Projects',   href: 'articles.html?type=project', navType: 'project' },
-    { label: 'Dictionary', href: 'dictionary.html',            page: 'dictionary.html' },
-    { label: 'Gallery',    href: 'gallery.html',               page: 'gallery.html' },
-    { label: 'Articles',   href: 'articles.html?type=article', navType: 'article' },
-    { label: 'Event',      href: 'event.html',                 page: 'event.html' },
-    { label: 'Contact',    href: 'contact.html',               page: 'contact.html' }
+    { label: 'Home', href: 'index.html', page: 'index.html' },
+    {
+      label: 'About',
+      children: [
+        { label: 'About Us', href: 'about_us.html', page: 'about_us.html' },
+        { label: 'History',  href: 'history.html',  page: 'history.html' }
+      ]
+    },
+    {
+      label: 'Stories',
+      children: [
+        { label: 'Projects', href: 'articles.html?type=project', navType: 'project' },
+        { label: 'Articles', href: 'articles.html?type=article', navType: 'article' }
+      ]
+    },
+    {
+      label: 'Culture',
+      children: [
+        { label: 'Dictionary', href: 'dictionary.html', page: 'dictionary.html' },
+        { label: 'Gallery',    href: 'gallery.html',    page: 'gallery.html' }
+      ]
+    },
+    { label: 'Event',   href: 'event.html',   page: 'event.html' },
+    { label: 'Contact', href: 'contact.html', page: 'contact.html' }
   ];
 
   /* ---------------------------------------------------------------------------
@@ -104,12 +122,42 @@
     return a;
   }
 
-  function headerHTML() {
-    var desktop = NAV.map(function (n) {
-      return '<li><a ' + linkAttrs(n) + '>' + n.label + '</a></li>';
-    }).join('\n      ');
+  var CHEVRON = '<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4l4 4 4-4"/></svg>';
 
-    var mobile = NAV.map(function (n) {
+  function desktopItem(n) {
+    if (!n.children) return '<li><a ' + linkAttrs(n) + '>' + n.label + '</a></li>';
+
+    var id = 'nav-menu-' + n.label.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    var parentActive = n.children.some(isActive);
+    var kids = n.children
+      .map(function (c) {
+        return '<li><a ' + linkAttrs(c) + '>' + c.label + '</a></li>';
+      })
+      .join('\n          ');
+
+    return (
+      '<li class="has-dropdown">\n' +
+      '        <button type="button" class="nav-dropdown-toggle' + (parentActive ? ' active' : '') +
+      '" aria-expanded="false" aria-haspopup="true" aria-controls="' + id + '">' + n.label + CHEVRON + '</button>\n' +
+      '        <ul class="nav-dropdown" id="' + id + '">\n          ' + kids + '\n        </ul>\n' +
+      '      </li>'
+    );
+  }
+
+  // Phone menu: drop-downs are flattened into one list
+  function flatten(list) {
+    var out = [];
+    list.forEach(function (n) {
+      if (n.children) out = out.concat(n.children);
+      else out.push(n);
+    });
+    return out;
+  }
+
+  function headerHTML() {
+    var desktop = NAV.map(desktopItem).join('\n      ');
+
+    var mobile = flatten(NAV).map(function (n) {
       return '<a ' + linkAttrs(n) + ' onclick="closeMobile()">' + n.label + '</a>';
     }).join('\n    ');
 

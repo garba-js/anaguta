@@ -126,6 +126,7 @@ function initListing() {
     document.querySelectorAll('[data-nav-type]').forEach((a) => {
       a.classList.toggle('active', a.dataset.navType === activeType);
     });
+    if (window.syncNavParents) window.syncNavParents();
 
     // Impact numbers only make sense on the Projects tab
     const stats = document.getElementById('projectStats');
@@ -333,6 +334,7 @@ function renderArticle() {
   document.querySelectorAll('[data-nav-type]').forEach((a) => {
     a.classList.toggle('active', a.dataset.navType === type);
   });
+  if (window.syncNavParents) window.syncNavParents();
 
   // Related: same type, same category first
   const relatedContainer = document.getElementById('relatedArticlesList');

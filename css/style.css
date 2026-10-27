@@ -2554,3 +2554,127 @@ site-footer {
   opacity: 0.6;
   cursor: wait;
 }
+
+
+/* ============================================================================
+   NAVIGATION DROP-DOWNS (About, Stories, Culture)  - drawn by js/layout.js
+   ============================================================================ */
+.nav-links { gap: 2rem; }
+
+/* never let a menu word or the brand name break onto two lines */
+.nav-links a,
+.nav-dropdown-toggle,
+.nav-logo { white-space: nowrap; }
+
+.nav-links > li { position: relative; }
+
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+  padding: 0.2rem 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.85;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.nav-dropdown-toggle svg {
+  width: 10px;
+  height: 10px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s;
+}
+
+.nav-dropdown-toggle:hover,
+.nav-dropdown-toggle.active,
+.has-dropdown.open > .nav-dropdown-toggle {
+  opacity: 1;
+  color: var(--gold);
+}
+
+.nav-dropdown-toggle.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+}
+
+.has-dropdown.open > .nav-dropdown-toggle svg { transform: rotate(180deg); }
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  z-index: 1001;
+  min-width: 190px;
+  margin: 0;
+  padding: 0.4rem 0;
+  list-style: none;
+  background: var(--deep-brown);
+  border: 1px solid rgba(201, 150, 65, 0.35);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 6px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+}
+
+/* invisible bridge so the menu does not close while the mouse crosses the gap */
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.nav-links .nav-dropdown a {
+  display: block;
+  padding: 0.8rem 1.4rem;
+  opacity: 0.9;
+}
+
+.nav-links .nav-dropdown a.active {
+  color: var(--gold);
+  opacity: 1;
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.nav-links .nav-dropdown a.active::after { display: none; }
+
+.has-dropdown.open > .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* mouse users: open on hover (touch screens use the button instead) */
+@media (hover: hover) and (pointer: fine) {
+  .has-dropdown:hover > .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+  }
+  .has-dropdown:hover > .nav-dropdown-toggle {
+    opacity: 1;
+    color: var(--gold);
+  }
+  .has-dropdown:hover > .nav-dropdown-toggle svg { transform: rotate(180deg); }
+}
