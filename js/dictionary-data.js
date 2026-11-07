@@ -341,6 +341,63 @@ const AnagutaDictionary = [
     exampleEnglish: "My tooth is shaking",
     audioPath: "audio/tooth.MP3"
   },
+
+  {
+    id: 30,
+    word: "Ubəʒu",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Broom ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "In wuza tubisa nu' bəʒu.",
+    exampleEnglish: "I swept with a broom",
+    audioPath: "audio/tooth.MP3"
+  },
+  
+  {
+    id: 31,
+    word: "Arushini",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Calabash ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "In swa tikamkam n'arushini.",
+    exampleEnglish: "I take vegetable porridge in a calabash.",
+    audioPath: "audio/tooth.MP3"
+  },
+  {
+    id: 32,
+    word: "Ubinda",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Stick ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Pozoh goro nu' binda u tanu.",
+    exampleEnglish: "Our grandfather has a walking stick.",
+    audioPath: "audio/tooth.MP3"
+  },
+  {
+    id: 33,
+    word: "Ugura",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Room ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "Asusu di nu' gura wanda kpa di.",
+    exampleEnglish: "This house has only one room.",
+    audioPath: "audio/tooth.MP3"
+  },
+  {
+    id: 34,
+    word: "Tukwa",
+    phonetic: "//",
+    partOfSpeech: "noun",
+    meaning: "Greeting ",
+    category: "Nature & Wildlife",
+    exampleAnaguta: "PTu pirandu na tukwa na' manzah.",
+    exampleEnglish: "We went for greeting in Mazah.",
+    audioPath: "audio/tooth.MP3"
+  },
 ];
 
 // Export to window for global access
